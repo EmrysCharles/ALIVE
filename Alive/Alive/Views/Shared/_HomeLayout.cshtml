@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] | Alive</title>
+    <link href="~/medicio/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/medicio/assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
+    <link href="~/medicio/assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="~/medicio/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/medicio/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/medicio/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/medicio/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/medicio/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/medicio/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/medicio/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/medicio/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/medicio/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/medicio/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/medicio/assets/css/style.css" rel="stylesheet" />
+    <script src="~/js/sweetalert2.all.min.js"></script>
+    <script src="~/js/jquery-3.5.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="js/project.js"></script>
+    <script type="text/javascript" src="js/sweetalert.min.js"></script>
+
+
+    <script>
+        function errorAlert(message) {
+            Swal.fire({
+                icon: 'error',
+                text: message,
+                timer: 60000,
+                confirmButtonColor: "#FF9B44",
+            })
+        }
+
+        function infoAlert(message) {
+            Swal.fire({
+                icon: 'info',
+                text: message,
+                confirmButtonColor: "#FF9B44",
+            })
+        }
+
+        function infoAlertWithStyles(message) {
+            Swal.fire({
+                title: 'Notification',
+                icon: 'info',
+                text: message,
+                confirmButtonColor: "#FF9B44",
+            })
+        }
+
+        function successAlert(message) {
+            Swal.fire({
+                icon: 'success',
+                text: message,
+                timer: 60000,
+                confirmButtonColor: "#FF9B44",
+            })
+        }
+
+        function newErrorAlert(message, url) {
+            Swal.fire({
+                icon: 'error',
+                text: message,
+                confirmButtonColor: "#FF9B44",
+            }).then((isConfirm) => {
+                if (isConfirm) {
+                    location.reload(url);
+                }
+            })
+        }
+
+        function newSuccessAlert(message, url) {
+            Swal.fire({
+                icon: 'success',
+                text: message,
+                confirmButtonColor: "#FF9B44",
+            }).then((isConfirm) => {
+                if (isConfirm) {
+                    location.reload(url);
+                }
+            })
+
+        }
+        function successAlertWithRedirect(message, url) {
+            Swal.fire({
+                title: "Success",
+                text: message,
+                icon: "success",
+                timer: 30000,
+                overlay: "background - color: rgba(43, 165, 137, 0.45)",
+                confirmButtonColor: "#FF9B44",
+            }).then(function () {
+
+                location.href = url;
+            })
+        }
+    </script>
+</head>
+<body>
+    <!-- ======= Top Bar ======= -->
+    
+
+   
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- ======= Footer ======= -->
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/sweetalert.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <!-- Vendor JS Files -->
+    <script src="~/js/sweetalert2.all.min.js"></script>
+    <script src="~/js/jquery-3.5.1.min.js"></script>
+    <script src="~/medicio/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="~/medicio/assets/vendor/aos/aos.js"></script>
+    <script src="~/medicio/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/medicio/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/medicio/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/medicio/assets/vendor/php-email-form/validate.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="js/project.js"></script>
+    <script type="text/javascript" src="js/sweetalert.min.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <script src="~/js/sweetalert.min.js"></script>
+    <script src="~/medicio/assets/js/main.js"></script>
+
+    
+    <script src="~/medicio/assets/js/main.js"></script>
+</body>
+</html>

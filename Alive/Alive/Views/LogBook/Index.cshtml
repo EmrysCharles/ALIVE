@@ -1,0 +1,705 @@
+﻿@{
+    ViewData["Title"] = "Logbook";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Patient's ID</h1>
+      <nav>
+
+            <li class="breadcrumb-item fs-5, fw-500 text-color-black  " style="color:black;"><a href="index.html" class="bg-info">Home</a></li>
+          
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Patient's Details</h5>
+
+              <!-- General Form Elements -->
+              <form>
+                <div class="row mb-3">
+                    
+                  <label for="ID" class="col-sm-2 col-form-label">ID</label>
+                  <div class="col-sm-6">
+                    <input type="password" id="ID" class="form-control">
+                    <div class="col-4  pt-2">
+                    <button type="button" class="btn btn-primary  ">Enter</button>
+                  </div>
+                </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="text" class="col-sm-2 col-form-label">First Name</label>
+                  <div class="col-sm-4">
+                    <input type="text" id="fIRSTName" class="form-control">
+                  </div>
+                  <label for="text" class="col-sm-2 col-form-label">Last Name</label>
+                  <div class="col-sm-4">
+                    <input type="text" id="lastName" class="form-control">
+                
+                </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                  <div class="col-sm-10">
+                    <input type="email" id="email" class="form-control">
+                  </div>
+                </div>
+               
+                <div class="row mb-3">
+                  <label for="Home Address" class="col-sm-2 col-form-label">Home Address</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="homeAddress" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="State" class="col-sm-2 col-form-label">State</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="state" class="form-control">
+                  </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label">Date Of Birth</label>
+                  <div class="col-sm-10">
+                    <input type="date" id="date" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTime" class="col-sm-2 col-form-label">Time</label>
+                  <div class="col-sm-10">
+                    <input type="time" id="time" class="form-control">
+                  </div>
+                </div>
+
+                
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Services</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="">
+                      <option selected></option>
+                      <option value="1">Consultation</option>
+                      <option value="2">Laboratory</option>
+                      <option value="3">Imaging</option>
+                       <option value="3">Antenatal</option>
+                        <option value="3">ChildBirth</option>
+                   
+                   
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Submit Button</label>
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                  </div>
+                </div>
+
+              </form><!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
+            -
+          <div class="card">
+            <div class="card-body">
+              <h1 class="card-title">Vital Signs</h1>
+
+              <!-- Advanced Form Elements -->
+              <form>
+                <div class="row mb-3">
+                  <div class=" col-6">
+                    
+                  <label for="col-form-label">Gender</label>
+                     <div class=" col-6">
+                       <select class="form-select" id="gender" aria-label="Floating label select example">
+                            <option selected></option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                            <option value="3">Others</option>
+                         </select>
+                    </div>
+                  </div>
+                    <div class=" col-6">
+                      <label class=" col-form-label">Body Temperature</label>
+                      <div class="">
+                       <div class="input-group mb-3">
+                         <span class="input-group-text" id="temperature">Celcius</span>
+                          <input type="text" class="form-control"  aria-describedby="basic-addon1">
+                        </div>
+                      </div>
+                    </div>
+                    <div class=" col-6">
+                     <label class=" col-form-label">Blood Pressure</label>
+                     <div class="">
+                       <div class="input-group mb-3">
+                          <span class="input-group-text" id="pressure">MM/Hg</span>
+                           <input type="text" class="form-control"  aria-describedby="basic-addon1">
+                        </div>
+                      </div>
+                    </div>
+                    <div class=" col-6">
+                      <label class="col-form-label">Body Weight</label>
+                      <div class="">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="weight">Kg/</span>
+                          <input type="text" class="form-control"  aria-describedby="basic-addon1">
+                        </div>
+                       </div>
+                     </div>
+                     <div class=" col-6">
+                       <label class=" col-form-label">Body Height</label>
+                       <div class="">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="height">CM/</span>
+                          <input type="text" class="form-control"  aria-describedby="basic-addon1">
+                        </div>
+                        </div>
+                      </div>
+                      <div class=" col-6">
+                       <label class=" col-form-label">BMI</label>
+                       <div class="">
+                           <input type="number" class="form-control" id="bodyIndex" aria-describedby="basic-addon1" />
+                         <select class="form-select" id="bmi" aria-label="Floating label select example">
+                            <option selected></option>
+                            <option value="1">  Overweight</option>
+                            <option value="2">Normal</option>
+                            <option value="3">Underweight</option>
+                         </select>
+                        </div>
+                      </div>
+                      <div class=" col-6">
+                       <label class=" col-form-label">Respiration Rate</label>
+                       <div class="">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="respiration">CM/</span>
+                          <input type="text" class="form-control"  aria-describedby="basic-addon1">
+                        </div>
+                        </div>
+                      </div>
+
+                      <div class=" col-6">
+                        <label class=" col-form-label">Level Of Consciousness</label>
+                        <div class="">
+                          <div class="input-group mb-3">
+                            <span class="input-group-text" id="consciousness"></span>
+                            <input type="text" class="form-control"  aria-describedby="basic-addon1">
+                           </div>
+                        </div>
+                      </div>
+                      <div class=" col-6">
+                        <label class=" col-form-label">Skin Color</label>
+                        <div class="">
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="skin" aria-describedby="basic-addon1">
+                           </div>
+                        </div>
+                      </div>
+                      <div class=" col-6">
+                        <label class=" col-form-label">Pupillary Assesment</label>
+                        <div class="">
+                          <div class="input-group mb-3">
+                             <input type="text" class="form-control" id="pupillary"  aria-describedby="basic-addon1">
+                           </div>
+                        </div>
+                      </div>
+                      <div class=" col-6">
+                       <label class=" col-form-label">Attended by Nurse</label>
+                       <div class="">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="nurse">CM/</span>
+                          <input type="text" class="form-control"  aria-describedby="basic-addon1">
+                        </div>
+                        </div>
+                      </div>
+                 </div>
+                 <div class="form-floating mb-3">
+                     <label for="floatingTextarea">Patient's Complaints</label>
+                   
+                      <textarea class="form-control" placeholder="Leave a comment here" id="Complain" style="height: 100px;"></textarea>
+                </div>
+                <div class="row mb-3">
+                   <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Send to doctor</button>
+                  </div>
+                </div>
+
+               </form>
+
+
+       
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="m-4 " style=" padding: inherit;  text-align:center">Consultation Form</h3>
+                        <p class="" style="float:right;">Date : 20/7/2022</p>
+
+                        <!-- Multi Columns Form -->
+                        <form class="row g-3">
+                            <div class="row mb-3">
+                                <label for="text" class="col-sm-2 col-form-label">First Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="fIRSTName" class="form-control">
+                                </div>
+                                <label for="text" class="col-sm-2 col-form-label">Last Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="lastName" class="form-control">
+
+                                </div>
+                            
+                           
+                                <label for="text" class="col-sm-2 col-form-label pt-2">Age : </label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="lastName" class="form-control">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputPassword5" class="form-label">For How Long?</label>
+                                <input type="password" class="form-control" id="long">
+                            </div>
+                             <div class="col-md-4">
+                                <label for="inputPassword5" class="form-label">Dose</label>
+                                <input type="password" class="form-control" id="dose">
+                            </div>
+                            <div class=" row g-3">
+                                <h3 class="text-color-primary" style="  text-align:center">Social Question</h3>
+                                <label for="inputAddress5" class="form-label">Occupation</label>
+                                <input type="text" class="form-control" id="social" placeholder="1234 Main St">
+                            </div>
+                            <div class="col-3">
+                                <label for="inputAddress2" class="form-label">Smoking habit</label>
+                                <input type="text" class="form-control" id="smoking" placeholder="Apartment, studio, or floor">
+                            </div>
+                            <div class="col-3">
+                                <label for="inputAddress2" class="form-label">Any addiction</label>
+                                <select id="addiction" class="form-select">
+                                    <option>Cigarette</option>
+                                     <option>Marijuana</option>
+                                    <option>Alcohol</option>
+                                     <option>Mephtha</option>
+                                      <option>Caffeine</option>
+                                       <option>Carbonated drink</option>
+                                        <option>Junk</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <label for="inputAddress2" class="form-label">Sexually-active</label>
+                                <select id="sexually" class="form-select">
+                                    <option>very active</option>
+                                    <option>Not active</option>
+                                    <option>Never had sex</option>
+                                </select>
+
+                            </div>
+                            <div class="col-3">
+                                <label for="inputAddress2" class="form-label">Unprotected Sex</label>
+                                <select id="sex" class="form-select">
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <label for="inputAddress2" class="form-label">If yes, when?</label>
+                                <input type="date" class="form-control" id="when" >
+                            </div>
+
+                            <div class="col-3">
+                                <label for="inputAddress2" class="form-label">MSM</label>
+                                <select id="msm " class="form-select"  >
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="" style=" padding: inherit; text-align:center">Imagimg</h3>
+                                <label for="scan" class="form-label">Scan result</label>
+                                <input type="text" class="form-control" id="scan">
+                            </div>
+                           
+                            <div class="col-md-12">
+                                <label for="inputName5" class="form-label">Doctor's Inference'</label>
+                                
+                                 <textarea class="form-control" id="Inference" style="height: 100px;"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                            
+                        </form><!-- End Multi Columns Form -->
+
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+    </section>
+     <section class="section">
+        <div class="row">
+        <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="">
+                            <h3 class="" style="float:right;">Recieved : 20/7/2022</h3>
+
+                        <h3 class="m-4 " style=" padding: inherit;  text-align:center">Lab Request Form</h3>
+                        </div>
+                        <!-- Multi Columns Form -->
+                        <form >
+                            <div class="row mb-3">
+                                <div class="col-6" >
+                                    <h3>Patient Details</h3>
+                                    <div class="vl" style="border-style:solid;">
+                                        <p  style="border-style: dotted;">Name:<span contenteditable="true"></span></p>
+                                        <p contenteditable="true" class="" style="border-style: dotted;">Address:<span contenteditable="true"></span></p>
+                                        <p contenteditable="true" class="" style="border-style: dotted;">Age:<span contenteditable="true"></span></p>
+                                        <p contenteditable="true" class="" style="border-style: dotted;">Phone:<span contenteditable="true"></span></p>
+                                  
+                                    </div>
+
+
+                                </div>
+
+                            
+                           
+                                <div class="col-6">
+                                    <h3>Requested By</h3>
+                                    <div class="vl" style="border-style:solid;">
+                                        <p class="" style="border-style: dotted;">Doctor:<span contenteditable="true"></span></p>
+                                        <p class="" style="border-style: dotted;">Hospital:<span contenteditable="true"></span></p>
+                                        <p class="" style="border-style: dotted;">Address:<span contenteditable="true"></span></p>
+                                        <p class="" style="border-style: dotted;">Phone:<span contenteditable="true"></span></p>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <h3>Sample Details</h3>
+                                    <div class="vl" style="border-style:solid;">
+                                        <p class="" style="border-style: dotted;">Urgency:</p>
+                                            <input type="checkbox" id="urgency" name="urgency" value="normal">
+                                            <label for="urgency"> Normal</label><br>
+                                            <input type="checkbox" id="urgency2" name="urgency2" value="Urgent">
+                                            <label for="vehicle2"> urgent</label><br>
+                                            
+
+                                       
+                                        
+                                    </div>
+
+
+                                </div>
+
+                            
+
+                                 <div class="col-6">
+                                   <div class="vl" style="border-style:solid;">
+                                    <h3>Sample Taken From Patient</h3>
+
+                                    <p class="" style="border-style: dotted;">Date:<span contenteditable="true"></span></p>
+                                        <p class="" style="border-style: dotted;">Time:<span contenteditable="true"></span></p>
+                                    
+                                   </div>
+                                  </div>
+
+
+                            </div>
+
+                            <table class="table table-bordered">
+                                <thead>
+                                     <tr>
+                                        <th>
+                                           
+                                             <div class="form-check">
+                                                <p>Blood<input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Faeces<input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="form-check">
+                                                <p>Urine<input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Sputum<input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="form-check">
+                                                <p>Swab<input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Fluid<input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="form-check">
+                                                <p>Tissue<input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Cytology<input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                        </th>
+
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                     <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <p>Others, namely:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    
+                                     </tr>
+                                    <tr>
+                                        <td>
+                                            
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                    </tr>
+                                     
+                                </tbody>
+                            </table>
+                            <h2 class="mt-2 mb-0">Examination Requested</h2>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Profiletest</th>
+                                        <th>Biochemistry</th>
+                                        
+                                        <th>Hematology</th>
+                                        <th>Urinalsis/Component</th>
+
+                                        <th>Reference</th>
+                                           
+                                        
+                                       
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <p>LFT:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>RFT:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>TFT:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>LGL:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div></td>
+                                        <td>
+                                            <div class="form-check">
+                                                <p>HIV 1&2:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>CD4 Count:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>HBsAg:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Uric Acid:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Glucose:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check">
+                                                <p>>ESR:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>HB:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>FBS:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>RBS:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>RBS:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>RVS:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Blood Group:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Genotype:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>malaria Parasite:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                               <p>widal Test:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                           </div>
+                                         </td>
+                                         <td>
+                                            <div class="form-check">
+                                                <p>Urinart dipstick test:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>color:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Clarity:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>PH:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                         
+                                            <div class="form-check">
+                                                <p>Specific Gravity:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Blood:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Ketone:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Protein:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                        
+                                            <div class="form-check">
+                                                <p>Urobilinogen:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Bilirubium:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Leucocyte:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Nitrite:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Nitrite:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Urine Microscopy:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>WBC:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>RBC:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p>Epithelial Cell:<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                         
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                        
+                                            <div class="form-check">
+                                                <p<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p<span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                            <div class="form-check">
+                                                <p><span contenteditable="true"></span><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></p>
+                                            </div>
+                                        </td>
+                                        
+
+
+                                </tbody>
+                            </table>
+
+                            
+
+                        </form> 
+                    </div>
+                </div>
+          </div>
+       </div>
+
+    </section>
+
+    </main>

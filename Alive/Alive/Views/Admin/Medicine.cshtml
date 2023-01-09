@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewData["Title"] = "Appointment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<main id="main" class="main ">
+
+
+    <section class="section">
+            <div class="row"> 
+                <div class="col-4">
+                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+                         Basic Modal
+                     </button>
+                    <div class="modal fade" id="basicModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add patient Appointment</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Patient's Details</h5>
+
+                                        <!-- General Form Elements -->
+                                        <form>
+
+                                            <div class="row mb-3">
+                                                <label for="Patientname" class="col-sm-5 col-form-label">Medicine Name</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" id="docName" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="DocName" class="col-sm-5 col-form-label">Medicine Category</label>
+                                                <div class="col-sm-7">
+
+                                                    <select class="form-select" aria-label="">
+                                                        <option selected></option>
+                                                        <option value="1">Out Patient</option>
+                                                        <option value="2">In patient</option>
+                                                        <option value="3">Imaging</option>
+                                                        <option value="3">Antenatal</option>
+                                                        <option value="3">ChildBirth</option>
+
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="DocName" class="col-sm-5 col-form-label">Unit Price</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" id="docName" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="SerialNo" class="col-sm-5 col-form-label">Description</label>
+                                                <div class="col-sm-7">
+                                                    <input type="number" id="serialNo" class="form-control">
+                                                </div>
+                                            </div>
+                                            
+
+                                        </form><!-- End General Form Elements -->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Basic Modal-->
+
+
+
+                 <div class="col-4">
+                     <h2 class="" style="display:flex; text-align:center;justify-contentcenter;">Medicine </h2>
+                 </div>
+
+            </div>
+            <div class="row align-items-top">
+
+              <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right; display:flex; justify-content:end;"> 
+
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+             </form>
+
+
+            </div>
+     </section>
+
+    <!-- Default Card -->
+    <section>
+     <div class="card" style="width:100%">
+        <div class="card-body">
+            
+            <table class="table table-bordered border-primary">
+                <thead class="bg-danger">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Medicine Category</th>
+                        <th scope="col">Medicine Name</th>
+                        <th scope="col">Unit price</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Created Date</th>
+                            <th scope="col"> </th>
+                            <th scope="col"> </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Brandon Jacob</td>
+                        <td>Designer</td>
+                        <td>28</td>
+                        <td>2016-05-25</td>
+
+                        <td>2016-05-25</td>
+                            <td><button type="button" class="btn btn-primary">Edit</button></td>
+                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+
+
+                        </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Bridie Kessler</td>
+                        <td>Developer</td>
+                        <td>35</td>
+                        <td>2014-12-05</td>
+
+                            <td>2016-05-25</td>
+                            <td><button type="button" class="btn btn-primary">Edit</button></td>
+                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+
+
+                        </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Ashleigh Langosh</td>
+                        <td>Finance</td>
+                        <td>45</td>
+                        <td>2011-08-12</td>
+                         <td>2016-05-25</td>
+
+                          <td><button type="button" class="btn btn-primary">Edit</button></td>
+                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+
+                        </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Angus Grady</td>
+                        <td>HR</td>
+                        <td>34</td>
+                        <td>2012-06-11</td>
+                        <td>2016-05-25</td>
+                        <td><button type="button" class="btn btn-primary">Edit</button></td>
+                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+
+
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Raheem Lehner</td>
+                        <td>Dynamic Division Officer</td>
+                        <td>47</td>
+                        <td>2011-04-19</td>
+                        <td>2011-04-19</td>
+                        <td><button type="button" class="btn btn-primary">Edit</button></td>
+                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Raheem Lehner</td>
+                        <td>Dynamic Division Officer</td>
+                        <td>47</td>
+                        <td>2011-04-19</td>
+                        <td>2016-05-25</td>
+                       <td><button type="button" class="btn btn-primary">Edit</button></td>
+                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+            <!-- End Primary Color Bordered Table -->
+
+        </div>
+    </div>
+
+
+
+
+  </section>
+ </main><!-- End Default Card -->
+

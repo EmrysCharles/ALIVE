@@ -1,0 +1,349 @@
+﻿@{
+    ViewData["Title"] = "ExpenseReport";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<main id="main" class="main ">
+
+
+    <section class="section">
+        <div class="row">
+            <div class="col-4">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+                    Basic Modal
+                </button>
+                <div class="modal fade" id="basicModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Add Lab Test</h5>
+
+                                        <!-- General Form Elements -->
+                                        <form>
+
+                                            <div class="row mb-3">
+                                                <label for="Patientname" class="col-sm-5 col-form-label">id'</label>
+                                                <div class="col-sm-7">
+                                                    <input type="number" id="docName" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="DocName" class="col-sm-5 col-form-label">Lab test name</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" id="docName" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="SerialNo" class="col-sm-5 col-form-label">Unit</label>
+                                                <div class="col-sm-7">
+                                                    <input type="number" id="serialNo" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="AppointmentDate" class="col-sm-5 col-form-label">Unit price</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" id="appointmentDate" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-5">
+                                                <label for="AppointmentTime" class="col-sm-2 col-form-label">Reference range</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" id="appointmentTime" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-5">
+                                                <label for="AppointmentTime" class="col-sm-2 col-form-label">created date</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" id="appointmentTime" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-5">
+                                                <label for="AppointmentTime" class="col-sm-2 col-form-label">Status </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" id="appointmentTime" class="form-control">
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+                                        </form><!-- End General Form Elements -->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Basic Modal-->
+
+
+
+            <div class="col-4">
+                <h2 class="" style="display:flex; text-align:center;justify-content:center;">Expenses Report</h2>
+            </div>
+
+        </div>
+        <form class="m-2" style="display:inline-flex; justify-content:space-between;">
+
+            <div class="row mb-3">
+                <label for="inputDate" class="col-sm-2 col-form-label">Start Date</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control">
+                </div>
+            </div>
+
+
+            <div class="row mb-3 mx-2">
+                <label for="inputDate" class="col-sm-2 col-form-label">End Date</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control">
+                </div>
+            </div>
+
+
+            <div class="row mb-3 mx-2">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit </button>
+                </div>
+            </div>
+            <div class="row mb-3 mx-2">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Reset</button>
+                </div>
+            </div>
+
+        </form><!-- End General Form Elements -->
+
+        <div class="row align-items-top">
+
+            <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right; display:flex; justify-content:end;">
+
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+
+
+        </div>
+    </section>
+
+    <!-- Default Card -->
+    <section>
+        <div class="card" style="width:100%">
+            <div class="card-body">
+                <table class="table table-bordered border-primary">
+                    <thead class="bg-danger">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Expenses Category</th>
+                            <th scope="col"> Amount</th>
+                            <th scope="col">Description</th>
+                            
+                            <th scope="col">Created Date </th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Brandon Jacob</td>
+                             <td>200</td>
+                            <td>Unpaid</td>
+                            
+                            <td>2016-05-25</td>
+
+
+
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                <!-- End Primary Color Bordered Table -->
+
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="bigi" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Lab Test Detail</h5>
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="width:40%; background-color:lightseagreen;">Id</th>
+                                            <th scope="col" style="width:70%;">Position</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="background-color:lightseagreen;">Lab test category</td>
+                                            <td>Designer</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:lightseagreen;">Lab test name</td>
+                                            <td>Bridie Kessler</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:lightseagreen;">Unit</td>
+                                            <td>Ashleigh Langosh</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:lightseagreen;">Unit price</td>
+                                            <td>Angus Grady</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:lightseagreen;">Status</td>
+                                            <td>Raheem Lehner</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:lightseagreen;">Created date</td>
+                                            <td>Raheem Lehner</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:lightseagreen;">Created by</td>
+                                            <td>Raheem Lehner</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:lightseagreen;">Modified date</td>
+                                            <td>Raheem Lehner</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:lightseagreen;">Modified by</td>
+                                            <td>Raheem Lehner</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="labModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Add Lab Test</h5>
+
+                                <!-- General Form Elements -->
+                                <form>
+
+                                    <div class="row mb-3">
+                                        <label for="Patientname" class="col-sm-5 col-form-label">id'</label>
+                                        <div class="col-sm-7">
+                                            <input type="number" id="docName" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="DocName" class="col-sm-5 col-form-label">Lab test name</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" id="docName" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="SerialNo" class="col-sm-5 col-form-label">Unit</label>
+                                        <div class="col-sm-7">
+                                            <input type="number" id="serialNo" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="AppointmentDate" class="col-sm-5 col-form-label">Unit price</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" id="appointmentDate" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-5">
+                                        <label for="AppointmentTime" class="col-sm-2 col-form-label">Reference range</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" id="appointmentTime" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-5">
+                                        <label for="AppointmentTime" class="col-sm-2 col-form-label">created date</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" id="appointmentTime" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-5">
+                                        <label for="AppointmentTime" class="col-sm-2 col-form-label">Status </label>
+                                        <div class="col-sm-7">
+                                            <input type="text" id="appointmentTime" class="form-control">
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+                                </form><!-- End General Form Elements -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+        !-- End Basic Modal-->
+
+
+    </section>
+</main><!-- End Default Card -->

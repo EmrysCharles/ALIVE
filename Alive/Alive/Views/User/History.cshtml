@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "History";
+    Layout = "~/Views/Shared/_PatientsLayout.cshtml";
+
+}
+
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Medical History</h1>
+        <nav>
+            
+            <ol class="breadcrumb" style="display:flex; justify-content: space-between;" >
+                
+                     <li class="-"><a class="" asp-controller="user" asp-action="history"> Medical History</a></li>
+                    <li class="- "><a class="" asp-controller="user" asp-action="SocialHistory">Social History</a></li>
+                     <li class="-"><a class="" asp-controller="user" asp-action="surgicalHistory">Surgical History</a></li>
+                    <li class="- "><a class="" asp-controller="user" asp-action="familyHistory">Family History</a></li>
+
+
+                <li class="" style="float:right;"><a class="" asp-controller="user" asp-action="EditValue">Edit Value</a></li>
+                <li class="" style="float:right;"><a class="" asp-controller="user" asp-action="EditTemplate">Edit Template</a></li>
+                <li class=" " style="float:right;"><a class="" asp-controller="user" asp-action="layout">Layout</a></li>
+                
+            </ol>
+            
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row d-flex justify-content-center ">
+            <div class="col-lg-6">
+
+                <!-- Default Card -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">History</h5>
+                        <p class="" style="font-size:medium;"><span id="hestory" ></span></p>
+                        
+                     </div>
+                </div><!-- End Default Card -->
+            </div>
+         </div>
+ </section>
+ </main>
+
+
