@@ -159,6 +159,8 @@ namespace Alive.Controllers
             
                 _context.Checkups.Add(newCheckup);
                 _context.SaveChanges();
+                _emailHelper.SendCheckupApprovalEmail(newCheckup.LastName);
+
                 ModelState.Clear();
                 return Json(new { isError = false, msg = "Patient Checkup Created successful" });
             }
@@ -219,8 +221,6 @@ namespace Alive.Controllers
                     if (CheckupViewModel != null)
                     {
                         var editCheckup = _userHelper.EditCheckup(CheckupViewModel);
-                        _emailHelper.SendCheckupApprovalEmail(CheckupViewModel.LastName);
-
                         if (editCheckup)
                         {
                             return Json(new { isError = false, msg = "Patient Medical Recorde Updated successfully", url = "/Admin/Checkup" });
@@ -410,10 +410,10 @@ namespace Alive.Controllers
                     return Json(new { isError = true, msg = "Put your phone number" });
                 };
 
-                if (AppointmentDetails.DateCreated == DateTime.MinValue)
-                {
-                    return Json(new { isError = true, msg = "This can not be empty" });
-                };
+                //if (AppointmentDetails.DateCreated == DateTime.MinValue)
+                //{
+                //    return Json(new { isError = true, msg = "This can not be empty" });
+                //};
                 if (AppointmentDetails.AppointmentDate == DateTime.MinValue)
                 {
                     return Json(new { isError = true, msg = "Checking in successful" });
@@ -1133,7 +1133,7 @@ namespace Alive.Controllers
                 };
                 _context.Payments.Add(newPayment);
                 _context.SaveChanges();
-                _emailHelper.SendMedicalRecordEmail(newPayment.PatientName);
+                _emailHelper.SendMedicalRecordEmail(paymentDetails.Email, paymentDetails.PatientName);
 
                 ModelState.Clear();
                 return Json(new { isError = false, msg = "Payment Created successful" });

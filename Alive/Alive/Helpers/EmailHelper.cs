@@ -49,14 +49,13 @@ namespace Alive.Helpers
             return false;
         }
 
-        public bool SendMedicalRecordEmail(string PatientName)
+        public bool SendMedicalRecordEmail(string email, string patientName)
         {
-            if (PatientName != null)
+            if (patientName != null)
             {
-                var PaymentDetail = _context.Payments.Where(o => o.PatientName == PatientName).FirstOrDefault();
-                string toEmail = PaymentDetail.Email.ToString();
+                string toEmail = email.ToString();
                 string subject = "APPOINTMENT REQUEST SUBMITTED SUCESSFFULY";
-                string message = "Dear " + PaymentDetail.PatientName + "," + "Your Payment has been Received." + "<br>" + "Your Medical Histyory can be sent on request </br>";
+                string message = "Dear " + patientName + "," + "Your Payment has been Received." + "<br>" + "Your Medical Histyory can be sent on request </br>";
                 _emailService.SendEmail(toEmail, subject, message);
                 return true;
             }

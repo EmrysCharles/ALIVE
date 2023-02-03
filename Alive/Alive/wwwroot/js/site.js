@@ -398,7 +398,7 @@ function EditAppForm(id) {
                 $("#patientName").val(result.result.name);
                 $("#patientEmail").val(result.result.email);
                 $("#patientphone").val(result.result.phoneNumber);
-                $("#patientdate").val(result.result.appointmentCreate);
+                $("#patientdate").val(result.result.AppointmentDate);
                 $("#description").val(result.result.description);
                 $("#datecreated").val(result.result.dateCreated);
 
@@ -569,7 +569,6 @@ function DocEdit() {
     data.Gender = $('#genderEdit').val();
     data.Country = $('#countryEdit').val();
 
-    if (data.Name != "" && data.Email != "" && data.PhoneNumber != "" && data.Category != "" && data.Gender != "" && data.Country != "") {
         let Doctor = JSON.stringify(data);
         $.ajax({
             type: 'POST',
@@ -592,10 +591,8 @@ function DocEdit() {
                 "Something went wrong, contact support - " + errorAlert(ex);
             }
         });
-    }
-    else {
-        errorAlert("Incorrect Details");
-    }
+    
+   
 }
 
 function ConfirmDocDelete(Id) {
