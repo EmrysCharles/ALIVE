@@ -15,13 +15,13 @@ namespace Alive.Models
 
         public string? LabTestName { get; set; }
         public string? TestCategory { get; set; }
-        public string? Unit { get; set; }
-        public string? UnitPrice { get; set; }
+        public int? Unit { get; set; }
+        public double? UnitPrice { get; set; }
         public string? ReferenceRange { get; set; }
 
         public DateTime? DateCreated { get; set; }
         public string? Edit { get; set; }
-        public string? Delete { get; set; }
+        public bool? Deleted { get; set; }
 
     }
 }

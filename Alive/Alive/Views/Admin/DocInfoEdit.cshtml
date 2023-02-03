@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "DocInfoEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+@model Alive.Models.DocInfo
+<main id="main" class="main">
+
+
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+
+
+
+                <div class="card">
+                    <div class="card-body">
+                       
+                        <!-- General Form Elements -->
+                        <form asp-controller="admin" method="post">
+                            <input asp-for="Id" hidden />
+
+
+
+
+                            <div class="row mb-3">
+                                <label for="nursenamename" class="col-sm-5 col-form-label">Doctor's Name</label>
+                                <div class="col-sm-7">
+                                    <input type="text" asp-for="Name" id="DocName" class="form-control">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="email" class="col-sm-5 col-form-label">Email</label>
+                                <div class="col-sm-7">
+                                    <input type="email" asp-for="Email" id="DocEmail" class="form-control">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="nurseId" class="col-sm-5 col-form-label">Doctor Id</label>
+                                <div class="col-sm-7">
+                                    <input type="text" asp-for="DoctorId" id="nursId" class="form-control">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="gender" class="col-sm-5 col-form-label">Gender</label>
+                                <div class="col-sm-7">
+                                    <input type="text" asp-for="Gender" id="dgender" class="form-control">
+                                    <span asp-validation-for="Gender" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="gender" class="col-sm-5 col-form-label">Phone Number</label>
+                                <div class="col-sm-7">
+                                    <input type="number" asp-for="PhoneNumber" id="docPhone" class="form-control">
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="DocName" class="col-sm-5 col-form-label">Nurse's Category'</label>
+                                <div class="col-sm-7">
+
+                                    <select class="form-select" asp-for="Category" aria-label="">
+                                        <option selected></option>
+                                        <option value="1">Surgeon</option>
+                                        <option value="2">Public Health</option>
+                                        <option value="3">Gynagoclogist</option>
+                                        <option value="3">Paedetrician</option>
+                                        <option value="3">Dentist</option>
+
+
+                                    </select>
+                                    <span asp-validation-for="Category" class="text-danger"></span>
+
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="DocN" class="col-sm-5 col-form-label">Document</label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" asp-for="Qualifications" type="file" id="formFile">
+                                    <span asp-validation-for="Qualifications" class="text-danger"></span>
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="SerialNo" class="col-sm-5 col-form-label">Created Date No</label>
+                                <div class="col-sm-7">
+                                    <input type="date" asp-for="DateCreated" id="dCreate" class="form-control">
+                                    <span asp-validation-for="DateCreated" class="text-danger"></span>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="row mb-3">
+                                <div class="form-group row ">
+                                    <div class="col-8 offset-4 row">
+                                        <div class="col mt-3 pt-3">
+                                            <input type="submit" class=" btn btn-info w-100" value="Update" />
+
+                                        </div>
+
+                                        <div class="col mt-3 pt-3">
+                                            <a asp-action="DocInfo" class="btn btn-success w-30">
+                                                <i class="fas fa-sign-out-alt"></i> Back
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form><!-- End General Form Elements -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>

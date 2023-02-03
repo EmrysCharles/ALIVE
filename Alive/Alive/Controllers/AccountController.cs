@@ -28,7 +28,6 @@ namespace Alive.Controllers
             _signInManager = signInManager;
             _dropdownhelper = dropdownhelper;
         }
-
         [HttpGet]
         public async Task<IActionResult> Register()
         {
@@ -37,21 +36,53 @@ namespace Alive.Controllers
             ViewBag.Country = _context.Country.Where(x => x.Id != 0).ToList();
             return View();
         }
-            
-        [HttpPost]
-        public JsonResult RegisterUser(string userDetails)
+        [HttpGet]
+        public async Task<IActionResult> AdminRegister()
         {
+            ViewBag.Dropdownkeys = await _dropdownhelper.GetGenderDropdownByKey(AliveProjectEnums.GenderDropdownKey);
+
+            ViewBag.Country = _context.Country.Where(x => x.Id != 0).ToList();
+            return View();
+        }
+        [HttpPost]
+        public JsonResult AdminRegister(string userDetails)
+        {
+            ViewBag.Dropdownkeys = _dropdownhelper.GetGenderDropdownByKey(AliveProjectEnums.GenderDropdownKey);
+            //ViewBag.Country = _context.Country.Where(x => x.Id != 0).ToList();
+            var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(userDetails);
+            if (applicationUserViewModel != null)
+            {
+                var user = _userHelper.RegisterUser(applicationUserViewModel).Result;
+                if (user != null)
+                {
+                    var userRole = _userManager.AddToRoleAsync(user, "Admin").Result;
+                    if (userRole.Succeeded)
+                    {
+                        return Json(new { isError = false, msg = "Admin Registered Successfully" });
+                    }
+                }
+            }
+            return Json(new { isError = true, msg = "Error Occurred" });
+        }
+        [HttpPost]
+        public JsonResult registerUser(string userDetails)
+        {
+            ViewBag.Dropdownkeys =  _dropdownhelper.GetGenderDropdownByKey(AliveProjectEnums.GenderDropdownKey);
+
+            //ViewBag.Country = _context.Country.Where(x => x.Id != 0).ToList();
+
             var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(userDetails);
             if (applicationUserViewModel!= null)
             {
                 var user = _userHelper.RegisterUser(applicationUserViewModel).Result;
                 if (user != null)
                 {
-                   var userRole = _userManager.AddToRoleAsync(user, "ManagingDirector").Result;
+                   var userRole = _userManager.AddToRoleAsync(user, "Users").Result;
                     if (userRole.Succeeded)
                     {
                         return Json(new { isError = false, msg = "User Registered Successfully" });
                     }
+                    
                 }
             }
             return Json(new { isError = true, msg = "Error Occurred" }); 

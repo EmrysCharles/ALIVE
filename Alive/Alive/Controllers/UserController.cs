@@ -10,7 +10,7 @@ namespace Alive.Controllers
         }
 
 
-        public IActionResult Dashboard()
+        public IActionResult Profile()
         {
             return View();
         }

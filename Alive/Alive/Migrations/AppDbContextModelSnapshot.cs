@@ -22,137 +22,218 @@ namespace Alive.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Alive.Models.Bed", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
-
-                    b.Property<string>("BedCategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BedNO")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Delete")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Edit")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Beds");
-                });
-
-            modelBuilder.Entity("Alive.Models.BedAllotment", b =>
-                {
-                    b.Property<Guid?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("AllotmentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("BedCategory")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BedNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PatientName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ReleasedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BedAllotments");
-                });
-
-            modelBuilder.Entity("Alive.Models.BedCategory", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BedCategories");
-                });
-
             modelBuilder.Entity("Alive.Models.Checkup", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Advice")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Allergy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("AnyAddictionId")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Bed")
+                        .HasColumnType("float");
+
+                    b.Property<string>("BeforeMeal")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BloodGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BloodPressure")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BodyTemperature")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BodyWeight")
+                        .HasColumnType("int");
 
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Complaint")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Consultation")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DOB")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Diagnoses")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DoctorName")
+                    b.Property<string>("Disease1")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Edit")
+                    b.Property<string>("DoseOfSelfmedication")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HPI")
+                    b.Property<string>("DrugIntakeDuration")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DurationOfIllness")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("GenderId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GenotypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Height")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HowToTake")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IfYesWhen")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Investigation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Laboratory")
+                        .HasColumnType("float");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LevelOfConsciousness")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MSMId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MaritalStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Medicine")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Medicne")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("MilitaryServiceId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("NextVisist")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PatientName")
+                    b.Property<string>("Nok")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PatientType")
+                    b.Property<string>("NurseName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhysicalExamination")
+                    b.Property<string>("Occupation")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Symptoms")
+                    b.Property<double?>("Others")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PainRate")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PatientTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Pharmacy")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PulseRate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Result")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Selfmedication")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SexuallyActiveId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Skin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SmokingHabitId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Surgery")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Total")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("TreatAmount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Treatment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UnprotectedSexId")
+                        .HasColumnType("int");
 
                     b.Property<string>("VisitId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AnyAddictionId");
+
+                    b.HasIndex("BloodGroupId");
+
+                    b.HasIndex("GenderId");
+
+                    b.HasIndex("GenotypeId");
+
+                    b.HasIndex("MSMId");
+
+                    b.HasIndex("MaritalStatusId");
+
+                    b.HasIndex("MilitaryServiceId");
+
+                    b.HasIndex("PatientTypeId");
+
+                    b.HasIndex("SexuallyActiveId");
+
+                    b.HasIndex("SmokingHabitId");
+
+                    b.HasIndex("UnprotectedSexId");
 
                     b.ToTable("Checkups");
                 });
@@ -167,9 +248,6 @@ namespace Alive.Migrations
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
@@ -207,17 +285,49 @@ namespace Alive.Migrations
                     b.ToTable("Country");
                 });
 
+            modelBuilder.Entity("Alive.Models.Dispensary", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Action")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Dispensaries");
+                });
+
             modelBuilder.Entity("Alive.Models.DocInfo", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("DoctorId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Edit")
                         .HasColumnType("nvarchar(max)");
@@ -231,13 +341,13 @@ namespace Alive.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NurseId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Qualifications")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -262,152 +372,6 @@ namespace Alive.Migrations
                     b.HasKey("Name");
 
                     b.ToTable("Drugs");
-                });
-
-            modelBuilder.Entity("Alive.Models.ExpenseReport", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
-
-                    b.Property<string>("Amount")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExpenseCategory")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ExpenseReports");
-                });
-
-            modelBuilder.Entity("Alive.Models.Expenses", b =>
-                {
-                    b.Property<string>("ExpensesCategory")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Amount")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ExpensesCategory");
-
-                    b.ToTable("Expenses");
-                });
-
-            modelBuilder.Entity("Alive.Models.ExpensesCategory", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Name");
-
-                    b.ToTable("ExpensesCategories");
-                });
-
-            modelBuilder.Entity("Alive.Models.FamilyHistory", b =>
-                {
-                    b.Property<string>("CoronaryDisease")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Allergy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Cancer")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CancerType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Diabetes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HBP")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HeartDisease")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HighCholesterol")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SurgeryType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SurgicalHistory")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CoronaryDisease");
-
-                    b.ToTable("FamilyHistories");
-                });
-
-            modelBuilder.Entity("Alive.Models.Finance", b =>
-                {
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GenderId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FirstName");
-
-                    b.HasIndex("GenderId");
-
-                    b.ToTable("Finances");
-                });
-
-            modelBuilder.Entity("Alive.Models.Investigation", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
-
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TestName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UnitPrice")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Investigations");
                 });
 
             modelBuilder.Entity("Alive.Models.LabCategory", b =>
@@ -490,8 +454,8 @@ namespace Alive.Migrations
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Delete")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Edit")
                         .HasColumnType("nvarchar(max)");
@@ -505,11 +469,11 @@ namespace Alive.Migrations
                     b.Property<string>("TestCategory")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Unit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Unit")
+                        .HasColumnType("int");
 
-                    b.Property<string>("UnitPrice")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("UnitPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -599,11 +563,14 @@ namespace Alive.Migrations
 
             modelBuilder.Entity("Alive.Models.Medicine", b =>
                 {
-                    b.Property<int?>("Sn")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Sn"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+
+                    b.Property<double?>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -611,10 +578,10 @@ namespace Alive.Migrations
                     b.Property<string>("Delete")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Edit")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MedicineCategory")
@@ -623,53 +590,31 @@ namespace Alive.Migrations
                     b.Property<string>("MedicineName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UnitPrice")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("unit")
+                        .HasColumnType("int");
 
-                    b.HasKey("Sn");
+                    b.HasKey("Id");
 
                     b.ToTable("Medicines");
                 });
 
-            modelBuilder.Entity("Alive.Models.MedicineCategory", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MedicineCategories");
-                });
-
             modelBuilder.Entity("Alive.Models.NurseInfo", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Edit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -686,9 +631,6 @@ namespace Alive.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Qualifications")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("NurseInfos");
@@ -696,36 +638,38 @@ namespace Alive.Migrations
 
             modelBuilder.Entity("Alive.Models.PatientAppointment", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("AppointmentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("AppointmentTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Approve")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Delete")
+                    b.Property<string>("Decline")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DoctorName")
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Edit")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PatientType")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SerialNumber")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -810,12 +754,14 @@ namespace Alive.Migrations
 
             modelBuilder.Entity("Alive.Models.PayCategory", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+
+                    b.Property<int?>("Amountpaid")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -826,8 +772,8 @@ namespace Alive.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Unit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Unit")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -836,41 +782,50 @@ namespace Alive.Migrations
 
             modelBuilder.Entity("Alive.Models.Payment", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ChargedAmount")
+                    b.Property<double?>("AccomodationCharge")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("BedCharge")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("ChargedAmount")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("ConsultCharge")
+                        .HasColumnType("float");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("DueAmount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CommonCharge")
+                    b.Property<double?>("LabCharge")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("MedCharge")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ModeOfPay")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Currency")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Delete")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discount")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DueAmount")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Edit")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GrandTotal")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModeOfPayment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaidAmount")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("PaidAmount")
+                        .HasColumnType("float");
 
                     b.Property<string>("PatientName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PatientType")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("PaymentDate")
@@ -879,11 +834,11 @@ namespace Alive.Migrations
                     b.Property<string>("PaymentReference")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SubTotal")
+                    b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tax")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte?>("Proof")
+                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 
@@ -899,14 +854,14 @@ namespace Alive.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DiscountAmount")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("DiscountAmount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("GrandTotal")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("GrandTotal")
+                        .HasColumnType("int");
 
                     b.Property<string>("PatientName")
                         .HasColumnType("nvarchar(max)");
@@ -914,15 +869,53 @@ namespace Alive.Migrations
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("SubTotal")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("SubTotal")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Tax")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Tax")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("PaymentReports");
+                });
+
+            modelBuilder.Entity("Alive.Models.PharmaInfo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Edit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PharmaId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Qualifications")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PharmaInfos");
                 });
 
             modelBuilder.Entity("Alive.Models.PharmaList", b =>
@@ -937,46 +930,12 @@ namespace Alive.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NurCategory")
+                    b.Property<string>("PharmaCategory")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("PharmaLists");
-                });
-
-            modelBuilder.Entity("Alive.Models.SocialHistory", b =>
-                {
-                    b.Property<string>("Occupation")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Addiction")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DrugUse")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MSM")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MilitaryService")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SexuallyActive")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Smoking")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UnproctectedSex")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("When")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Occupation");
-
-                    b.ToTable("SocialHistories");
                 });
 
             modelBuilder.Entity("Alive.Models.State", b =>
@@ -1012,8 +971,8 @@ namespace Alive.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Medicine")
                         .HasColumnType("nvarchar(max)");
@@ -1021,8 +980,8 @@ namespace Alive.Migrations
                     b.Property<string>("NOoFDays")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WhenToTake")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("amount")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -1031,14 +990,13 @@ namespace Alive.Migrations
 
             modelBuilder.Entity("Alive.Models.VitalSign", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<string>("BloodSugar")
-                        .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("BloodWeight")
+                    b.Property<string>("BloodPressure")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BodyTemperature")
@@ -1047,13 +1005,19 @@ namespace Alive.Migrations
                     b.Property<string>("BodyWeight")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Delirium")
+                    b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Height")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LevelOfConsciousness")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NurseName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PainRate")
@@ -1066,6 +1030,9 @@ namespace Alive.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Skin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VisitId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -1287,7 +1254,7 @@ namespace Alive.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GenderId")
+                    b.Property<int?>("GenderId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -1301,15 +1268,73 @@ namespace Alive.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
-            modelBuilder.Entity("Alive.Models.Finance", b =>
+            modelBuilder.Entity("Alive.Models.Checkup", b =>
                 {
+                    b.HasOne("Alive.Models.CommonDropdown", "AnyAddiction")
+                        .WithMany()
+                        .HasForeignKey("AnyAddictionId");
+
+                    b.HasOne("Alive.Models.CommonDropdown", "BloodGroup")
+                        .WithMany()
+                        .HasForeignKey("BloodGroupId");
+
                     b.HasOne("Alive.Models.CommonDropdown", "Gender")
                         .WithMany()
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GenderId");
+
+                    b.HasOne("Alive.Models.CommonDropdown", "Genotype")
+                        .WithMany()
+                        .HasForeignKey("GenotypeId");
+
+                    b.HasOne("Alive.Models.CommonDropdown", "MSM")
+                        .WithMany()
+                        .HasForeignKey("MSMId");
+
+                    b.HasOne("Alive.Models.CommonDropdown", "MaritalStatus")
+                        .WithMany()
+                        .HasForeignKey("MaritalStatusId");
+
+                    b.HasOne("Alive.Models.CommonDropdown", "MilitaryService")
+                        .WithMany()
+                        .HasForeignKey("MilitaryServiceId");
+
+                    b.HasOne("Alive.Models.CommonDropdown", "PatientType")
+                        .WithMany()
+                        .HasForeignKey("PatientTypeId");
+
+                    b.HasOne("Alive.Models.CommonDropdown", "SexuallyActive")
+                        .WithMany()
+                        .HasForeignKey("SexuallyActiveId");
+
+                    b.HasOne("Alive.Models.CommonDropdown", "SmokingHabit")
+                        .WithMany()
+                        .HasForeignKey("SmokingHabitId");
+
+                    b.HasOne("Alive.Models.CommonDropdown", "UnprotectedSex")
+                        .WithMany()
+                        .HasForeignKey("UnprotectedSexId");
+
+                    b.Navigation("AnyAddiction");
+
+                    b.Navigation("BloodGroup");
 
                     b.Navigation("Gender");
+
+                    b.Navigation("Genotype");
+
+                    b.Navigation("MSM");
+
+                    b.Navigation("MaritalStatus");
+
+                    b.Navigation("MilitaryService");
+
+                    b.Navigation("PatientType");
+
+                    b.Navigation("SexuallyActive");
+
+                    b.Navigation("SmokingHabit");
+
+                    b.Navigation("UnprotectedSex");
                 });
 
             modelBuilder.Entity("Alive.Models.MedicalHistory", b =>
@@ -1387,9 +1412,7 @@ namespace Alive.Migrations
                 {
                     b.HasOne("Alive.Models.CommonDropdown", "Gender")
                         .WithMany()
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GenderId");
 
                     b.Navigation("Gender");
                 });

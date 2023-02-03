@@ -13,7 +13,7 @@ namespace Alive.Models
         [Key]
         public Guid Id { get; set; }
         public string? Name { get; set; }
-        public string? NurCategory { get; set; }
+        public string? PharmaCategory { get; set; }
         public DateTime? DateCreated { get; set; }
     }
 }

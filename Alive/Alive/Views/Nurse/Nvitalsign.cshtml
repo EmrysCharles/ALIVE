@@ -1,7 +1,124 @@
-﻿
-@{
-    ViewData["Title"] = "Nvitalsign";
+﻿@{
+    ViewData["Title"] = "vitalsign";
+    Layout = "~/Views/Shared/_NurseLayout.cshtml";
+
 }
+@model IEnumerable<Alive.Models.VitalSign>
 
-<h1>Nvitalsign</h1>
+<main id="main" class="main ">
 
+
+    <section class="section">
+        <div class="row">
+            <div class="col-4">
+                <a asp-controller="Nurse" asp-action="VitalCreate" method="post" class="btn btn-primary">
+
+                    Add Vital sign Modal
+                </a>
+            </div>
+            <div class="col-4">
+                <h2 class="" style="display:flex; text-align:center;justify-content:center;">Patients Vital Sign</h2>
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="row align-items-top">
+
+            <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right; display:flex; justify-content:end;">
+
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+
+
+        </div>
+
+    </section>
+
+    <!-- Default Card -->
+    <section>
+        <div class="card" style="width:100%">
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+
+                @*@if (Model?.VitalSignTables != null &&  Model?.VitalSignTables.Count()>0)
+                *@
+                @if (Model.Count() > 0)
+                {
+                    <table class="table table-bordered border-primary">
+                        <thead class="bg-danger">
+                            <tr>
+
+                                <th scope="col">Visit id</th>
+
+                                <th scope="col">Patient Name</th>
+                                <th scope="col">Nurse Name</th>
+                                <th scope="col">BP</th>
+                                <th scope="col">Pulse Rate</th>
+                                <th scope="col">Body Temperature </th>
+                                <th scope="col">Body Weight </th>
+                                <th scope="col">Body Height </th>
+                                <th scope="col">Comment </th>
+                                <th scope="col">Action </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*@foreach (var obj in Model.VitalSignTables)
+                        *@
+                            @foreach (var obj in Model)
+                            {
+
+                                <tr>
+                                    <td>@obj.VisitId</td>
+                                    <td>@obj.Name</td>
+                                    <td>@obj.NurseName</td>
+                                    <td>@obj.BloodPressure</td>
+                                    <td>@obj.PulseRate</td>
+                                    <td>@obj.BodyTemperature</td>
+                                    <td>@obj.BodyWeight</td>
+                                    <td>@obj.Height</td>
+                                    <td>@obj.Comment</td>
+
+
+                                    <td>
+                                        <a asp-controller="Nurse" asp-route-id="@obj.Id" asp-action="NvitalEdit" class="btn btn-danger">
+                                            Edit
+                                        </a>
+                                    </td>
+
+
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>No Category exists.</p>
+                }
+                <!-- End Primary Color Bordered Table -->
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- End Basic Modal-->
+
+
+
+    </section>
+
+
+
+</main><!-- End Default Card -->

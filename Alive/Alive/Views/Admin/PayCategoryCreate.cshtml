@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "ExpensesCategoryCreate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+@model Alive.Models.PayCategory
+
+<main id="main" class="main">
+
+
+
+
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- Default Tabs -->
+
+                        <h5 class="card-title"></h5>
+                        <div class="">
+                            <!-- General Form Elements -->
+                            <form asp-controller="Admin" asp-action="PayCategoryCreate" method="post">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                                <div class="row mb-3">
+                                    <label for="Patientname" class="col-sm-5 col-form-label">Name</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" asp-for="Name" id="amount" class="form-control">
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="type" class="col-sm-5 col-form-label">Description</label>
+                                    <div class="col-sm-7">
+
+                                        <input type="text" asp-for="Description" id="expenses" class="form-control">
+
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="DocName" class="col-sm-5 col-form-label">Date Created</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" asp-for="CreatedDate" id="createddate" class="form-control">
+                                        <span asp-validation-for="CreatedDate" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="row mb-3">
+                                    <div class="form-group row ">
+                                        <div class="col-8 offset-4 row">
+                                            <div class="col mt-3 pt-3">
+                                                <input type="submit" class=" btn btn-info w-100" value="Create" />
+
+                                            </div>
+
+                                            <div class="col mt-3 pt-3">
+                                                <a asp-action="PayCategory" class="btn btn-success w-30">
+                                                    <i class="fas fa-sign-out-alt"></i> Back
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                            </form><!-- End General Form Elements -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,250 +1,110 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "DPatient";
     Layout = "~/Views/Shared/_DoctorLayout.cshtml";
 
 }
+@model IEnumerable<Alive.Models.PatientInfo>
+
 <main id="main" class="main ">
+
 
     <section class="section">
         <div class="row">
             <div class="col-4">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basic">
-                    Basic Modal
-                </button>
-                <div class="modal fade" id="basic" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Add Patient Info</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="card mb-3">
+                <a asp-controller="Admin" asp-action="DPatientCreate" method="post" class="btn btn-primary">
 
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-6">
-
-
-                                                <div class="col-12">
-                                                    <label for="FirstName" class="form-label">FirstName</label>
-                                                    <input type="text" name="FirstName" class="form-control" id="firstName" required>
-                                                    <div class="invalid-feedback">Please, enter your first name!</div>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <label for="FirstName" class="form-label">LastName</label>
-                                                    <input type="text" name="LastName" class="form-control" id="lastName" required>
-                                                    <div class="invalid-feedback">Please, enter your last name!</div>
-                                                </div>
-
-
-                                                <div class="col-12">
-                                                    <label for="yourEmail" class="form-label">Gender</label>
-                                                    <div class="col-sm-7">
-
-                                                        <select class="form-select" aria-label="">
-                                                            <option selected></option>
-                                                            <option value="1">Male</option>
-                                                            <option value="2">Female</option>
-                                                            <option value="3">Others</option>
-
-
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <label for="PhoneNumber" class="form-label">Phone Number</label>
-                                                    <input type="number" name="PhoneNumber" class="form-control" id="PhoneNumber" required>
-                                                    <div class="invalid-feedback">Please enter a valid Email Phone Number!</div>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <label for="msrital" class="form-label">Marital Status</label>
-                                                    <div class="">
-
-                                                        <select class="form-select" aria-label="">
-                                                            <option selected></option>
-                                                            <option value="1">Single</option>
-                                                            <option value="2">Married</option>
-                                                            <option value="3">Divorce</option>
-
-
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-12">
-                                                    <label for="DOB" class="form-label">Date of Birth</label>
-                                                    <div class="input-group has-validation">
-                                                        <input type="date" name="DOB" class="form-control" id="dob" required>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-6">
-
-
-                                                <div class="col-12">
-                                                    <label for="Spouse" class="form-label">Spouse Name <br /> Next of Kin</label>
-                                                    <input type="text" name="SpouseName" class="form-control" id="spouse" required>
-                                                    <div class="invalid-feedback">Please, enter your spouse name!</div>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <label for="FatherName" class="form-label">Father Name</label>
-                                                    <input type="text" name="LastName" class="form-control" id="Father" required>
-                                                    <div class="invalid-feedback">Please, enter your Father Name name!</div>
-                                                </div>
-
-
-                                                <div class="col-12">
-                                                    <label for="MotherName" class="form-label">Mother Name</label>
-                                                    <input type="text" name="email" class="form-control" id="MotherName" required>
-                                                    <div class="invalid-feedback">Please enter a your mother's' adddress!</div>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <label for="Bloodgroup" class="form-label">Blood group</label>
-                                                    <div class="col-sm-7">
-
-                                                        <select class="form-select" aria-label="">
-                                                            <option selected></option>
-                                                            <option value="1">A+</option>
-                                                            <option value="2">B+</option>
-                                                            <option value="3">O+</option>
-                                                            <option value="3">AB+</option>
-                                                            <option value="3">A-</option>
-                                                            <option value="3">B-</option>
-                                                            <option value="3">O-</option>
-                                                            <option value="3">AB-</option>
-
-
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <label for="Genotype" class="form-label">Genotype</label>
-                                                    <div class="input-group has-validation">
-                                                        <select class="form-select" aria-label="">
-                                                            <option selected></option>
-                                                            <option value="1">AA</option>
-                                                            <option value="2">AS</option>
-                                                            <option value="3">SS</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-
-
-
-                                            </div>
-                                        </div>
-
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End Basic Modal-->
-
-                        </div>
-                    </div>
-                </div>
-
+                    Add Patient
+                </a>
             </div>
+
+
+            <div class="col-4">
+                <h2 class="" style="display:flex; text-align:center;justify-content:center;">Patient Info List</h2>
+            </div>
+
         </div>
-
-
-
-    </section>
-
-    <section class="section">
         <div class="row align-items-top">
 
+            <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right; display:flex; justify-content:end;">
 
-            <!-- Default Card -->
-            <div class="card" style="width:100%">
-                <div class="card-body">
-                    <h5 class="card-title">Recent Payment</h5>
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
 
+
+        </div>
+    </section>
+
+    <!-- Default Card -->
+    <section>
+        <div class="card" style="width:100%">
+            <div class="card-body">
+                @if (Model.Count() > 0)
+                {
                     <table class="table table-bordered border-primary">
                         <thead class="bg-danger">
                             <tr>
-                                <th scope="col">id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Sub</th>
-                                <th scope="col">Grand total</th>
-                                <th scope="col">Created date</th>
-                                <th scope="col"></th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Marital Status</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Spouse Name <br />Next of kin</th>
+                                <th scope="col">Blood group </th>
+                                <th scope="col">Genotype </th>
+                                <th scope="col">DOB </th>
+                                <th scope="col">New Checkup </th>
+                                <th scope="col">Action </th>
+                                <th scope="col">Action </th>
+
+
+
 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Brandon Jacob</td>
-                                <td>Designer</td>
-                                <td>28</td>
-                                <td>2016-05-25</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Bridie Kessler</td>
-                                <td>Developer</td>
-                                <td>35</td>
-                                <td>2014-12-05</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Ashleigh Langosh</td>
-                                <td>Finance</td>
-                                <td>45</td>
-                                <td>2011-08-12</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Angus Grady</td>
-                                <td>HR</td>
-                                <td>34</td>
-                                <td>2012-06-11</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Raheem Lehner</td>
-                                <td>Dynamic Division Officer</td>
-                                <td>47</td>
-                                <td>2011-04-19</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Raheem Lehner</td>
-                                <td>Dynamic Division Officer</td>
-                                <td>47</td>
-                                <td>2011-04-19</td>
-                            </tr>
+                            @foreach (var obj in Model)
+                            {
+                                <tr>
+                                    <td>@obj.FirstName</td>
+                                    <td>@obj.LastName</td>
+                                    <td>@obj.MaritalStatus</td>
+                                    <td>@obj.Gender</td>
+
+                                    <td>@obj.Nok</td>
+                                    <td>@obj.Bloodgroup</td>
+                                    <td>@obj.Genotype</td>
+                                    <td>@obj.BOB</td>
+                                    <td>
+                                        <a asp-controller="Admin" asp-route-id="@obj.Id" asp-action="3" class="btn btn-warning">
+                                            Edit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Admin" asp-route-id="@obj.Id" asp-action="PatientEdit" class="btn btn-primary">
+                                            Edit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Admin" asp-route-Id="@obj.Id" asp-action="PatientDelete" class="btn btn-danger mx-2">
+                                            <i class="far fa-trash-alt"></i> Delete
+                                        </a>
+                                    </td>
+
+
+
+
+                                </tr>
+
+                            }
                         </tbody>
                     </table>
                     <!-- End Primary Color Bordered Table -->
-
-                </div>
+                }
             </div>
-
         </div>
 
 
-    </section><!-- End Default Card -->
 
-</main>
 
+    </section>
+</main><!-- End Default Card -->

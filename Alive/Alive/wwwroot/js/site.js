@@ -2,16 +2,50 @@
     $(document).ready(function() {
         // Show the modal
         $('#myModal').modal('show');
-  });
+    });
 
-    function register() {
+function registerAdmin() {
     debugger;
     var data = {};
     data.firstName = $('#firstName').val();
     data.lastName = $('#lastName').val();
+    data.email = $('#email').val();
+    data.PhoneNumber = $('#phoneNumber').val();
+    data.password = $('#password').val();
+    data.ConfirmPassword = $('#ConfirmPassword').val();
+    var userDetails = JSON.stringify(data);
+    $.ajax({
+        type: 'Post',
+        url: '/Account/AdminRegister',
+        dataType: 'json',
+        data:
+        {
+            userDetails: userDetails,
+        },
+        success: function (result) {
+            debugger;
+            if (!result.isError) {
+                var url = "/Account/Login";
+                successAlertWithRedirect(result.msg, url);
+            }
+            else {
+                errorAlert(result.msg);
+            }
+        },
+        error: function (ex) {
+            errorAlert(ex);
+        }
+    });
 
-     data.email = $('#email').val();
-    data.PhoneNumber = $('#PhoneNumber').val();
+} 
+
+    function registerUser() {
+    debugger;
+    var data = {};
+    data.firstName = $('#firstName').val();
+    data.lastName = $('#lastName').val();
+    data.email = $('#email').val();
+    data.PhoneNumber = $('#phoneNumber').val();
     data.password = $('#password').val();
     data.ConfirmPassword = $('#ConfirmPassword').val();
     var userDetails = JSON.stringify(data);
@@ -69,102 +103,70 @@
     });
 }
 
+//function addRow()
+//{
+//    var tableRow = document.getElementById("table");
+//    var row = document.createElement("tr");
+//    var cell1 = document.createElement("td");
+//    var cell2 = document.createElement("td");
+//    var cell3 = document.createElement("td");
+//    var cell3 = document.createElement("td");
 
+//    cell1.innerHTML = "Cell of New Row";
+//    cell2.innerHTML = "Cell of New Row";
+//    cell3.innerHTML = "Cell of New Row";
+//    row.appendChild(cell1);
+//    row.appendChild(cell2);
+//    row.appendChild(cell3);
+//    tableRow.appendChild(row);
+//}
 
-function registerUser() {
-    debugger;
-    var data = {};
-    data.FirstName = $('#firstName').val();
-    data.LastName = $('#lastName').val();
-    data.PhoneNumber = $('#phoneNumber').val();
-    data.Email = $('#email').val();
-    data.Password = $('#password').val();
-    data.ConfirmPassword = $('#confirmPassword').val();
-    if (data.FirstName == "" || data.LastName == "" || data.PhoneNumber == ""  || data.Email == "" || data.Password == "" || data.ConfirmPassword == "") {
+//function addCol()
+//{
+//    var tableRow = document.getElementById("tabe");
+//    var row = document.createElement("tr");
+//    var cell1 = document.createElement("td");
+//    var cell2 = document.createElement("td");
+//    var cell3 = document.createElement("td");
+//    var cell4 = document.createElement("td");
+//    var cell5 = document.createElement("td");
 
-        
-        if (data.FirstName == "") {
-            document.querySelector("#firstNameVDT").style.display = "block";
-        }
-        else {
-            document.querySelector("#firstNameVDT").style.display = "none";
-        }
-        if (data.LastName == "") {
-            document.querySelector("#lastNameVDT").style.display = "block";
-        }
-        else {
-            document.querySelector("#lastNameVDT").style.display = "none";
-        }
-        if (data.Email == "") {
-            document.querySelector("#phoneNumberVDT").style.display = "block";
-        }
-        else {
-            document.querySelector("#phoneNumberVDT").style.display = "none";
-        }
-           
-        if (data.Email == "") {
-            document.querySelector("#emailVDT").style.display = "block";
-        }
-        else {
-            document.querySelector("#emailVDT").style.display = "none";
-        }
-        if (data.Password == "") {
-            document.querySelector("#passwordVDT").style.display = "block";
-        }
-        else {
-            document.querySelector("#passwordVDT").style.display = "none";
-        }
-        if (data.ConfirmPassword == "") {
-            document.querySelector("#confirmPasswordVDT").style.display = "block";
-        }
-        else {
-            document.querySelector("#confirmPasswordVDT").style.display = "none";
-        }
+//    cell1.innerHTML = "Cell of New Row";
+//    cell2.innerHTML = "Cell of New Row";
+//    cell3.innerHTML = "";
+//    cell4.innerHTML = "";
+//    cell5.innerHTML = "";
+   
+//    row.appendChild(cell1);
+//    row.appendChild(cell2);
+//    row.appendChild(cell3);
+//    row.appendChild(cell4);
+//    row.appendChild(cell5);
 
-    }
-    else {
-        document.querySelector("#firstNameVDT").style.display = "none";
-        document.querySelector("#lastNameVDT").style.display = "none";
-        document.querySelector("#phoneNumber").style.display = "none";
-        document.querySelector("#emailVDT").style.display = "none";
-        document.querySelector("#passwordVDT").style.display = "none";
-        document.querySelector("#confirmPasswordVDT").style.display = "none";
-        let userDetails = JSON.stringify(data);
-        reader.onload = function () {
-            base64 = reader.result;
-            $.ajax({
-                type: 'Post',
-                dataType: 'Json',
-                url: '/Account/Register',
-                data:
-                {
-                    userDetails: userDetails,
-                },
-                success: function (result) {
-                    debugger;
-                    if (!result.isError) {
-                        var url = '/Account/Login';
-                        successAlertWithRedirect(result.msg, url);
+//    tableRow.appendChild(row);
+//}
 
-                    }
-                    else {
-                        errorAlert(result.msg);
-                    }
-                },
-                error: function (ex) {
-                    errorAlert("Error Occured,try again.");
-                }
+//function addCol()
+//{
+//    var table = document.getElementById("table");
+//    var row = table.insertRow(0);
+//    var cell1 = row.insertCell(0);
+//    var cell2 = row.insertCell(1);
+//    var cell3 = row.insertCell(2);
+//    var cell4 = row.insertCell(3);
+//    var cell5 = row.insertCell(4);
 
-            });
+//    cell1.innerHTML = document.getElementById("userID").value;
+//    cell2.innerHTML = document.getElementById("firstname").value;
+//    cell3.innerHTML = document.getElementById("lastname").value;
+//    cell4.innerHTML = document.getElementById("lastname").value;
+//    cell5.innerHTML = document.getElementById("lastname").value;
 
-        }
-
-
-
-    }
-
+//    return false;
+//}
+function myDeleteFunction() {
+    document.getElementById("myTable").deleteRow(0);
 }
-
 
 $("#country").change(function () {
     debugger;
@@ -187,149 +189,1169 @@ $("#country").change(function () {
 
 })
 
+$(document).ready(function () {
+    $('#example').DataTable();
+});
+/*Create For Lab test*/
+function labtestCreate() {
+    debugger;
+    var data = {};
+    data.LabTestName = $('#testName').val();
+    data.TestCategory = $('#testCategory').val();
+    data.UnitPrice = $('#unitPrice').val();
+    data.DateCreated = $('#dateCreated').val();
+    data.ReferenceRange = $('#reference').val();
+        let LabTestViewModel = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            dataType: 'Json',
+            url: '/Admin/Labtest',
+            data:
+            {
+                deserializedLabTestViewModel: LabTestViewModel,
+            },
+            success: function (result) {
 
+                if (!result.isError) {
+                    $("#loader").fadeOut(3000);
+                    var url = '/Admin/Labtest'
+                    successAlertWithRedirect(result.msg, url)
+                }
+                else {
+                    $("#loader").fadeOut(3000);
+                    errorAlert(result.msg)
+                }
+            },
+            Error: function (ex) {
+                $("#loader").fadeOut(3000);
+                errorAlert(ex);
+            }
+        });
+    
 
-
-
-
-//function signup() {
-//				var firstname =
-//        document.forms.RegForm.FirstName.value;
-//    var lastname =
-//        document.forms.RegForm.LastName.value;
-//    var email =
-//    document.forms.RegForm.EMail.value;
-//    var phone =
-//    document.forms.RegForm.PhoneNumber.value;
-//    var password =
-//    document.forms.RegForm.Password.value;
-//    var password2 =
-//        document.forms.RegForm.ConfirmPassword.value;
-//    var regEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2, 3})+$/g;
-//    var regPhone=/^\d{10}$/;									 
-//    var regName = /\d+$/g;								 
-
-//    if (name == "" || regName.test(name)) {
-//        window.alert("Please enter your name properly.");
-//        name.focus();
-//       return false;
-//	}
-
-//    if (address == "") {
-//        window.alert("Please enter your address.");
-//    address.focus();
-//    return false;
-//				}
-
-//    if (email == "" || !regEmail.test(email)) {
-//        window.alert("Please enter a valid e-mail address.");
-//    email.focus();
-//    return false;
-//				}
-
-//    if (password == "") {
-//        alert("Please enter your password");
-//    password.focus();
-//    return false;
-//				}
-
-//    if(password.length <6){
-//        alert("Password should be atleast 6 character long");
-//    password.focus();
-//    return false;
-
-//				}
-//    if (phone == "" || !regPhone.test(phone)) {
-//        alert("Please enter valid phone number.");
-//    phone.focus();
-//    return false;
-//				}
-
-   
-
-//    return true;
-//			}
-
-
-const form = document.getElementById('form')
-const firstname = document.getElementById('firstName')
-const lastname = document.getElementById('lastName')
-const email = document.getElementById('email')
-const password = document.getElementById('password')
-const password2 = document.getElementById('confirmpassword')
-const phoneNumber = document.getElementById('phoneNumber')
-
-form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    validateInputs();
-})
-
-const setError = (element, message) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success')
+}
+function EditForm(id) {
+    debugger;
+    $.ajax({
+        type: 'GET',
+        url: '/Admin/GetEditLabTest', // we are calling json method
+        dataType: 'json',
+        data:
+        {
+            id: id
+        },
+        success: function (result) {
+            debugger
+            if (!result.isError) {
+            debugger
+                $("#deleteId").val(result.result.id);
+                $("#editId").val(result.result.id);
+                $("#edittestName").val(result.result.labTestName);
+                $("#edittestCategory").val(result.result.testCategory);
+                $("#editunitPrice").val(result.result.unitPrice);
+                $("#editdatecreated").val(result.result.dateCreated);
+                $("#editreference").val(result.result.referenceRange);
+            }        
+        },
+        error: function (ex) {
+            "please fill the form correctly" + errorAlert(ex);
+        }
+    });
 };
+///
+///*SaveEditStaff*/
+function SaveEditLabTest() {
+    debugger;
+    var data = {};
+    data.Id = $('#editId').val();
+    data.LabTestName = $('#edittestName').val();
+    data.TestCategory = $('#edittestCategory').val();
+    data.UnitPrice = $('#editunitPrice').val();
+    data.ReferenceRange = $('#editreference').val();
+      var now = new Date(dateString);
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
 
-const isValidEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    var DateCreated = now.getFullYear() + "-" + (month) + "-" + (day);
+
+    return DateCreated;
+    
+
+    if (data.LabTestName != "" && data.TestCategory != "" && data.UnitPrice != "" && data.ReferenceRange != "" && data.DateCreated != "") {
+        let Labtest = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/SaveEditLabTest', // we are calling json method,
+            dataType: 'json',
+            data:
+            {
+                deserializedLabTestViewModel: Labtest,
+            },
+            success: function (result) {
+                if (!result.isError) {
+                    var url = "/Admin/LabTest";
+                    newSuccessAlert(result.msg, url);
+                }
+                else {
+                    errorAlert(result.msg);
+                }
+            },
+            error: function (ex) {
+                "Something went wrong, contact support - " + errorAlert(ex);
+            }
+        });
+    }
+    else {
+        errorAlert("Incorrect Details");
+    }
+}
+
+function ConfirmDelete(id)
+{
+    $("#deleteId").val(id);
+        
+}
+  
+
+function DeleteLab()
+{
+    debugger;
+     var labtestId = $('#deleteId').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/Admin/DeleteLabTest', // we are calling json method,
+        dataType: 'json',
+        data:
+        {
+            id: labtestId,
+        },
+        success: function (result) {
+            if (!result.isError) {
+                var url = "/Admin/LabTest";
+                newSuccessAlert(result.msg, url);
+            }
+            else {
+                errorAlert(result.msg);
+            }
+        },
+        error: function (ex) {
+            "Something went wrong, contact support - " + errorAlert(ex);
+        }
+    });
+}
+/*crud for patientappointment*/
+/*Create For Patientappoint */
+function AppointmentCreate() {
+    debugger;
+    var data = {};
+    data.Name = $('#patientName').val();
+    data.Email = $('#patientEmail').val();
+    data.PhoneNumber = $('#patientphone').val();
+    data.AppointmentDate = $('#patientdate').val();
+    data.Description = $('#description').val();
+        let AppointmentViewModel = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            dataType: 'Json',
+            url: '/Admin/AppointmentCreate',
+            data:
+            {
+                deserializedAppointmentViewModel: AppointmentViewModel,
+            },
+            success: function (result) {
+
+                if (!result.isError) {
+                    $("#loader").fadeOut(3000);
+                    var url = '/Home/Index'
+                    successAlertWithRedirect(result.msg, url)
+                }
+                else {
+                    $("#loader").fadeOut(3000);
+                    errorAlert(result.msg)
+                }
+            },
+            Error: function (ex) {
+                $("#loader").fadeOut(3000);
+                errorAlert(ex);
+            }
+        });
+    }
+
+
+function EditAppForm(id) {
+    debugger;
+    $.ajax({
+        type: 'GET',
+        url: '/Admin/GetEditAppointment', // we are calling json method
+        dataType: 'json',
+        data:
+        {
+            id: id
+        },
+        success: function (result) {
+            debugger
+            if (!result.isError) {
+                debugger
+                $("#pdeleteId").val(result.result.id);
+                $("#appointmentId").val(result.result.id);
+                $("#patientName").val(result.result.name);
+                $("#patientEmail").val(result.result.email);
+                $("#patientphone").val(result.result.phoneNumber);
+                $("#patientdate").val(result.result.appointmentCreate);
+                $("#description").val(result.result.description);
+                $("#datecreated").val(result.result.dateCreated);
+
+            }
+        },
+        error: function (ex) {
+            "please fill the form correctly" + errorAlert(ex);
+        }
+    });
+};
+///
+///*SaveEditStaff*/
+function SaveEditAppointment() {
+    debugger;
+    var data = {};
+    data.Id = $('#appointmentId').val();
+    data.Name = $('#patientName').val();
+    data.Email = $('#patientEmail').val();
+    data.PhoneNumber = $('#patientphone').val();
+    data.AppointmentDate = $('#patientdate').val();
+    data.Description = $('#description').val();
+    data.DateCreated = $('#datecreated').val();
+
+    if (data.Name != "" && data.Email != "" && data.PhoneNumber != "" && data.AppointmentDate != "" && data.DateCreated != "" && data.Description != "") {
+        let Appointment = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/SaveEditAppointment', // we are calling json method,
+            dataType: 'json',
+            data:
+            {
+                deserializedAppointmentViewModel: Appointment,
+            },
+            success: function (result) {
+                if (!result.isError) {
+                    var url = "/Admin/Appointment";
+                    newSuccessAlert(result.msg, url);
+                }
+                else {
+                    errorAlert(result.msg);
+                }
+            },
+            error: function (ex) {
+                "Something went wrong, contact support - " + errorAlert(ex);
+            }
+        });
+    }
+    else {
+        errorAlert("Incorrect Details");
+    }
+}
+
+function ConfirmAppDelete(id) {
+    $("#deleteId").val(id);
+
 }
 
 
-const validateInputs = () => {
-    const firstnameValue = firstname.value.trim();
-    const lastname = lastname.value.trim();
+function DeleteAppointment() {
+    debugger;
+    var AppointmentId = $('#deleteId').val();
 
-    const usernameValue = username.value.trim();
-    const emailValue = email.Value.trim();
-    const passwordValue = password.value.trim();
-    const password2Value = password2.value.trim();
+    $.ajax({
+        type: 'POST',
+        url: '/Admin/DeleteAppointment', // we are calling json method,
+        dataType: 'json',
+        data:
+        {
+            id: AppointmentId,
+        },
+        success: function (result) {
+            if (!result.isError) {
+                var url = "/Admin/Appointment";
+                newSuccessAlert(result.msg, url);
+            }
+            else {
+                errorAlert(result.msg);
+            }
+        },
+        error: function (ex) {
+            "Something went wrong, contact support - " + errorAlert(ex);
+        }
+    });
+}
+/*Create For DocInfo*/
+function DocCreate() {
+    debugger;
+    var data = {};
+    data.Name = $('#docname').val();
+    data.Email = $('#email').val();
+    data.PhoneNumber = $('#phonenumber').val();
+    data.Category = $('#category').val();
+    data.Gender = $('#gender').val();
+    data.Country = $('#country').val();
 
-    if (usernameValue === '') {
-        setError(username, 'Username is required');
-    } else {
-        setSuccess(username);
-    }
+        let DoctorViewModel = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            dataType: 'Json',
+            url: '/Admin/DocInfoCreate',
+            data:
+            {
+                deserializedDoctorViewModel: DoctorViewModel,
+            },
+            success: function (result) {
 
-    if (firstnameValue === '') {
-        setError(username, 'First Name is required is required');
-    } else {
-        setSuccess(firstname);
-    }
-    if (lastnameValue === '') {
-        setError(username, 'lastname is required');
-    } else {
-        setSuccess(lastname);
-    }
+                if (!result.isError) {
+                    $("#loader").fadeOut(3000);
+                    var url = '/Admin/DocInfo'
+                    successAlertWithRedirect(result.msg, url)
+                }
+                else {
+                    $("#loader").fadeOut(3000);
+                    errorAlert(result.msg)
+                }
+            },
+            Error: function (ex) {
+                $("#loader").fadeOut(3000);
+                errorAlert(ex);
+            }
+        });
+    
 
-    if (emailValue === '') {
-        setError(email, 'Email is required');
-    } else if (!isValidEmail(emailValue)) {
-        setError(email, 'Provide a valid email address');
-    } else {
-        setSuccess(email);
-    }
+}
 
-    if (passwordValue === '') {
-        setError(password, 'Password is required');
-    } else if (passwordValue.length < 8) {
-        setError(password, 'Password must be at least 8 character.')
-    } else {
-        setSuccess(password);
-    }
-
-    if (password2Value === '') {
-        setError(password2, 'Please confirm your password');
-    } else if (password2Value !== passwordValue) {
-        setError(password2, "Passwords doesn't match");
-    } else {
-        setSuccess(password2);
-    }
-
+function EditDoc(id)
+{
+    debugger;
+    $.ajax({
+        type: 'GET',
+        url: '/Admin/GetEditDoctor', // we are calling json method
+        dataType: 'json',
+        data:
+        {
+            id: id
+        },
+        success: function (result) {
+            debugger
+            if (!result.isError)
+            {
+                debugger
+                $("#deleteId").val(result.result.id);
+                $("#editId").val(result.result.id);
+                $("#docnameEdit").val(result.result.name);
+                $("#emailEdit").val(result.result.email);
+                $("#genderEdit").val(result.result.gender);
+                $("#phonenumberEdit").val(result.result.phoneNumber);
+                $("#categoryEdit").val(result.result.category);
+                $("#countryEdit").val(result.result.country);
+               
+            }
+        },
+        error: function (ex) {
+            "please fill the form correctly" + errorAlert(ex);
+        }
+    });
 };
+///
+///*SaveEditStaff*/
+function DocEdit() {
+    debugger;
+    var data = {};
+    data.Id = $('#editId').val();
+    data.Name = $('#docnameEdit').val();
+    data.Email = $('#emailEdit').val();
+    data.PhoneNumber = $('#phonenumberEdit').val();
+    data.Category = $('#categoryEdit').val();
+    data.Gender = $('#genderEdit').val();
+    data.Country = $('#countryEdit').val();
 
-        
+    if (data.Name != "" && data.Email != "" && data.PhoneNumber != "" && data.Category != "" && data.Gender != "" && data.Country != "") {
+        let Doctor = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/SaveEditDoctor', // we are calling json method,
+            dataType: 'json',
+            data:
+            {
+                deserializedLabTestViewModel: Doctor,
+            },
+            success: function (result) {
+                if (!result.isError) {
+                    var url = "/Admin/DocInfo";
+                    newSuccessAlert(result.msg, url);
+                }
+                else {
+                    errorAlert(result.msg);
+                }
+            },
+            error: function (ex) {
+                "Something went wrong, contact support - " + errorAlert(ex);
+            }
+        });
+    }
+    else {
+        errorAlert("Incorrect Details");
+    }
+}
+
+function ConfirmDocDelete(Id) {
+    $("#deleteId").val(id);
+
+}
+
+
+function DeleteDoc() {
+    debugger;
+    var doctorId = $('#deleteId').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/Admin/DeleteDoctor', // we are calling json method,
+        dataType: 'json',
+        data:
+        {
+            id: doctorId,
+        },
+        success: function (result) {
+            if (!result.isError) {
+                var url = "/Admin/DocInfo";
+                newSuccessAlert(result.msg, url);
+            }
+            else {
+                errorAlert(result.msg);
+            }
+        },
+        error: function (ex) {
+            "Something went wrong, contact support - " + errorAlert(ex);
+        }
+    });
+}
+/*NURSE*/
+function nurseCreate() {
+    debugger;
+    var data = {};
+    data.Name = $('#nursename').val();
+    data.Gender = $('#gender').val();
+    data.Email = $('#email').val();
+    data.PhoneNumber = $('#phonenumber').val();
+    data.Country = $('#country').val();
+
+        let NurseViewModel = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            dataType: 'Json',
+            url: '/Admin/InfoCreate',
+            data:
+            {
+                deserializedNurseViewModel: NurseViewModel,
+            },
+            success: function (result) {
+
+                if (!result.isError) {
+                    $("#loader").fadeOut(3000);
+                    var url = '/Admin/Info'
+                    successAlertWithRedirect(result.msg, url)
+                }
+                else {
+                    $("#loader").fadeOut(3000);
+                    errorAlert(result.msg)
+                }
+            },
+            Error: function (ex) {
+                $("#loader").fadeOut(3000);
+                errorAlert(ex);
+            }
+        });
+   
+
+}
+
+/*edit*/
+function EditNurseForm(id)
+{
+    debugger;
+    $.ajax({
+        type: 'GET',
+        url: '/Admin/GetEditNurse', // we are calling json method
+        dataType: 'json',
+        data:
+        {
+            id: id
+        },
+        success: function (result) {
+            debugger
+            if (!result.isError) {
+                debugger
+                $("#deleteId").val(result.result.id);
+                $("#editId").val(result.result.id);
+                $("#nursenameEdit").val(result.result.name);
+                $("#nursegenderEdit").val(result.result.gender);
+                $("#nursephonenumberEdit").val(result.result.phoneNumber);
+                $("#nursecountryEdit").val(result.result.country);
+                $("#nurseemailEdit").val(result.result.email);
+            }
+        },
+        error: function (ex) {
+            "please fill the form correctly" + errorAlert(ex);
+        }
+    });
+};
+///
+///*SaveEditStaff*/
+function SaveEditNurse() {
+    debugger;
+    var data = {};
+    data.Id = $('#editId').val();
+    data.Name = $('#nursenameEdit').val();
+    data.Email = $('#nurseemailEdit').val();
+    data.Gender = $('#nursegenderEdit').val();
+    data.PhoneNumber = $('#nursephonenumberEdit').val();
+    data.Country = $('#nursecountryEdit').val();
+
+    if (data.Name != "" && data.Email != "" && data.Gender != "" && data.PhoneNumber != "" && data.Country != "") {
+        let nurse = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/SaveEditNurse', // we are calling json method,
+            dataType: 'json',
+            data:
+            {
+                deserializedNurseViewModel: nurse,
+            },
+            success: function (result) {
+                if (!result.isError) {
+                    var url = "/Admin/Info";
+                    newSuccessAlert(result.msg, url);
+                }
+                else {
+                    errorAlert(result.msg);
+                }
+            },
+            error: function (ex) {
+                "Something went wrong, contact support - " + errorAlert(ex);
+            }
+        });
+    }
+    else {
+        errorAlert("Incorrect Details");
+    }
+}
+
+function ConfirmNurDelete(id) {
+    $("#deleteId").val(id);
+
+}
+
+
+function nurseDoc() {
+    debugger;
+    var nurseId = $('#deleteId').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/Admin/DeleteNurse', // we are calling json method,
+        dataType: 'json',
+        data:
+        {
+            id: nurseId,
+        },
+        success: function (result) {
+            if (!result.isError) {
+                var url = "/Admin/Info";
+                newSuccessAlert(result.msg, url);
+            }
+            else {
+                errorAlert(result.msg);
+            }
+        },
+        error: function (ex) {
+            "Something went wrong, contact support - " + errorAlert(ex);
+        }
+    });
+}
+/*TREATMENT*/
+function MedCreate() {
+    debugger;
+    var data = {};
+    data.MedicineName = $('#medname').val();
+    data.MedicineCategory = $('#medcat').val();
+    data.Amount = $('#medamout').val();
+   
+        let TreatmentViewModel = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            dataType: 'Json',
+            url: '/Admin/MedicineCreate',
+            data:
+            {
+                deserializedTreatmentViewModel: TreatmentViewModel,
+            },
+            success: function (result) {
+
+                if (!result.isError) {
+                    $("#loader").fadeOut(3000);
+                    var url = '/Admin/Medicine'
+                    successAlertWithRedirect(result.msg, url)
+                }
+                else {
+                    $("#loader").fadeOut(3000);
+                    errorAlert(result.msg)
+                }
+            },
+            Error: function (ex) {
+                $("#loader").fadeOut(3000);
+                errorAlert(ex);
+            }
+        });
+}
+
+
+function EditTreatmentForm(id) {
+    debugger;
+    $.ajax({
+        type: 'GET',
+        url: '/Admin/GetEditMedicine', // we are calling json method
+        dataType: 'json',
+        data:
+        {
+            id: id
+        },
+        success: function (data) {
+            debugger
+            if (!data.isError) {
+                debugger
+                $("#deleteId").val(data.result.id);
+                $("#editId").val(data.result.id);
+                $("#editmedname").val(data.result.medicineName);
+                $("#editmedcat").val(data.result.medicineCategory);
+                $("#editmedamout").val(data.result.amount);
+                }
+        },
+        error: function (ex) {
+            "please fill the form correctly" + errorAlert(ex);
+        }
+    });
+};
+///
+///*SaveEditmedicine*/
+function medEdit(id) {
+    debugger;
+    var data = {};
+    data.Id = $('#editId').val();
+    data.MedicineName = $('#editmedname').val();
+    data.MedicineCategory = $('#editmedcat').val();
+    data.Amount = $('#editmedamout').val();
+    
+    if (data.MedicineName != "" && data.MedicineCategory != "" && data.Amount != "" ) {
+        let medicine = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/SaveEditMedicine', // we are calling json method,
+            dataType: 'json',
+            data:
+            {
+                deserializedTreatmentViewModel: medicine,
+            },
+            success: function (result) {
+                if (!result.isError) {
+                    var url = "/Admin/GetEditMedicine";
+                    newSuccessAlert(result.msg, url);
+                }
+                else {
+                    errorAlert(result.msg);
+                }
+            },
+            error: function (ex) {
+                "Something went wrong, contact support - " + errorAlert(ex);
+            }
+        });
+    }
+    else {
+        errorAlert("Incorrect Details");
+    }
+}
+
+function ConfirmTreatmentDelete(id) {
+    $("#deleteId").val(id);
+
+}
+
+
+function MedDelete() {
+    debugger;
+    var medicineId = $('#deleteId').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/Admin/DeletMedicine', // we are calling json method,
+        dataType: 'json',
+        data:
+        {
+            id: medicineId,
+        },
+        success: function (result) {
+            if (!result.isError) {
+                var url = "/Admin/Medicine";
+                newSuccessAlert(result.msg, url);
+            }
+            else {
+                errorAlert(result.msg);
+            }
+        },
+        error: function (ex) {
+            "Something went wrong, contact support - " + errorAlert(ex);
+        }
+    });
+}
+/*PAYMENT*/
+function PaymentCreate()
+{
+    debugger;
+    var data = {};
+    data.PatientName = $('#patname').val();
+    data.ModeOfPay = $('#modofpay').val();
+     data.PaymentDate = $('#payday').val();
+    data.PaidAmount = $('#paidamount').val();
+    var picture = document.getElementById("proof").files;
+    data.Email = $('#pEmail').val();
+    data.ChargedAmount = $('#amt').val();
+
+    if (data.PatientName != "" && data.ModeOfPay != "" && data.Proof != "" && data.PaymentDate != "" && data.PaidAmount != "" && data.Email != "" && data.ChargedAmount != "") {
+         if (picture[0] != null) {
+            const reader = new FileReader();
+            reader.readAsDataURL(picture[0]);
+            reader.onload = function ()
+            {
+                data.picture = reader.result;
+                let PaymentViewModel = JSON.stringify(data);
+                $.ajax
+                    ({
+                        type: 'POST',
+                        dataType: 'Json',
+                        url: '/Admin/PaymentCreate',
+                        data:
+                        {
+                            deserializedPaymentViewModel: PaymentViewModel,
+                        },
+                        success: function (result) {
+
+                            if (!result.isError) {
+                                $("#loader").fadeOut(3000);
+                                var url = '/Admin/payment'
+                                successAlertWithRedirect(result.msg, url)
+                            }
+                            else {
+                                $("#loader").fadeOut(3000);
+                                errorAlert(result.msg)
+                            }
+                        },
+                        Error: function (ex) {
+                            $("#loader").fadeOut(3000);
+                            errorAlert(ex);
+                        }
+                    });
+            }
+        }
+
+    }
+}
+function EditpayForm(id) {
+    debugger;
+    $.ajax({
+        type: 'GET',
+        url: '/Admin/GetEditPayment', // we are calling json method
+        dataType: 'json',
+        data:
+        {
+            id: id
+        },
+        success: function (result) {
+            debugger
+            if (!result.isError) {
+                debugger
+                $("#deleteId").val(result.result.id);
+                $("#editId").val(result.result.id);
+                $("#editpatname").val(result.result.patientName);
+                $("#editmodofpay").val(result.result.modeOfPay);
+                $("#editproof").val(result.result.proof);
+                $("#editpayday").val(result.result.paymentDate);
+                $("#editpaidamount").val(result.result.paidAmount);
+                $("#amt").val(result.result.chargedAmount);
+                $("#pEmail").val(result.result.Email);
+            }
+        },
+        error: function (ex) {
+            "please fill the form correctly" + errorAlert(ex);
+        }
+    });
+};
+///
+///*SaveEditStaff*/
+function SaveEditPayment() {
+    debugger;
+    var data = {};
+    data.Id = $('#editId').val();
+    data.PatientName = $('#editpatname').val();
+    data.ModeOfPay = $('#editmodofpay').val();
+    data.Proof = $('#editproof').val();
+    data.PaymentDate = $('#editpayday').val();
+    data.PaidAmount = $('#editpaidamount').val();
+    data.Email = $('#pEmail').val();
+    data.ChargedAmount = $('#amt').val();
+
+    if (data.PatientName != "" && data.ModeOfPay != "" && data.Proof != "" && data.PaymentDate != "" && data.PaidAmount != "" && data.Email != "" && data.Email != "") {
+        let Payment = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/SaveEditPayment', // we are calling json method,
+            dataType: 'json',
+            data:
+            {
+                deserializedPaymentViewModel: Payment,
+            },
+            success: function (result) {
+                if (!result.isError) {
+                    var url = "/Admin/Payment";
+                    newSuccessAlert(result.msg, url);
+                }
+                else {
+                    errorAlert(result.msg);
+                }
+            },
+            error: function (ex) {
+                "Something went wrong, contact support - " + errorAlert(ex);
+            }
+        });
+    }
+    else {
+        errorAlert("Incorrect Details");
+    }
+}
+
+function ConfirmpayDelete(id) {
+    $("#deleteId").val(id);
+
+}
+
+
+function DeletePayment() {
+    debugger;
+    var paymentId = $('#deleteId').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/Admin/DeletePayment', // we are calling json method,
+        dataType: 'json',
+        data:
+        {
+            id: paymentId,
+        },
+        success: function (result) {
+            if (!result.isError) {
+                var url = "/Admin/Payment";
+                newSuccessAlert(result.msg, url);
+            }
+            else {
+                errorAlert(result.msg);
+            }
+        },
+        error: function (ex) {
+            "Something went wrong, contact support - " + errorAlert(ex);
+        }
+    });
+}
+/*checkup*/
+function checkupCreate()
+{
+    debugger;
+    var data = {};
+    data.FirstName = $('#firstName').val();
+    data.Email = $('#email').val();
+    data.GenderId = $('#genderId').val();
+    data.MaritalStatusId = $('#maritalStatusId').val();
+    data.DOB = $('#dob').val();
+    data.PatientTypeId = $('#patientTypeId').val();
+    data.Address = $('#address').val();
+    data.LastName = $('#lastName').val();
+    data.Phone = $('#phoneNumber').val();
+    data.Nok = $('#nok').val();
+    data.NextVisist = $('#nextVisit').val();
+    data.Country = $('#countryId').val();
+    data.DateCreated = $('#dateCreated').val();
+    data.Occupation = $('#occupation').val();
+    data.State = $('#stateId').val();
+        let CheckupFormViewModel = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            dataType: 'Json',
+            url: '/Admin/CheckupCreate',
+            data:
+            {
+                deserializedCheckupFormViewModel: CheckupFormViewModel,
+            },
+            success: function (result) {
+
+                if (!result.isError) {
+                    $("#loader").fadeOut(3000);
+                    var url = '/Admin/Checkup'
+                    successAlertWithRedirect(result.msg, url)
+                }
+                else {
+                    $("#loader").fadeOut(3000);
+                    errorAlert(result.msg)
+                }
+            },
+            Error: function (ex) {
+                $("#loader").fadeOut(3000);
+                errorAlert(ex);
+            }
+        });
+}
+
+
+function checkupEdit(id) {
+    debugger;
+    $.ajax({
+        type: 'GET',
+        url: '/Admin/GetEditCheckup', // we are calling json method
+        dataType: 'json',
+        data:
+        {
+            id: id
+        },
+        success: function (result) {
+            debugger
+            if (!result.isError) {
+                debugger
+                $("#deleteId").val(result.result.id);
+                $("#editId").val(result.result.id);
+                $('#edit_firstName').val(result.result.firstName);
+                $('#edit_email').val(result.result.email);
+                $('#edit_genderId').val(result.result.genderId);
+                $('#edit_maritalStatusId').val(result.result.maritalStatusId);
+                $('#edit_dob').val(result.result.dOB);
+                $('#edit_patientTypeId').val(result.result.patientTypeId);
+                $('#edit_address').val(result.result.address);
+                $('#edit_lastName').val(result.result.lastName);
+                $('#edit_phoneNumber').val(result.result.phone);
+                $('#edit_genotypeId').val(result.result.genotypeId);
+                $('#edit_nok').val(result.result.nok);
+                $('#edit_nextVisit').val(result.result.nextVisist);
+                $('#edit_countryId').val(result.result.country);
+                $('#edit_dateCreated').val(result.result.dateCreated);
+                $('#edit_occupation').val(result.result.occupation);
+                $('#edit_stateId').val(result.result.state);
+
+                $("#bodyTemp").val(result.result.bodyTemperature);
+                $("#pulse").val(result.result.pulseRate);
+                $('#bodyPress').val(result.result.bloodPressure);
+                $('#bodyheight').val(result.result.height);
+                $('#bodyweight').val(result.result.bodyWeight);
+                $('#Complain').val(result.result.Complaint);
+                $('#Complaints').val(result.result.Comment);
+                $('#durationOfIllness').val(result.result.durationOfIllness);
+                $('#selfMedication').val(result.result.selfmedication);
+                $('#doseOfSelfMedication').val(result.result.doseOfSelfmedication);
+                $('#phoneNumber').val(result.result.phone);
+                $('#drugIntakeDuration').val(result.result.drugIntakeDuration);
+                $('#smokingHabit').val(result.result.smokingHabitId);
+                $('#anyAddiction').val(result.result.anyAddictionId);
+                $('#allergy').val(result.result.allergy);
+                $('#occupation').val(result.result.occupation);
+                $('#militaryServiceId').val(result.result.militaryServiceId);
+                $('#sexuallyActiveId').val(result.result.sexuallyActiveId);
+
+                $("#unprotectedSexId").val(result.result.unprotectedSexId);
+                $("#ifYesWhen").val(result.result.ifYesWhen);
+                $('#msmId').val(result.result.mSMId);
+                $('#amount').val(result.result.amount);
+                $('#investigation').val(result.result.investigation);
+                $('#result').val(result.result.result);
+                $('#Treament').val(result.result.treatment);
+                $('#treatAmount').val(result.result.treatAmount);
+                $('#howToTake').val(result.result.howToTake);
+                $('#beforeMeal').val(result.result.beforeMeal);
+                $('#diagnosis').val(result.result.diagnoses);
+                $('#advice').val(result.result.advice);
+                $('#consult').val(result.result.consult);
+                $('#medicine').val(result.result.medicine);
+                $('#surgery').val(result.result.surgery);
+                $('#bed').val(result.result.bed);
+                $('#others').val(result.result.others);
+                $('#Total').val(result.result.total);
+
+
+
+            }
+        },
+        error: function (ex) {
+            "please fill the form correctly" + errorAlert(ex);
+        }
+    });
+};
+///
+///*SaveEditStaff*/
+function SaveEditCheckup() {
+    debugger;
+    var data = {};
+    
+    data.Id = $("#deleteId").val();
+    data.Id = $("#editId").val();
+    data.FirstName = $('#edit_firstName').val();
+    data.Email = $('#edit_email').val();
+    data.GenderId = $('#edit_genderId').val();
+    data.maritalStatusId = $('#edit_maritalStatusId').val();
+    data.DOB = $('#edit_dob').val();
+    data.PatientTypeId =  $('#edit_patientTypeId').val();
+    data.Address = $('#edit_address').val();
+    data.LastName = $('#edit_lastName').val();
+    data.Phone = $('#edit_phoneNumber').val();
+    data.GenotypeId = $('#edit_genotypeId').val();
+    data.Nok = $('#edit_nok').val();
+    data.NextVisist = $('#edit_nextVisit').val();
+    data.Country = $('#edit_countryId').val();
+    data.DateCreated = $('#edit_dateCreated').val();
+    data.Occupation = $('#edit_occupation').val();
+    data.State = $('#edit_stateId').val();
+
+    data.BodyTemperature = $("#bodyTemp").val();
+    data.PulseRate = $("#pulse").val();
+    data.BloodPressure = $('#bodyPress').val();
+    data.Height = $('#bodyheight').val();
+    data.BodyWeight =  $('#bodyweight').val();
+    data.Comment = $('#Complain').val();
+    data.Complaint = $('#Complaints').val();
+    data.DurationOfIllness = $('#durationOfIllness').val();
+    data.Selfmedication = $('#selfMedication').val();
+    data.DoseOfSelfmedication = $('#doseOfSelfMedication').val();
+    data.DrugIntakeDuration = $('#drugIntakeDuration').val();
+    data.SmokingHabitId = $('#smokingHabit').val();
+    data.AnyAddictionId = $('#anyAddiction').val();
+    data.Allergy = $('#allergy').val();
+    data.MilitaryServiceId = $('#militaryServiceId').val();
+    data.SexuallyActiveId = $('#sexuallyActiveId').val();
+
+    data.UnprotectedSexId =  $("#unprotectedSexId").val();
+    data.IfYesWhen = $("#ifYesWhen").val();
+    data.MSMId = $('#msmId').val();
+    data.Amount = $('#amount').val();
+    data.Investigation = $('#investigation').val();
+    data.Result = $('#result').val();
+    data.Treatment = $('#Treament').val();
+    data.TreatAmount = $('#treatAmount').val();
+    data.HowToTake = $('#howToTake').val();
+    data.BeforeMeal = $('#beforeMeal').val();
+    data.Diagnoses = $('#diagnosis').val();
+    data.Advice = $('#advice').val();
+    data.Consultation = $('#consult').val();
+    data.Medicine =  $('#medicine').val();
+    data.Surgery = $('#surgery').val();
+    data.Bed = $('#bed').val();
+    data.Others =  $('#others').val();
+    data.Total = $('#Total').val();
+    data.Laboratory = $('#lab').val();
+
+
+    let Checkup = JSON.stringify(data);
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/SaveEditCheckup', // we are calling json method,
+            dataType: 'json',
+            data:
+            {
+                deserializedCheckupViewModel: Checkup,
+            },
+            success: function (result) {
+                if (!result.isError) {
+                    var url = "/Admin/Checkup";
+                    newSuccessAlert(result.msg, url);
+                }
+                else {
+                    errorAlert(result.msg);
+                }
+            },
+            error: function (ex) {
+                "Something went wrong, contact support - " + errorAlert(ex);
+            }
+        });
+   
+   
+}
+
+function ConfirmCheckDelete(id) {
+    $("#deleteId").val(id);
+
+}
+
+
+function DeletePayment() {
+    debugger;
+    var CheckupId = $('#deleteId').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/Admin/DeleteCheckup', // we are calling json method,
+        dataType: 'json',
+        data:
+        {
+            id: CheckupId,
+        },
+        success: function (result) {
+            if (!result.isError) {
+                var url = "/Admin/Checkup";
+                newSuccessAlert(result.msg, url);
+            }
+            else {
+                errorAlert(result.msg);
+            }
+        },
+        error: function (ex) {
+            "Something went wrong, contact support - " + errorAlert(ex);
+        }
+    });
+}
+
+$(function () {
+    $('#add').click(function () {
+         var _name = $('input[name = "name"]').val();
+        var _cost = $('input[name = "cost"]').val();
+        var _result = $('input[name = "result"]').val();
+
+        var _tr = '<tr><td>' + _name + '</td> <td>' + _cost + '</td> <td>' + _result + '</td> <td><button type = "button" class = "btn btn-success btn-Edit">Edit</button></td></tr>';
+
+        $('tbody').append(_tr)
+    });
+
+    var _trEdit = null;
+    $(document).on('click', '.btn-edit', function () {
+        _trEdit = $(this).closest('tr');
+        var _name = (_trEdit).find('td:eq(1)').text();
+        var _cost = (_trEdit).find('td:eq(2)').text();
+        var _result = (_trEdit).find('td:eq(3)').text();
+
+        $('input[name ="name"]').val(_name);
+        $('input[name ="cost"]').val(_cost);
+        $('input[name ="result"]').val(_result);
+    });
+    $('#update').click(function () {
+
+        if (_trEdit) {
+            var _name = $('input[name = "name"]').val();
+            var _cost = $('input[name = "cost"]').val();
+            var _result = $('input[name = "result"]').val();
+
+            (_trEdit).find('td:eq(1)').text(_name);
+            (_trEdit).find('td:eq(2)').text(_cost);
+            (_trEdit).find('td:eq(3)').text(_result);
+            alert('Test has been recorded');
+        }
+
+    });
+});
+
+
+

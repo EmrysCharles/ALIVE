@@ -2,6 +2,19 @@
     ViewData["Title"] = "Welcome to Alive";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@model Alive.Models.PaymentViewModel
+
+<style>
+
+    body {
+        counter-reset: Serial; /* / Set the Serial counter to 0 /*/
+    }
+
+    tr td:first-child:before {
+        counter-increment: Serial; /* / Increment the Serial counter /*/
+        content: counter(Serial); /*  / Display the counter /*/
+    }
+</style>
 
 
 <main id="main" class="main ">
@@ -16,292 +29,11 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
-        <div class="row align-items-top">
-            <div class="col-lg-3 ">
 
-                <!-- Default Card -->
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mt-3">
-                        <div class="col-4 ">
-                                <a href="components-accordion.html">
-                                    <img src="~/niceadmin/assets/img/apple-touch-icon.png" style="width:70%; height:70%;"/>
-                                    </a>
-                        </div>
-                        <div class="col-4">
-                            <h6 class="" style="color:darkblue; font-size:medium;">Patients</h6>
-                            
-                        </div>
-                            <div class="col-4">
-                                <h6 class="" id="num" style="color:darkred; font-size:large;">6</h6>
-                                
-                            </div>
-
-
-                        </div>
-                     </div>
-                 </div>
-            </div>
-            <div class="col-lg-3">
-
-                <!-- Default Card -->
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mt-3">
-                            <div class="col-4 ">
-                                <a href="components-accordion.html">
-                                    <img src="~/niceadmin/assets/img/apple-touch-icon.png" style="width:70%; height:70%;" />
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" style="color:darkblue; font-size:medium;">Doctors</h6>
-
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" id="num" style="color:darkred; font-size:large;">6</h6>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-
-                <!-- Default Card -->
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mt-3">
-                            <div class="col-4 ">
-                                <a href="components-accordion.html">
-                                    <img src="~/niceadmin/assets/img/apple-touch-icon.png" style="width:70%; height:70%;" />
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" style="color:darkblue; font-size:medium;">Nurses</h6>
-
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" id="num" style="color:darkred; font-size:large;">6</h6>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-
-                <!-- Default Card -->
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mt-3">
-                            <div class="col-4 ">
-                                <a href="components-accordion.html">
-                                    <img src="~/niceadmin/assets/img/apple-touch-icon.png" style="width:70%; height:70%;" />
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" style="color:darkblue; font-size:medium;">Laboratory</h6>
-
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" id="num" style="color:darkred; font-size:large;">6</h6>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
-        <div class="row align-items-top">
-            <div class="col-lg-3">
-
-                <!-- Default Card -->
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mt-3">
-                            <div class="col-4 ">
-                                <a href="components-accordion.html">
-                                    <img src="~/niceadmin/assets/img/apple-touch-icon.png" style="width:70%; height:70%;" />
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" style="color:darkblue; font-size:medium;">Pharmacy</h6>
-
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" id="num" style="color:darkred; font-size:large;">6</h6>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-
-                <!-- Default Card -->
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mt-3">
-                            <div class="col-4 ">
-                                <a href="components-accordion.html">
-                                    <img src="~/niceadmin/assets/img/apple-touch-icon.png" style="width:70%; height:70%;" />
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" style="color:darkblue; font-size:medium;">Medicine</h6>
-
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" id="num" style="color:darkred; font-size:large;">6</h6>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-
-                <!-- Default Card -->
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mt-3">
-                            <div class="col-4 ">
-                                <a href="components-accordion.html">
-                                    <img src="~/niceadmin/assets/img/apple-touch-icon.png" style="width:70%; height:70%;" />
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" style="color:darkblue; font-size:medium;">Bed</h6>
-
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" id="num" style="color:greenyellow; font-size:large;">6</h6>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-
-                <!-- Default Card -->
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mt-3">
-                            <div class="col-4 ">
-                                <a href="components-accordion.html">
-                                    <img src="~/niceadmin/assets/img/apple-touch-icon.png" style="width:70%; height:70%;" />
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" style="color:darkblue; font-size:medium;">Account</h6>
-
-                            </div>
-                            <div class="col-4">
-                                <h6 class="" id="num" style="color:greenyellow; font-size:large;">6</h6>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
-     </section>      <!-- End Default Card -->
-
-    <section class="section" >
-      <div class="row align-items-top">
+    <section>
        
 
-          <!-- Default Card -->
-            <div class="card" style="width:100%">
-            <div class="card-body">
-              <h5 class="card-title">Recent Payment</h5>
-
-                        <table class="table table-bordered border-primary">
-                            <thead class="bg-danger">
-                                <tr>
-                                    <th scope="col">id</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Sub</th>
-                                    <th scope="col">Grand total</th>
-                                    <th scope="col">Created date</th>
-                                     <th scope="col"></th>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Brandon Jacob</td>
-                                    <td>Designer</td>
-                                    <td>28</td>
-                                    <td>2016-05-25</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Bridie Kessler</td>
-                                    <td>Developer</td>
-                                    <td>35</td>
-                                    <td>2014-12-05</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Ashleigh Langosh</td>
-                                    <td>Finance</td>
-                                    <td>45</td>
-                                    <td>2011-08-12</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Angus Grady</td>
-                                    <td>HR</td>
-                                    <td>34</td>
-                                    <td>2012-06-11</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>Raheem Lehner</td>
-                                    <td>Dynamic Division Officer</td>
-                                    <td>47</td>
-                                    <td>2011-04-19</td>
-                                </tr>
-                                 <tr>
-                                    <th scope="row">5</th>
-                                    <td>Raheem Lehner</td>
-                                    <td>Dynamic Division Officer</td>
-                                    <td>47</td>
-                                    <td>2011-04-19</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- End Primary Color Bordered Table -->
-
-                    </div>
-                </div>
-
-               </div>
-        
-     
-  </section><!-- End Default Card -->
-
-
-   
+   </section>
 
    
 

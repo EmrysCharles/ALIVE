@@ -14,7 +14,7 @@ namespace Alive.Models
         public string? LastName { get; set; }
         public string? Country { get; set; }
         public string? State { get; set; }
-         public int GenderId { get; set; }
+         public int? GenderId { get; set; }
 
         [ForeignKey("GenderId")]
         public virtual CommonDropdown? Gender { get; set; }
