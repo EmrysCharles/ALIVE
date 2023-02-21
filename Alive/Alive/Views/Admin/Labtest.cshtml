@@ -1,327 +1,261 @@
 ﻿@{
-    ViewData["Title"] = "labtest";
+    ViewData["Title"] = "Labtest";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-
 }
+@model Alive.Models.LabTestViewModel
+<style>
 
+    body {
+        counter-reset: Serial; /* / Set the Serial counter to 0 /*/
+    }
+
+    tr td:first-child:before {
+        counter-increment: Serial; /* / Increment the Serial counter /*/
+        content: counter(Serial); /*  / Display the counter /*/
+    }
+</style>
 <main id="main" class="main ">
-
-
     <section class="section">
-        <div class="row">
-            <div class="col-4">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-                    Basic Modal
-                </button>
-                <div class="modal fade" id="basicModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Add Lab Test</h5>
-
-                                        <!-- General Form Elements -->
-                                        <form>
-
-                                            <div class="row mb-3">
-                                                <label for="Patientname" class="col-sm-5 col-form-label">id'</label>
-                                                <div class="col-sm-7">
-                                                    <input type="number" id="docName" class="form-control">
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="row mb-3">
-                                                <label for="DocName" class="col-sm-5 col-form-label">Lab test name</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="docName" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <label for="SerialNo" class="col-sm-5 col-form-label">Unit</label>
-                                                <div class="col-sm-7">
-                                                    <input type="number" id="serialNo" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="AppointmentDate" class="col-sm-5 col-form-label">Unit price</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="appointmentDate" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-5">
-                                                <label for="AppointmentTime" class="col-sm-2 col-form-label">Reference range</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="appointmentTime" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-5">
-                                                <label for="AppointmentTime" class="col-sm-2 col-form-label">created date</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="appointmentTime" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-5">
-                                                <label for="AppointmentTime" class="col-sm-2 col-form-label">Status </label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="appointmentTime" class="form-control">
-                                                </div>
-                                            </div>
-
-
-
-
-
-
-                                            
-                                        </form><!-- End General Form Elements -->
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- End Basic Modal-->
-
-
-
-            <div class="col-4">
-                <h2 class="" style="display:flex; text-align:center;justify-content:center;">Lab Test</h2>
+        <div class="row align-items-top">
+            <div class="col-sm-4 col-md-4 col-xl-4">
             </div>
-
+            <div class="col-sm-4 col-md-4 col-xl-4">
+                <h2 class="mx-4" style="display:flex; text-align:center;justify-content:center; color:lightseagreen">Patient List</h2>
+            </div>
+            <div class="col-sm-4 col-md-4 col-xl-4">
+                <a asp-controller="Admin" method="post" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal" style="float:right">
+                    <i class="ri-add-circle-fill" style="color:white;"></i> Add Nurse
+                </a>
+            </div>
         </div>
         <div class="row align-items-top">
-
             <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right; display:flex; justify-content:end;">
-
                 <input type="text" name="query" placeholder="Search" title="Enter search keyword">
                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
             </form>
-
-
         </div>
     </section>
-
     <!-- Default Card -->
     <section>
-        <div class="card" style="width:100%">
-            <div class="card-body">
-                <table class="table table-bordered border-primary">
-                    <thead class="bg-danger">
+            <input type="hidden" id="checkupId" />
+            <table class="table table-stripped mt-3" id="example" style="width:100%;">
+                <thead class="" style="background-color:whitesmoke; color:darkblue">
+                    <tr>
+                        <th scope="col">
+                            #<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+
+                        <th scope="col">
+                           Lab Test<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Lab Test Category<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Unit Price<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Reference range<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Created Date<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+
+                       
+                        <th scope="col">
+                            Action<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in Model.LabTests)
+                    {
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Lab test Category</th>
-                            <th scope="col">Lab Test Name</th>
-                            <th scope="col">Unit</th>
-                            <th scope="col">Unit Price</th>
-                            <th scope="col">Reference range</th>
-                            <th scope="col">Created Date Status</th>
-                            <th scope="col"> Status</th>
-
-                            <th scope="col"> </th>
-                            <th scope="col"> </th>
-
-
+                            <td></td>
+                            <td>@obj.LabTestName</td>
+                            <td>@obj.TestCategory</td>
+                            <td>@obj.UnitPrice</td>
+                            <td>@obj.ReferenceRange</td>
+                            <td>@obj.DateCreated</td>
+                             <td>
+                                <a class="btn btn-primary" onclick="EditForm(@obj.Id)" id="EditForm" data-bs-toggle="modal" data-bs-target="#largeModal">
+                                    Edit
+                                </a>
+                            <a id="showModal" onclick="ConfirmDelete(@obj.Id)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    Delete
+                                </a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Brandon Jacob</td>
-                            <td>Designer</td>
-                            <td>28</td>
-                            <td>200</td>
-                            <td>Unpaid</td>
-
-                            <td>2016-05-25</td>
-                            <td>Unpaid</td>
-
-                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="labModal">Edit</button></td>
-                            <td><button type="button" class="btn btn-danger">Delete</button><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#bigi">Details</button></td>
-
-
-
-                        </tr>
-                        
-
-                    </tbody>
-                </table>
-                <!-- End Primary Color Bordered Table -->
-
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="bigi" tabindex="-1">
-            <div class="modal-dialog">
+                    }
+                </tbody>
+            </table>
+            
+            <!-- End Primary Color Bordered Table -->
+       
+@*crete modal*@
+        <div class="modal fade" id="basicModal">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" id="exampleModalLabel">Add Lab Test</h5>
+                                <!-- Default Tabs -->
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="col-12">
+                                            <input class="updateId" type="hidden" id="LabTestId" />
+                                        </div>
+                                        <div class="col-12">
+                                            <label><b>Test Name</b></label>
+                                            <input type="text" id="testName" class="form-control">
+                                        </div>
+                                        <div class=" col-12 ">
+                                            <label><b>Test Category</b></label>
+                                            <input type="text" id="testCategory" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="col-12 ">
+                                            <label><b>Unit Price</b></label>
+                                            <input type="text" id="unitPrice" class="form-control">
+                                        </div>
+                                        <div class="col-12 ">
+                                            <label><b>Date Created</b></label>
+                                            <input type="date" id="dateCreated" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 ">
+                                        <label><b>Reference range</b></label>
+                                        <input type="text" id="reference" class="form-control">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary btnCancel" data-dismiss="modal">close</button>
+                                        <button type="submit" onclick="labtestCreate()" class="btn btn-success ">Add</button>
+                                    </div>
+                                </div>
+                                <!-- End General Form Elements -->
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+@*Edit Modal*@
+           
+         <div class="modal fade" id="largeModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                                
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Test</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Lab Test Detail</h5>
+                                <h5 class="card-title">Add Test Details</h5>
+                                <!-- Default Tabs -->
+                              
+                                <div class="form-group" method="post">
+                                     <div class="row">
+                                        <div class="col-6">
+                                            <div class="col-12">
+                                                <input class="updateId" type="hidden" id="editId" />
+                                            </div>
+                                            <div class="col-12">
+                                                 <label class="col-form-label"><b>Test Name</b></label>
+                                                <input type="text" id="edittestName" class="form-control">
+                                                 </div>
+                                            <div class=" col-12 ">
+                                                <label for="email"  class=" col-form-label"><b>Test Category</b></label>
+                                                <input type="text"  id="edittestCategory" class="form-control">
+                                                
+                                            </div>
+                                         </div>
+                                            <div class="col-6">
+                                                <div class="col-12 ">
+                                                    <label for="number"  class=" col-form-label"><b>Unit Price</b></label>
+                                                    <input type="text" id="editunitPrice" class="form-control">
+                                                    
+                                                </div>
+                                                <div class="col-12 ">
+                                                    <label  class="col-form-label"><b>Date Created</b></label>
+                                                <input type="date" id="editdatecreated" class="form-control">
+                                            </div>
+                                            </div>
+                                            <div class="col-12 ">
+                                                <label  class=" col-form-label"><b>Reference range</b></label>
+                                                <input type="text" id="editreference"  class="form-control">
+                                                
+                                            </div>
 
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" style="width:40%; background-color:lightseagreen;">Id</th>
-                                            <th scope="col" style="width:70%;">Position</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td style="background-color:lightseagreen;">Lab test category</td>
-                                            <td>Designer</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="background-color:lightseagreen;">Lab test name</td>
-                                            <td>Bridie Kessler</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="background-color:lightseagreen;">Unit</td>
-                                            <td>Ashleigh Langosh</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="background-color:lightseagreen;">Unit price</td>
-                                            <td>Angus Grady</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="background-color:lightseagreen;">Status</td>
-                                            <td>Raheem Lehner</td>
 
-                                        </tr>
-                                        <tr>
-                                            <td style="background-color:lightseagreen;">Created date</td>
-                                            <td>Raheem Lehner</td>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary btnCancel" data-dismiss="modal">close</button>
+                                            <button id="btnSave" onclick="SaveEditLabTest()" type="button" class="btn btn-success ">Update changes</button>
+                                            </div>
+                                     </div>
+                                 </div>
+                              
+                             </div>
 
-                                        </tr>
-                                        <tr>
-                                            <td style="background-color:lightseagreen;">Created by</td>
-                                            <td>Raheem Lehner</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td style="background-color:lightseagreen;">Modified date</td>
-                                            <td>Raheem Lehner</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td style="background-color:lightseagreen;">Modified by</td>
-                                            <td>Raheem Lehner</td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
+                         </div>
                     </div>
+                 
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+             </div>
+        </div>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" id="exampleModalLabel">Delete Lab Test</h5>
+                                <!-- Default Tabs -->
+
+                                      <div class="row">
+                                        <div class="col-6">
+                                            <div class="col-12">
+                                            <input type="hidden" id="deleteId" />
+                                                <h1>Are you sure you want to delete this Lab?</h1>
+                                            </div>
+                                        </div>
+                                    </div><!-- End General Form Elements -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary btnCancel" data-dismiss="modal">close</button>
+                                    <button  onclick="DeleteLab()" type="button" class="btn btn-danger ">Delete</button>
+                                    </div>
+                                  </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-       
-        <div class="modal fade" id="labModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Add Lab Test</h5>
 
-                                        <!-- General Form Elements -->
-                                        <form>
+        @section scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
 
-                                            <div class="row mb-3">
-                                                <label for="Patientname" class="col-sm-5 col-form-label">id'</label>
-                                                <div class="col-sm-7">
-                                                    <input type="number" id="docName" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <label for="DocName" class="col-sm-5 col-form-label">Lab test name</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="docName" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <label for="SerialNo" class="col-sm-5 col-form-label">Unit</label>
-                                                <div class="col-sm-7">
-                                                    <input type="number" id="serialNo" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="AppointmentDate" class="col-sm-5 col-form-label">Unit price</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="appointmentDate" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-5">
-                                                <label for="AppointmentTime" class="col-sm-2 col-form-label">Reference range</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="appointmentTime" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-5">
-                                                <label for="AppointmentTime" class="col-sm-2 col-form-label">created date</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="appointmentTime" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-5">
-                                                <label for="AppointmentTime" class="col-sm-2 col-form-label">Status </label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="appointmentTime" class="form-control">
-                                                </div>
-                                            </div>
-
-
-
-
-
-
-
-                                        </form><!-- End General Form Elements -->
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-           !-- End Basic Modal-->
-
+    }
+    
 
     </section>
-</main><!-- End Default Card -->
+
+
+</main>

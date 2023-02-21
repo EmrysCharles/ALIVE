@@ -3,106 +3,18 @@
     Layout = "~/Views/Shared/_FinanceLayout.cshtml";
 
 }
-
+@model IEnumerable<Alive.Models.PayCategory>
 <main id="main" class="main ">
 
 
     <section class="section">
         <div class="row">
             <div class="col-4">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-                    Basic Modal
-                </button>
-                <div class="modal fade" id="basicModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Add patient Appointment</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Patient's Details</h5>
+                <a asp-controller="Finance" asp-action="PayCategoryCreate" method="post" class="btn btn-primary">
 
-                                        <!-- General Form Elements -->
-                                        <form>
-
-                                            <div class="row mb-3">
-                                                <label for="Patientname" class="col-sm-5 col-form-label">Patient's Name'</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="docName" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="DocName" class="col-sm-5 col-form-label">Patient's Type'</label>
-                                                <div class="col-sm-7">
-
-                                                    <select class="form-select" aria-label="">
-                                                        <option selected></option>
-                                                        <option value="1">Out Patient</option>
-                                                        <option value="2">In patient</option>
-                                                        <option value="3">Imaging</option>
-                                                        <option value="3">Antenatal</option>
-                                                        <option value="3">ChildBirth</option>
-
-
-                                                    </select>
-
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="DocName" class="col-sm-5 col-form-label">Doctor's Name'</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="docName" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <label for="SerialNo" class="col-sm-5 col-form-label">Serial No</label>
-                                                <div class="col-sm-7">
-                                                    <input type="number" id="serialNo" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="AppointmentDate" class="col-sm-5 col-form-label">Appointment Date</label>
-                                                <div class="col-sm-7">
-                                                    <input type="date" id="appointmentDate" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-5">
-                                                <label for="AppointmentTime" class="col-sm-2 col-form-label">Appointment Time</label>
-                                                <div class="col-sm-7">
-                                                    <input type="time" id="appointmentTime" class="form-control">
-                                                </div>
-                                            </div>
-
-
-
-
-                                            <div class="row mb-3">
-                                                <label class="col-sm-5 col-form-label"></label>
-                                                <div class="col-sm-7">
-                                                    <button type="submit" class="btn btn-primary">Submit Form</button>
-                                                </div>
-                                            </div>
-
-                                        </form><!-- End General Form Elements -->
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- End Basic Modal-->
-
+                    Add Patient Appointment
+                </a>
+            </div>
 
 
             <div class="col-4">
@@ -126,78 +38,43 @@
     <section>
         <div class="card" style="width:100%">
             <div class="card-body">
-
-                <table class="table table-bordered border-primary">
-                    <thead class="bg-danger">
-                        <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Unit Price</th>
-                            <th scope="col">Description</th>
-
-                            <th scope="col">Created Date</th>
-                            <th scope="col"> </th>
-                            <th scope="col"> </th>
-
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Test tube</td>
-                            <td>200</td>
-                            <td>Covid</td>
-
-                            <td>2016-05-25</td>
-                            <td><button type="button" class="btn btn-primary">Edit</button></td>
-                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+                @if (Model.Count() > 0)
+                {
 
 
 
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Test tube</td>
-                            <td>200</td>
-                            <td>Covid</td>
-
-                            <td>2016-05-25</td>
-                            <td><button type="button" class="btn btn-primary">Edit</button></td>
-                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+                    <table class="table table-bordered border-primary">
+                        <thead class="bg-danger">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Created Date</th>
+                                <th scope="col"> </th>
+                                <th scope="col"> </th>
 
 
-
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Test tube</td>
-                            <td>200</td>
-                            <td>Covid</td>
-
-                            <td>2016-05-25</td>
-                            <td><button type="button" class="btn btn-primary">Edit</button></td>
-                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var obj in Model)
+                            {
 
 
+                                <tr>
+                                    <td>@obj.Name </td>
+                                    <td>>@obj.Description</td>
 
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Test tube</td>
-                            <td>200</td>
-                            <td>Covid</td>
-
-                            <td>2016-05-25</td>
-                            <td><button type="button" class="btn btn-primary">Edit</button></td>
-                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                    <td>>@obj.CreatedDate</td>
+                                    <td><button type="button" asp-controller="Finance" asp-action="PayCategoryCreate" class="btn btn-primary">Edit</button></td>
+                                    <td><button type="button" asp-controller="Finance" asp-action="PayCategoryDelete" class="btn btn-danger">Delete</button></td>
 
 
 
-                        </tr>
-
-                    </tbody>
-                </table>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
                 <!-- End Primary Color Bordered Table -->
 
             </div>

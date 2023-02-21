@@ -28,6 +28,136 @@ namespace Alive.Helpers
 
             return dropdowns;
         }
+        public async Task<List<CommonDropdown>> GetGenotypeDropdownByKey(AliveProjectEnums dropdownKey, bool deleteOption = false)
+        {
+
+            var common = new CommonDropdown()
+            {
+                Id = 0,
+                Name = "-- Select your genotype--"
+            };
+            var dropdowns = await _context.CommonDropdowns.Where(s => s.Deleted == deleteOption && s.DropdownKey == (int)dropdownKey).OrderBy(s => s.Name).ToListAsync();
+            dropdowns.Insert(0, common);
+
+            return dropdowns;
+        }
+        public async Task<List<CommonDropdown>> GetBloodGroupDropdownByKey(AliveProjectEnums dropdownKey, bool deleteOption = false)
+        {
+
+            var common = new CommonDropdown()
+            {
+                Id = 0,
+                Name = "-- Select your blood group--"
+            };
+            var dropdowns = await _context.CommonDropdowns.Where(s => s.Deleted == deleteOption && s.DropdownKey == (int)dropdownKey).OrderBy(s => s.Name).ToListAsync();
+            dropdowns.Insert(0, common);
+
+            return dropdowns;
+        }
+        public async Task<List<CommonDropdown>> GetMilitaryServiceDropdownByKey(AliveProjectEnums dropdownKey, bool deleteOption = false)
+        {
+
+            var common = new CommonDropdown()
+            {
+                Id = 0,
+                Name = "-- Select one--"
+            };
+            var dropdowns = await _context.CommonDropdowns.Where(s => s.Deleted == deleteOption && s.DropdownKey == (int)dropdownKey).OrderBy(s => s.Name).ToListAsync();
+            dropdowns.Insert(0, common);
+
+            return dropdowns;
+        }
+        public async Task<List<CommonDropdown>> GetMaritalStatusDropdownByKey(AliveProjectEnums dropdownKey, bool deleteOption = false)
+        {
+
+            var common = new CommonDropdown()
+            {
+                Id = 0,
+                Name = "-- Select one--"
+            };
+            var dropdowns = await _context.CommonDropdowns.Where(s => s.Deleted == deleteOption && s.DropdownKey == (int)dropdownKey).OrderBy(s => s.Name).ToListAsync();
+            dropdowns.Insert(0, common);
+
+            return dropdowns;
+        }
+        public async Task<List<CommonDropdown>> GetSmokingHabitDropdownByKey(AliveProjectEnums dropdownKey, bool deleteOption = false)
+        {
+
+            var common = new CommonDropdown()
+            {
+                Id = 0,
+                Name = "-- Select one--"
+            };
+            var dropdowns = await _context.CommonDropdowns.Where(s => s.Deleted == deleteOption && s.DropdownKey == (int)dropdownKey).OrderBy(s => s.Name).ToListAsync();
+            dropdowns.Insert(0, common);
+
+            return dropdowns;
+        }
+        public async Task<List<CommonDropdown>> GetAnyAddictionDropdownByKey(AliveProjectEnums dropdownKey, bool deleteOption = false)
+        {
+
+            var common = new CommonDropdown()
+            {
+                Id = 0,
+                Name = "-- Select one--"
+            };
+            var dropdowns = await _context.CommonDropdowns.Where(s => s.Deleted == deleteOption && s.DropdownKey == (int)dropdownKey).OrderBy(s => s.Name).ToListAsync();
+            dropdowns.Insert(0, common);
+
+            return dropdowns;
+        }
+        public async Task<List<CommonDropdown>> GetSexuallyActiveDropdownByKey(AliveProjectEnums dropdownKey, bool deleteOption = false)
+        {
+
+            var common = new CommonDropdown()
+            {
+                Id = 0,
+                Name = "-- Select one--"
+            };
+            var dropdowns = await _context.CommonDropdowns.Where(s => s.Deleted == deleteOption && s.DropdownKey == (int)dropdownKey).OrderBy(s => s.Name).ToListAsync();
+            dropdowns.Insert(0, common);
+
+            return dropdowns;
+        }
+        public async Task<List<CommonDropdown>> GetUnprotectedSexDropdownByKey(AliveProjectEnums dropdownKey, bool deleteOption = false)
+        {
+
+            var common = new CommonDropdown()
+            {
+                Id = 0,
+                Name = "-- Select one--"
+            };
+            var dropdowns = await _context.CommonDropdowns.Where(s => s.Deleted == deleteOption && s.DropdownKey == (int)dropdownKey).OrderBy(s => s.Name).ToListAsync();
+            dropdowns.Insert(0, common);
+
+            return dropdowns;
+        }
+        public async Task<List<CommonDropdown>> GetPatientTypeDropdownByKey(AliveProjectEnums dropdownKey, bool deleteOption = false)
+        {
+
+            var common = new CommonDropdown()
+            {
+                Id = 0,
+                Name = "-- Select the patient type--"
+            };
+            var dropdowns = await _context.CommonDropdowns.Where(s => s.Deleted == deleteOption && s.DropdownKey == (int)dropdownKey).OrderBy(s => s.Name).ToListAsync();
+            dropdowns.Insert(0, common);
+
+            return dropdowns;
+        }
+        public async Task<List<CommonDropdown>> GetMSMDropdownByKey(AliveProjectEnums dropdownKey, bool deleteOption = false)
+        {
+
+            var common = new CommonDropdown()
+            {
+                Id = 0,
+                Name = "-- Select one--"
+            };
+            var dropdowns = await _context.CommonDropdowns.Where(s => s.Deleted == deleteOption && s.DropdownKey == (int)dropdownKey).OrderBy(s => s.Name).ToListAsync();
+            dropdowns.Insert(0, common);
+
+            return dropdowns;
+        }
         public class DropdownEnumModel
         {
             public int Id { get; set; }

@@ -8,8 +8,6 @@ namespace Alive.Models
         [Display(Name = "Drpdown Key")]
         public int DropdownKey { get; set; }
 
-        [Display(Name = "Date Created")]
-        public DateTime DateCreated { get; set; }
-
+        
     }
 }

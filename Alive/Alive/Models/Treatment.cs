@@ -8,8 +8,8 @@ namespace Alive.Models
         public Guid? Id { get; set; }
         public string? Medicine { get; set; }
         public string? NOoFDays { get; set; }
-        public string? WhenToTake { get; set; }
-        public string? Action { get; set; }
+        public bool? Deleted { get; set; }
+        public double? amount { get; set; }
        
     }
 }

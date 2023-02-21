@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewData["Title"] = "VitalEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+@model Alive.Models.VitalSign
+
+<main id="main" class="main">
+
+   
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">General Form Elements</h5>
+
+                        <!-- General Form Elements -->
+                        <form asp-controller="admin" method="post">
+                            <input asp-for="Id" hidden />
+
+                            <div class="row mb-3">
+                                <label for="PatientName" class="col-sm-5 col-form-label">Patient Name</label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="name" asp-for="Name" class="form-control">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="VisitId" class="col-sm-5 col-form-label">Visit id</label>
+                                <div class="col-sm-7">
+                                    <span asp-validation-for="Id" class="text-danger"></span>
+
+                                    <input type="text" id="vId" asp-for="VisitId" class="form-control" />
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class=" col-form-label col-sm-5">Attended by Nurse</label>
+                                
+                                    <div class="input-group mb-3 col-sm-7">
+                                        <input type="text" id="nurseName" asp-for="NurseName" class="form-control input-group-text" />
+                                        <span asp-validation-for="NurseName" class="text-danger"></span>
+                                    </div>
+                                
+                            </div>
+
+                            <div class="row mb-3">
+                                
+                                   <label class=" col-form-label col-sm-5">Body Temperature</label>
+                                    <div class="">
+                                        <div class="input-group mb-3 col-sm-7">
+                                            <input type="text" id="temperature" asp-for="BodyTemperature" class="form-control input-group-text" aria-describedby="basic-addon1">
+                                            <span asp-validation-for="BodyTemperature" class="text-danger">C</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="row mb-3">
+                                    <label class=" col-form-label col-sm-5">Body Height</label>
+                        
+                                    <div class="input-group mb-3 col-sm-7 ">
+                                        <input type="text" id="height" asp-for="Height" class="form-control input-group-text" aria-describedby="basic-addon1">
+                                        <span asp-validation-for="Height" class="text-danger">CM</span>
+                                   </div>
+                                 </div>
+                    
+                            <div class="row mb-3">
+                                <label class="col-form-label col-sm-5">Body Weight</label>
+                                
+                                    <div class="input-group mb-3 col-sm-7">
+                                        <input type="text" id="weight" asp-for="BodyWeight" class="form-control input-group-text" aria-describedby="basic-addon1">
+                                        <span asp-validation-for="BodyWeight" class="text-danger">KG</span>
+                                    </div>
+                               
+                            </div>
+                            <div class="row mb-3">
+                                <label class=" col-form-label">BMI</label>
+                        
+                                    <input type="number" class="form-control" id="bodyIndex" aria-describedby="basic-addon1" />
+                                    <select class="form-select" id="bmi" aria-label="Floating label select example">
+                                        <option selected></option>
+                                        <option value="1">  Overweight</option>
+                                        <option value="2">Normal</option>
+                                        <option value="3">Underweight</option>
+                                    </select>
+                        
+                   
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class=" col-form-label col-sm-5">Respiration Rate</label>
+                                
+                                    <div class="input-group mb-3 col-sm-7">
+                                        <input type="text" id="pulse" asp-for="PulseRate" class="form-control input-group-text" aria-describedby="basic-addon1">
+                                        <span asp-validation-for="PulseRate" class="text-danger">PER SECs</span>
+                                    </div>
+                                
+                            </div>
+                            <div class="row mb-3 col-sm-5">
+                                <label class=" col-form-label">Blood Pressure</label>
+                                
+                                    <div class="input-group mb-3 col-sm-7">
+                                        <input type="text" id="pressure" asp-for="BloodPressure" class="form-control input-group-text" aria-describedby="basic-addon1">
+                                        <span asp-validation-for="BloodPressure" class="text-danger">MM/HG</span>
+                                    </div>
+                               
+                            </div>
+                            <div class="row form-floating mb-3">
+                                <label for="floatingTextarea">Patient's Complaints</label>
+
+                                <textarea class="form-control" placeholder="Leave a comment here" id="Complain" asp-for="Comment" style="height: 100px;"></textarea>
+                                <span asp-validation-for="Comment" class="text-danger"></span>
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-group row ">
+                                    <div class="col-8 offset-4 row">
+                                        <div class="col mt-3 pt-3">
+                                            <input type="submit" class=" btn btn-info w-100" value="Update" />
+
+                                        </div>
+
+                                        <div class="col mt-3 pt-3">
+                                            <a asp-action="vitalsign" class="btn btn-success w-30">
+                                                <i class="fas fa-sign-out-alt"></i> Back
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            
+                        </form><!-- End General Form Elements -->
+
+                    </div>
+                </div>
+
+            </div>
+         </div>
+      </section>
+ </main>

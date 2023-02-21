@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "MedicineEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+@model Alive.Models.Dispensary
+
+
+<main id="main" class="main">
+    <section>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Drug Details</h5>
+
+                <!-- General Form Elements -->
+                <form asp-controller="admin" asp-action="DispensaryEdit" method="post">
+                    <input asp-for="Id" hidden />
+
+
+                    <div class="row mb-3">
+                        <label for="Patientname" class="col-sm-5 col-form-label">Name</label>
+                        <div class="col-sm-7">
+                            <input type="text" asp-for="Name" id="drugName" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="DocCate" class="col-sm-5 col-form-label">Details</label>
+                        <div class="col-sm-7">
+
+                            <textarea asp-for="Details" id="drugCate" rows="4" cols="50"></textarea>
+                            <span asp-validation-for="Details" class="text-danger"></span>
+
+
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="DocName" class="col-sm-5 col-form-label">Action</label>
+                        <div class="col-sm-7">
+                            <input type="text" asp-for="Action" id="drugUnit" class="form-control">
+                            <span asp-validation-for="Action" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-3">
+                        <label for="SerialNo" class="col-sm-5 col-form-label">Created Date</label>
+                        <div class="col-sm-7">
+                            <input type="date" asp-for="CreatedDate" id="date" class="form-control">
+                            <span asp-validation-for="CreatedDate" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="form-group row ">
+                            <div class="col-8 offset-4 row">
+                                <div class="col mt-3 pt-3">
+                                    <input type="submit" class=" btn btn-info w-100" value="Update" />
+
+                                </div>
+
+                                <div class="col mt-3 pt-3">
+                                    <a asp-action="Dispensary" class="btn btn-success w-30">
+                                        <i class="fas fa-sign-out-alt"></i> Back
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form><!-- End General Form Elements -->
+
+            </div>
+        </div>
+
+
+
+    </section>
+</main>

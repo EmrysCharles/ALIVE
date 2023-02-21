@@ -1,215 +1,212 @@
-﻿
-@{
-    ViewData["Title"] = "Appointment";
+﻿@{
+    ViewData["Title"] = "Labtest";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-
 }
-
+@model Alive.Models.TreatmentViewModel
 <main id="main" class="main ">
-
-
     <section class="section">
-            <div class="row"> 
-                <div class="col-4">
-                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-                         Basic Modal
-                     </button>
-                    <div class="modal fade" id="basicModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Add patient Appointment</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Patient's Details</h5>
-
-                                        <!-- General Form Elements -->
-                                        <form>
-
-                                            <div class="row mb-3">
-                                                <label for="Patientname" class="col-sm-5 col-form-label">Medicine Name</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="docName" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="DocName" class="col-sm-5 col-form-label">Medicine Category</label>
-                                                <div class="col-sm-7">
-
-                                                    <select class="form-select" aria-label="">
-                                                        <option selected></option>
-                                                        <option value="1">Out Patient</option>
-                                                        <option value="2">In patient</option>
-                                                        <option value="3">Imaging</option>
-                                                        <option value="3">Antenatal</option>
-                                                        <option value="3">ChildBirth</option>
-
-
-                                                    </select>
-
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="DocName" class="col-sm-5 col-form-label">Unit Price</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="docName" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <label for="SerialNo" class="col-sm-5 col-form-label">Description</label>
-                                                <div class="col-sm-7">
-                                                    <input type="number" id="serialNo" class="form-control">
-                                                </div>
-                                            </div>
-                                            
-
-                                        </form><!-- End General Form Elements -->
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- End Basic Modal-->
-
-
-
-                 <div class="col-4">
-                     <h2 class="" style="display:flex; text-align:center;justify-contentcenter;">Medicine </h2>
-                 </div>
-
+        <div class="row align-items-top">
+            <div class="col-sm-4 col-md-4 col-xl-4">
             </div>
-            <div class="row align-items-top">
-
-              <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right; display:flex; justify-content:end;"> 
-
+            <div class="col-sm-4 col-md-4 col-xl-4">
+                <h2 class="mx-4" style="display:flex; text-align:center;justify-content:center; color:lightseagreen">Available Medication</h2>
+            </div>
+            <div class="col-sm-4 col-md-4 col-xl-4">
+                <a asp-controller="Admin" method="post" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal" style="float:right">
+                    <i class="ri-add-circle-fill" style="color:white;"></i> Add Treatment
+                </a>
+            </div>
+        </div>
+        <div class="row align-items-top">
+            <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right; display:flex; justify-content:end;">
                 <input type="text" name="query" placeholder="Search" title="Enter search keyword">
                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-             </form>
-
-
-            </div>
-     </section>
-
+            </form>
+        </div>
+    </section>
     <!-- Default Card -->
     <section>
-     <div class="card" style="width:100%">
-        <div class="card-body">
-            
-            <table class="table table-bordered border-primary">
-                <thead class="bg-danger">
+        <input type="hidden" id="TreatmentId" />
+        <table class="table table-stripped mt-3" id="example" style="width:100%;">
+            <thead class="" style="background-color:whitesmoke; color:darkblue">
+                <tr>
+                    <th scope="col">
+                        #<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                    </th>
+
+                    <th scope="col">
+                        Treatment Name<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                    </th>
+                    <th scope="col">
+                        Treatment Category<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                    </th>
+                    <th scope="col">
+                        Amount<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                    </th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in @Model.Medicines)
+                {
                     <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">Medicine Category</th>
-                        <th scope="col">Medicine Name</th>
-                        <th scope="col">Unit price</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Created Date</th>
-                            <th scope="col"> </th>
-                            <th scope="col"> </th>
-
-
+                        <td>@obj.Id</td>
+                        <td>@obj.MedicineName</td>
+                        <td>@obj.MedicineCategory</td>
+                        <td>@obj.Amount</td>
+                        
+                        <td>
+                            <a class="btn btn-primary" onclick="EditTreatmentForm(@obj.Id)" id="EditNursForm" data-bs-toggle="modal" data-bs-target="#largeModal">
+                                Edit
+                            </a>
+                            <a id="showModal" onclick="ConfirmTreatmentDelete(@obj.Id)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                Delete
+                            </a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Brandon Jacob</td>
-                        <td>Designer</td>
-                        <td>28</td>
-                        <td>2016-05-25</td>
+                }
+            </tbody>
+        </table>
 
-                        <td>2016-05-25</td>
-                            <td><button type="button" class="btn btn-primary">Edit</button></td>
-                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+        <!-- End Primary Color Bordered Table -->
+        @*crete modal*@
+        <div class="modal fade" id="basicModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" id="exampleModalLabel">Add Treatment</h5>
+                                <!-- Default Tabs -->
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="col-12">
+                                            <input class="updateId" type="hidden" id="medicineId" />
+                                        </div>
+                                        <div class="col-12">
+                                            <label><b>Treatment Name</b></label>
+                                            <input type="text" id="medname" class="form-control">
+                                        </div>
+                                        <div class=" col-12 ">
+                                            <label><b>Treatment Category</b></label>
+                                            <input type="text" id="medcat" class="form-control">
+                                        </div>
+                                        <div class="col-12 ">
+                                            <label><b>Amount</b></label>
+                                            <input type="text" id="medamout" class="form-control">
+                                        </div>
+                                    </div>
+                                    
 
+                                    <div class="modal-footer">
+                                        <button type="button"  class="btn btn-secondary btnCancel" data-dismiss="modal">close</button>
+                                        <button type="submit" onclick="MedCreate()" class="btn btn-success ">Add</button>
+                                    </div>
+                                </div>
+                                <!-- End General Form Elements -->
 
+                            </div>
 
-                        </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Bridie Kessler</td>
-                        <td>Developer</td>
-                        <td>35</td>
-                        <td>2014-12-05</td>
+                        </div>
+                    </div>
 
-                            <td>2016-05-25</td>
-                            <td><button type="button" class="btn btn-primary">Edit</button></td>
-                            <td><button type="button" class="btn btn-danger">Delete</button></td>
-
-
-
-                        </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Ashleigh Langosh</td>
-                        <td>Finance</td>
-                        <td>45</td>
-                        <td>2011-08-12</td>
-                         <td>2016-05-25</td>
-
-                          <td><button type="button" class="btn btn-primary">Edit</button></td>
-                        <td><button type="button" class="btn btn-danger">Delete</button></td>
-
-
-                        </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Angus Grady</td>
-                        <td>HR</td>
-                        <td>34</td>
-                        <td>2012-06-11</td>
-                        <td>2016-05-25</td>
-                        <td><button type="button" class="btn btn-primary">Edit</button></td>
-                        <td><button type="button" class="btn btn-danger">Delete</button></td>
-
-
-
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Raheem Lehner</td>
-                        <td>Dynamic Division Officer</td>
-                        <td>47</td>
-                        <td>2011-04-19</td>
-                        <td>2011-04-19</td>
-                        <td><button type="button" class="btn btn-primary">Edit</button></td>
-                        <td><button type="button" class="btn btn-danger">Delete</button></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Raheem Lehner</td>
-                        <td>Dynamic Division Officer</td>
-                        <td>47</td>
-                        <td>2011-04-19</td>
-                        <td>2016-05-25</td>
-                       <td><button type="button" class="btn btn-primary">Edit</button></td>
-                        <td><button type="button" class="btn btn-danger">Delete</button></td>
-
-
-                    </tr>
-
-                </tbody>
-            </table>
-            <!-- End Primary Color Bordered Table -->
-
+                </div>
+            </div>
         </div>
-    </div>
+        @*Edit Modal*@
+
+        <div class="modal fade" id="largeModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" id="exampleModalLabel">Update Treatment</h5>
+                                <!-- Default Tabs -->
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="col-12">
+                                            <input class="updateId" type="hidden" id="editId" />
+                                        </div>
+                                        <div class="col-12">
+                                            <label><b>Treatment Name</b></label>
+                                            <input type="text" id="editmedname" class="form-control">
+                                        </div>
+                                        <div class=" col-12 ">
+                                            <label><b>Treatment Category</b></label>
+                                            <input type="text" id="editmedcat" class="form-control">
+                                        </div>
+                                        <div class="col-12 ">
+                                            <label><b>Amount</b></label>
+                                            <input type="text" id="editmedamout" class="form-control">
+                                        </div>
+                                    </div>
 
 
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary btnCancel" data-dismiss="modal">close</button>
+                                        <button type="submit" onclick="medEdit()" class="btn btn-success ">Add</button>
+                                    </div>
+                                </div>
+                                <!-- End General Form Elements -->
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" id="exampleModalLabel">Delete Treatment</h5>
+                                <!-- Default Tabs -->
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="col-12">
+                                            <input type="hidden" id="deleteId" />
+                                            <h1>Are you sure you want to delete this Lab?</h1>
+                                        </div>
+                                    </div>
+                                </div><!-- End General Form Elements -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btnCancel" data-dismiss="modal">close</button>
+                                    <button onclick="MedDelete()" type="button" class="btn btn-danger ">Delete</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        @section scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+
+        }
 
 
-  </section>
- </main><!-- End Default Card -->
+    </section>
 
+
+</main>

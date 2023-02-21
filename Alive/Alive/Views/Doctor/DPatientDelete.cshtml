@@ -1,0 +1,185 @@
+﻿@{
+    ViewData["Title"] = "DPatientDelete";
+    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+
+}
+@model Alive.Models.PatientInfo
+<main id="main" class="main">
+
+
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Patient's Details</h5>
+
+                        <!-- Default Tabs -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Basic Info</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Other Info</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                            </li>
+                        </ul>
+
+                        <!-- General Form Elements -->
+                        <div class="tab-content pt-2" id="myTabContent">
+                            <div class="tab-panel fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                                <form asp-controller="Doctor" asp-action="DPatientDelete" method="post">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                    <div class="row mb-3">
+                                        <label for="Patientname" class="col-sm-5 col-form-label">First Name</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" asp-for="FirstName" id="firstName" class="form-control">
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Patientname" class="col-sm-5 col-form-label">Last Name</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" asp-for="LastName" id="lastName" class="form-control">
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="status" class="col-sm-5 col-form-label">Marital Status</label>
+                                        <div class="col-sm-7">
+
+                                            <select class="form-select" asp-for="MaritalStatus" aria-label="">
+                                                <option selected></option>
+                                                <option value="1">Single</option>
+                                                <option value="2">Married</option>
+                                                <option value="3">Divorced</option>
+
+
+                                            </select>
+                                            <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="genotype" id="genotype" class="col-sm-5 col-form-label">Genotype</label>
+                                        <div class="col-sm-7">
+
+                                            <select class="form-select" asp-for="Genotype" aria-label="">
+                                                <option selected></option>
+                                                <option value="1">AA</option>
+                                                <option value="2">AS</option>
+                                                <option value="3">SS</option>
+
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row mb-3">
+                                        <label for="DocName" id="gender" class="col-sm-5 col-form-label">Gender</label>
+                                        <div class="col-sm-7">
+
+                                            <select class="form-select" asp-for="Gender" aria-label="">
+                                                <option selected></option>
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
+                                                <option value="3">Others</option>
+
+
+                                            </select>
+                                            <span asp-validation-for="Gender" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Patientname" class="col-sm-5 col-form-label">Spouse Name/Next of Kin</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" id="nok" asp-for="Nok" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="DocName" class="col-sm-5 col-form-label">Blood group</label>
+                                        <div class="col-sm-7">
+
+                                            <select class="form-select" asp-for="Bloodgroup" aria-label="">
+                                                <option selected></option>
+                                                <option value="1">O+</option>
+                                                <option value="2">A+</option>
+                                                <option value="3">O-</option>
+                                                <option value="3">A-</option>
+                                                <option value="3">B+</option>
+                                                <option value="3">B-</option>
+                                                <option value="3">AB+</option>
+
+                                                <option value="3">AB-</option>
+
+
+
+
+                                            </select>
+                                            <span asp-validation-for="Bloodgroup" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Dob" class="col-sm-5 col-form-label">Date of Birth</label>
+                                        <div class="col-sm-7">
+                                            <input type="date" id="dob" asp-for=BOB class="form-control">
+                                            <span asp-validation-for="BOB" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="row mb-3">
+                                        <div class="form-group row ">
+                                            <div class="col-8 offset-4 row">
+                                                <div class="col mt-3 pt-3">
+                                                    <input type="submit" class=" btn btn-info w-100" value="Delete" />
+
+                                                </div>
+
+                                                <div class="col mt-3 pt-3">
+                                                    <a asp-action="DPatient" class="btn btn-success w-30">
+                                                        <i class="fas fa-sign-out-alt"></i> Back
+                                                    </a>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </form><!-- End General Form Elements -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @section scripts{
+            @{
+                <partial name="_ValidationScriptsPartial" />
+            }
+        }
+
+        <!-- End Basic Modal-->
+    </section>
+</main>

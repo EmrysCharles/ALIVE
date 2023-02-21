@@ -1,0 +1,437 @@
+﻿
+@{
+    ViewData["Title"] = "VitalCreate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+@model Alive.Models.CheckupViewModel
+
+<main id="main" class="main">
+
+
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        @*<h5 class="card-title" style="display:flex; font-size:large; align-items:center;background-color:chocolate; justify-content:center;">Vital Sign Form</h5>
+                      
+                        </div>
+                        <!--large modal for Edit-->
+                        <div class="modal fade" id="largeModal" tabindex="-1">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Checkup</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">*@
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <h3>Patient Details</h3>
+                                                <!-- General Form Elements -->
+                                                <div class="form-wrapper" method="post">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="col-12">
+                                                                <input type="hidden" id="editId" class="form-control">
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <label class="col-form-label"><b>First Name</b></label>
+                                                                <input type="text" id="edit_firstName" class="form-control">
+                                                            </div>
+
+                                                            <div class=" col-12 ">
+                                                                <label for="email" class=" col-form-label"><b>Email</b></label>
+                                                                <input type="text" id="edit_email" class="form-control">
+
+                                                            </div>
+
+                                                            <div class=" col-12 ">
+                                                                <label for="DocName" class=" col-form-label"><b>Gender</b></label>
+                                                                <select id="edit_genderId" asp-items="@(new SelectList(ViewBag?.AllGenderDropdownData  ,"Id", "Name" ))" class="form-control"> </select>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <label for="DocName" class="col-form-label"><b>Marital Status</b></label>
+                                                                <select id="edit_maritalStatusId" asp-items="@(new SelectList(ViewBag?.MaritalStatus  ,"Id", "Name" ))" class="form-control"> </select>
+                                                            </div>
+
+
+                                                            <div class="col-12 ">
+                                                                <label for="DocName" class="col-form-label"><b>Date of Birth</b></label>
+                                                                <input type="date" id="edit_dob" class="form-control">
+                                                            </div>
+                                                            <div class="col-12 ">
+                                                                <label for="Patientname" class="col-form-label"><b>Patient Type</b></label>
+                                                                <select id="edit_patientTypeId" asp-items="@(new SelectList(ViewBag?.PatientType  ,"Id", "Name" ))" class="form-control"> </select>
+
+                                                            </div>
+                                                            <div class="col-12 ">
+                                                                <label for="address" class="col-form-label"><b>Address</b></label>
+                                                                <input type="text" id="edit_address" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="col-12 ">
+                                                                <label for="name" class=" col-form-label"><b>Last Name</b></label>
+                                                                <input type="text" id="edit_lastName" class="form-control">
+                                                            </div>
+                                                            <div class="col-12 ">
+                                                                <label for="number" class="col-form-label"><b>Phone Number</b></label>
+                                                                <input type="text" id="edit_phoneNumber" class="form-control">
+
+                                                            </div>
+                                                            <div class="col-12 ">
+                                                                <label for="Patientname" class="col-form-label"><b>Genotype</b></label>
+                                                                <input type="text" id="edit_genotypeId" class="form-control">
+                                                            </div>
+
+
+
+                                                            <div class="col-12 ">
+                                                                <label for="Patientname" class="col-form-label"><b>Spouse Name/Next of Kin</b></label>
+                                                                <input type="text" id="edit_nok" class="form-control">
+                                                            </div>
+                                                            <div class="col-12 ">
+                                                                <label for="Patientname" class="col-form-label"><b>Next Visit</b></label>
+                                                                <input type="date" id="edit_nextVisit" class="form-control">
+                                                            </div>
+                                                            @* <div class="row ">
+                                                            <label for="country" class="col-form-label"><b>Country</b></label>
+                                                            <select id="edit_countryId"  asp-items="@(new SelectList(ViewBag?.Country  ,"Id", "Name" ))" class="form-control"> </select>
+                                                            </div>*@
+
+                                                            <div class="col-12 ">
+                                                                <label for="date" class="col-form-label"><b>Date Created</b></label>
+                                                                <input type="date" id="edit_dateCreated" class="form-control">
+
+                                                            </div>
+                                                            <div class="col-12 ">
+                                                                <label for="occupation" class="col-form-label"><b>Occupation</b></label>
+                                                                <input type="text" id="edit_occupation" class="form-control">
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--tab for medical record-->
+                                            <div class="col-md-6 col-sm-12">
+
+                                                <h2>Vital Signs</h2>
+                                                <!-- Default Tabs -->
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Vital Sign</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Consultation</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Investigation</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="treatment-tab" data-bs-toggle="tab" data-bs-target="#treatment" type="button" role="tab" aria-controls="treatment" aria-selected="false">Treatment</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="diagnosis-tab" data-bs-toggle="tab" data-bs-target="#diagnosis" type="button" role="tab" aria-controls="diagnosis" aria-selected="false">Diagnosis</button>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content pt-2" id="myTabContent">
+                                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                        <div class="col-12">
+                                                            <input type="hidden" id="deleteId" class="form-control">
+                                                        </div>
+                                                        <div class="col-12 ">
+                                                            <label for="BodyTemperature" class="col-form-label"><b>Body Temperature</b></label>
+                                                            <input type="text" id="bodyTemp" class="form-control">
+                                                        </div>
+                                                        <div class="col-12 ">
+                                                            <label for="PulseRate" class="col-form-label"><b>Pulse Rate</b></label>
+                                                            <input type="text" id="pulse" class="form-control">
+                                                        </div>
+                                                        <div class="col-12 ">
+                                                            <label for="BloodPressure" class="col-form-label"><b>Blood Pressure</b></label>
+                                                            <input type="text" id="bodyPress" class="form-control">
+                                                        </div>
+                                                        <div class="col-12 ">
+                                                            <label for="BodyHeight" class="col-form-label"><b>Body Height</b></label>
+                                                            <input type="text" id="bodyheight" class="form-control">
+                                                        </div>
+                                                        <div class="col-12 ">
+                                                            <label for="BodyWeight" class="col-form-label"><b>Body Weight</b></label>
+                                                            <input type="text" id="bodyweight" class="form-control">
+                                                        </div>
+                                                        <div class="col-12 ">
+                                                            <label for="PatientComplaint" class="col-form-label"><b>Patient Complaint</b></label>
+                                                            <textarea class="form-control" placeholder="Leave a comment here" id="Complain" style="height: 100px;"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                        <div class="row g-0">
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <h3>Patient Details</h3>
+                                                                <!-- General Form Elements -->
+                                                                <div class="form-wrapper" method="post">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <div class="col-12">
+                                                                                <div class="form-floating">
+                                                                                    <textarea class="form-control" placeholder="Address" id="chiefComplaints" style="height: 100px;"></textarea>
+                                                                                    <label for="floatingTextarea">Chief Complaints</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class=" col-12 ">
+                                                                                <input type="text" id="durationOfIllness" placeholder="How long have you been feeling ill?" class="form-control">
+
+                                                                            </div>
+
+                                                                            <div class=" col-12 ">
+                                                                                <input type="text" id="selfMedication" placeholder="What drug have you taken so far?" class="form-control">
+
+                                                                            </div>
+                                                                            <div class=" col-12 ">
+                                                                                <input type="text" id="doseOfSelfMedication" placeholder="How many dose did you take?" class="form-control">
+
+                                                                            </div>
+                                                                            <div class=" col-12 ">
+                                                                                <input type="text" id="drugIntakeDuration" placeholder="For how long? have you taken this medicine" class="form-control">
+
+                                                                            </div>
+                                                                            <div class=" col-12 ">
+                                                                                <input type="text" id="smokingHabit" placeholder="Do you smoke?" class="form-control">
+
+                                                                            </div>
+                                                                            <div class=" col-12 ">
+                                                                                <input type="text" id="anyAddiction" placeholder="Is there any other drug/substance you are addicted to?" class="form-control">
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <div class=" col-12 ">
+                                                                                <input type="text" id="allergy" placeholder="Are you allergic to any substance?" class="form-control">
+
+                                                                            </div>
+
+                                                                            <div class=" col-12 ">
+                                                                                <input type="text" id="occupation" placeholder="Occupation?" class="form-control">
+
+                                                                            </div>
+
+                                                                            <div class="col-12 ">
+                                                                                <input id="militaryService" placeholder="Where you in the Military before?" class="form-control">
+                                                                                <select id="militaryServiceId" asp-for="Checkup.MilitaryServiceId" asp-items="@(new SelectList(ViewBag?.MilitaryService  ,"Id", "Name" ))" class="form-control"> </select>
+                                                                            </div>
+
+                                                                            <div class=" col-12 ">
+                                                                                <input id="sexuallyActive" placeholder="Are you sexually active?" class="form-control">
+                                                                                <select id="sexuallyActiveId" asp-for="Checkup.SexuallyActiveId" asp-items="@(new SelectList(ViewBag?.SexuallyActive  ,"Id", "Name" ))" class="form-control"> </select>
+
+                                                                            </div>
+
+                                                                            <div class=" col-12 ">
+                                                                                <input id="unprotectedSex" placeholder="Did you have unprotected sex?" class="form-control">
+                                                                                <select id="unprotectedSexId" asp-for="Checkup.UnprotectedSex" asp-items="@(new SelectList(ViewBag?.UnprotectedSex  ,"Id", "Name" ))" class="form-control"> </select>
+
+                                                                            </div>
+                                                                            <div class="col-12 ">
+                                                                                <input id="ifYesWhen" placeholder="When was that?" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 ">
+                                                                            <input id="msm" placeholder="Do you have any sex?" class="form-control">
+                                                                            <select id="msmId" asp-for="Checkup.MSMId" asp-items="@(new SelectList(ViewBag?.MSM  ,"Id", "Name" ))" class="form-control"> </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div><!-- End General Form Elements -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                                        <div class="">
+                                                            <h2>Lab Investigations</h2>
+                                                            <form method="post" class="form-inline">
+                                                                <div class="row">
+
+                                                                    <div class="col">
+                                                                        <input type="text" placeholder="Test Name" id="investigation" class="form-control" name="name" />
+
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <input type="text" placeholder="Cost" id="cost" class="form-control" name="cost" />
+
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <input type="text" placeholder="Result" id="result" class="form-control" name="result" />
+
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <button type="button" class="btn btn-primary" id="add"> </button>
+                                                                        <button type="button" class="btn btn-success" id="update"> </button>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </form>
+                                                            <table class="table table-bordered border-primary" id="table" style="width:100%;">
+                                                                <thead class="bg-danger">
+                                                                    <tr>
+                                                                        <th scope="col">Test</th>
+                                                                        <th scope="col">Cost</th>
+                                                                        <th scope="col">result</th>
+                                                                        <th scope="col">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @*<tr>
+                                                                    <td scope="row"></td>
+                                                                    <td>
+                                                                    @*select id="investigation"  asp-items="@(new SelectList(ViewBag?.Investigation  ,"Id", "Name" ))" class="form-control"> </select>
+
+                                                                    </td>
+                                                                    <td>
+                                                                    <input type="text" id="amount" class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                    <input type="text" id="result" class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                    <a onclick="addCol()" method="post" class="btn btn-primary"  style="float:right">
+                                                                    <i class="ri-add-circle-fill" style="color:white;"></i> Add Test
+                                                                    </a>
+                                                                    </td>
+
+                                                                    </tr>*@
+
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="treatment" role="tabpanel" aria-labelledby="treatment-tab">
+                                                        <div class="">
+                                                            <h2>Treatment</h2>
+                                                            <table class="table table-bordered border-primary" id="tabe" style="width:100%;">
+                                                                <thead class="bg-danger">
+                                                                    <tr>
+                                                                        <th scope="col">TreatmentId</th>
+                                                                        <th scope="col">Treatment</th>
+                                                                        <th scope="col">Cost</th>
+                                                                        <th scope="col">How to take</th>
+                                                                        <th scope="col">Before Meal</th>
+                                                                        <th scope="col">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td scope="row"></td>
+                                                                        <td>
+                                                                            @*<select id="Treament" asp-items="@(new SelectList(ViewBag?.Treatment  ,"Id", "Name" ))" class="form-control"> </select>
+                                                                            *@
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="treatAmount" class="form-control">
+                                                                        </td>
+                                                                        <td>
+                                                                            @* <select id="howToTake" asp-items="@(new SelectList(ViewBag?.howToTake  ,"Id", "Name" ))" class="form-control"> </select>
+                                                                            *@
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="beforeMeal" class="form-control">
+                                                                        </td>
+                                                                        <td>
+                                                                            <a class="btn btn-primary" onclick="addRow()" style="float:right">
+                                                                                <i class="ri-add-circle-fill" style="color:white;"></i> Add Test
+                                                                            </a>
+                                                                        </td>
+
+                                                                    </tr>
+
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="diagnosis" role="tabpanel" aria-labelledby="diagnosis-tab">
+                                                        <div class="">
+                                                            <h2>Diagnosis</h2>
+                                                            <div class="form-wrapper" method="post">
+                                                                <div class="col-12">
+                                                                    <div class="form-floating">
+                                                                        <textarea class="form-control" placeholder="diagnosis" id="diagnosis" style="height: 100px;"></textarea>
+                                                                        <label for="floatingTextarea">Doctor's Diagnosis</label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="form-floating">
+                                                                        <textarea class="form-control" placeholder="Advice" id="advice" style="height: 100px;"></textarea>
+                                                                        <label for="floatingTextarea">Doctor's Advice</label>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- End Default Tabs -->
+
+
+                                                <div class=" ">COST</div>
+                                                <table>
+                                                    <thead class="bg-success">
+                                                        <tr>
+                                                            <th>Activities</th>
+                                                            <th>Cost</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="" style="background-color: antiquewhite">
+                                                        <tr>
+                                                            <td>Consultation</td>
+                                                            <td><input id="consult" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Laboratory fee</td>
+                                                            <td><input id="lab" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Medicine charge</td>
+                                                            <td><input id="medicine" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Surgery</td>
+                                                            <td><input id="surgery" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Bed</td>
+                                                            <td><input id="bed" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>other charges</td>
+                                                            <td><input id="others" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total</td>
+                                                            <td><input id="total" /></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                            
+    </section>
+</main>
+ 

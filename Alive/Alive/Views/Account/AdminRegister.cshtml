@@ -1,0 +1,115 @@
+﻿@model Alive.Models.ApplicationUser
+@{
+    ViewData["Title"] = "AdminRegister";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                    <div class="d-flex justify-content-center py-4">
+                        <a href="index.html" class="logo d-flex align-items-center w-auto">
+                            <img src="~/medicio/assets/img/alive.jpg" alt="" />
+                            <span class="d-none d-lg-block">Alive</span>
+                        </a>
+                    </div><!-- End Logo -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="pt-4 pb-2">
+                                <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                                <p class="text-center small">Enter your personal details to create account</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="col-12">
+                                        <label for="FirstName" class="form-label">FirstName</label>
+                                        <input type="text" name="FirstName" class="form-control" id="firstName" required>
+                                        <p class="text-danger" id="firstNameVDT" style="display: none;">Enter your first name</p>
+                                        @*<div class="invalid-feedback">Please, enter your first name!</div>*@
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="FirstName" class="form-label">LastName</label>
+                                        <input type="text" name="LastName" class="form-control" id="lastName" required>
+                                        <p class="text-danger" id="lastNameVDT" style="display: none;">Enter your last name</p>
+                                        @*<div class="invalid-feedback">Please, enter your last name!</div>*@
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="Email" class="form-label">Email</label>
+                                        <input type="email" name="Email" class="form-control" id="email" required>
+                                        <p class="text-danger" id="emailVDT" style="display: none;">Enter your Email Address</p>
+                                        @*<div class="invalid-feedback">Please enter a valid Email adddress!</div>*@
+                                    </div>
+                                    <div class="" col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6"">
+                                        <label for="PhoneNumber" class="form-label">Phone Number</label>
+                                        <input type="number" name="PhoneNumber" class="form-control" id="phoneNumber" required>
+                                        <p class="text-danger" id="phoneNumberVDT" style="display: none;">Enter a valid Email Phone Number!</p>
+                                        @*<div class="invalid-feedback">Please enter a valid Email Phone Number!</div>*@
+                                    </div>
+                                    <div class="" col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6"">
+                                        <div class="form-group">
+                                            <label><b>Gender</b></label>
+                                            <select asp-for="GenderId" class="form-control" asp-items="@(new SelectList(@ViewBag.Dropdownkeys  ,"Id", "Name" ))" style="border-radius:20px;">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+                                        <div class="form-group">
+                                            <label><b>Country</b></label>
+                                            <select id="country" asp-for="Country" class="form-control" asp-items="@(new SelectList(@ViewBag?.Country  ,"Id", "Name" ))" style="border-radius:20px;">
+                                                <option value="">-- Select Country----</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
+                                        <div class="form-group">
+                                            <label><b>State</b></label>
+                                            <select id="state" asp-for="State" class="form-control" style="border-radius:20px;">
+                                                <option value="">-- Select State----</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="" col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6"">
+                                        <label for="Password" class="form-label">Password</label>
+                                        <input type="password" name="password" class="form-control" id="password" required>
+                                        <p class="text-danger" id="passwordVDT" style="display: none;">Please choose a strong password!</p>
+                                        @*<div class="invalid-feedback">Please choose a strong password.</div>*@
+                                    </div>
+                                    <div class="col" col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6"">
+                                        <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+                                        <input type="password" name="ConfirmPassword" class="form-control" id="confirmPassword" required>
+                                        <p class="text-danger" id="confirmPasswordVDT" style="display: none;">Your password does not match!</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                                            <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
+                                            <div class="invalid-feedback">You must agree before submitting.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100" onclick="registerAdmin()">Create Account</button>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="credits">
+                        <!-- All the links in the footer should remain intact. -->
+                        <!-- You can delete the links only if you purchased the pro version. -->
+                        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+                        <a href="https://bootstrapmade.com/"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

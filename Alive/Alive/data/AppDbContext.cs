@@ -16,26 +16,23 @@ namespace Alive.data
         public DbSet<State> State { get; set; }
         public DbSet<VitalSign> VitalSigns { get; set; }
 
-         public DbSet<SocialHistory> SocialHistories { get; set; }
-
-        public DbSet<FamilyHistory> FamilyHistories { get; set; }
-        public DbSet<Bed> Beds { get; set; }
-        public DbSet<BedAllotment> BedAllotments { get; set; }
-        public DbSet<BedCategory> BedCategories { get; set; }
+        //public DbSet<Bed> Beds { get; set; }
+        //public DbSet<BedAllotment> BedAllotments { get; set; }
+        //public DbSet<BedCategory> BedCategories { get; set; }
         public DbSet<Checkup> Checkups { get; set; }
         public DbSet<Drug> Drugs { get; set; }
         public DbSet<DocInfo> DocInfos { get; set; }
-        public DbSet<ExpenseReport> ExpenseReports { get; set; }
-        public DbSet<Expenses> Expenses { get; set; }
-        public DbSet<ExpensesCategory> ExpensesCategories { get; set; }
-         public DbSet<Investigation> Investigations { get; set; }
-        public DbSet<Finance> Finances { get; set; }
+        //public DbSet<ExpenseReport> ExpenseReports { get; set; }
+        //public DbSet<Expenses> Expenses { get; set; }
+        //public DbSet<ExpensesCategory> ExpensesCategories { get; set; }
+        // public DbSet<Investigation> Investigations { get; set; }
+        //public DbSet<Finance> Finances { get; set; }
         public DbSet<LabCategory> LabCategories { get; set; }
         public DbSet<LaboInfo> LaboInfos { get; set; }
         public DbSet<LabTest> LabTests { get; set; }
         public DbSet<LoginDetails> loginDetails { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
-        public DbSet<MedicineCategory> MedicineCategories { get; set; }
+        public DbSet<Dispensary> Dispensaries { get; set; }
         public DbSet<NurseInfo> NurseInfos { get; set; }
         public DbSet<PatientAppointment> patientAppointments { get; set; }
         public DbSet<PatientInfo> patientInfos { get; set; }
@@ -45,7 +42,9 @@ namespace Alive.data
         public DbSet<PaymentReport> PaymentReports { get; set; }
         public DbSet<PharmaList> PharmaLists { get; set; }
         public DbSet<Treatment> Treatments { get; set; }
-       
+         public DbSet<PharmaInfo> PharmaInfos { get; set; }
+
+
 
 
         public DbSet<CommonDropdown> CommonDropdowns { get; set; }
