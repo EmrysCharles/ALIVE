@@ -59,13 +59,13 @@ namespace Alive.Helpers
             {
                 foreach (var userRole in userRoles)
                 {
-                    if (userRole.Contains("Admin"))
+                    if (userRole.Contains("USER"))
                     {
                         return "/Admin/Index";
                     }
                     else
                     {
-                        return "/User/Index";
+                        return "/Admin/Index";
                     }
                 }
             }

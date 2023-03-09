@@ -342,6 +342,16 @@ function DeleteLab()
 }
 /*crud for patientappointment*/
 /*Create For Patientappoint */
+function dateToInput(dateString) {
+
+    var now = new Date(dateString);
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+    return today;
+}
 function AppointmentCreate() {
     debugger;
     var data = {};
@@ -363,7 +373,7 @@ function AppointmentCreate() {
 
                 if (!result.isError) {
                     $("#loader").fadeOut(3000);
-                    var url = '/Home/Index'
+                    var url = '/Home/IndexLogOut'
                     successAlertWithRedirect(result.msg, url)
                 }
                 else {
@@ -398,9 +408,9 @@ function EditAppForm(id) {
                 $("#patientName").val(result.result.name);
                 $("#patientEmail").val(result.result.email);
                 $("#patientphone").val(result.result.phoneNumber);
-                $("#patientdate").val(result.result.AppointmentDate);
+                $("#patientdate").val(dateToInput(result.result.AppointmentDate));
                 $("#description").val(result.result.description);
-                $("#datecreated").val(result.result.dateCreated);
+                $("#datecreated").val(dateToInput(result.result.dateCreated));
 
             }
         },
@@ -421,8 +431,43 @@ function SaveEditAppointment() {
     data.AppointmentDate = $('#patientdate').val();
     data.Description = $('#description').val();
     data.DateCreated = $('#datecreated').val();
-
-    if (data.Name != "" && data.Email != "" && data.PhoneNumber != "" && data.AppointmentDate != "" && data.DateCreated != "" && data.Description != "") {
+    if (data.Name != null) {
+        $('#patientName').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put patient Name')
+        return false;
+    }
+    if (data.Email != null) {
+        $('#patientEmail').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put patient Email')
+        return false;
+    }
+    if (data.PhoneNumber != null) {
+        $('#patientphone').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put patient phone number')
+        return false;
+    }
+    if (data.AppointmentDate != null) {
+        $('#patientdate').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Appointment date')
+        return false;
+    }
+    if (data.DateCreated != null) {
+        $('#datecreated').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Date Created')
+        return false;
+    }
+    if (data.Description != null) {
+        $('#description').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Description Created')
+        return false;
+    }
+    
         let Appointment = JSON.stringify(data);
         $.ajax({
             type: 'POST',
@@ -446,10 +491,7 @@ function SaveEditAppointment() {
             }
         });
     }
-    else {
-        errorAlert("Incorrect Details");
-    }
-}
+   
 
 function ConfirmAppDelete(id) {
     $("#deleteId").val(id);
@@ -1081,6 +1123,8 @@ function checkupCreate()
     data.DateCreated = $('#dateCreated').val();
     data.Occupation = $('#occupation').val();
     data.State = $('#stateId').val();
+    data.NurseName = $('#nurs').val();
+
         let CheckupFormViewModel = JSON.stringify(data);
         $.ajax({
             type: 'POST',
@@ -1130,18 +1174,19 @@ function checkupEdit(id) {
                 $('#edit_email').val(result.result.email);
                 $('#edit_genderId').val(result.result.genderId);
                 $('#edit_maritalStatusId').val(result.result.maritalStatusId);
-                $('#edit_dob').val(result.result.dOB);
+                $('#edit_dob').val(dateToInput(result.result.dOB));
                 $('#edit_patientTypeId').val(result.result.patientTypeId);
                 $('#edit_address').val(result.result.address);
                 $('#edit_lastName').val(result.result.lastName);
                 $('#edit_phoneNumber').val(result.result.phone);
                 $('#edit_genotypeId').val(result.result.genotypeId);
                 $('#edit_nok').val(result.result.nok);
-                $('#edit_nextVisit').val(result.result.nextVisist);
+                $('#edit_nextVisit').val(dateToInput(result.result.nextVisist));
                 $('#edit_countryId').val(result.result.country);
-                $('#edit_dateCreated').val(result.result.dateCreated);
+                $('#edit_dateCreated').val(dateToInput(result.result.dateCreated));
                 $('#edit_occupation').val(result.result.occupation);
                 $('#edit_stateId').val(result.result.state);
+                $('#edit_nurs').val(result.result.nurseName);
 
                 $("#bodyTemp").val(result.result.bodyTemperature);
                 $("#pulse").val(result.result.pulseRate);
@@ -1177,7 +1222,7 @@ function checkupEdit(id) {
                 $('#consult').val(result.result.consult);
                 $('#medicine').val(result.result.medicine);
                 $('#surgery').val(result.result.surgery);
-                $('#bed').val(result.result.bed);
+                $('#nurs').val(result.result.NurseName);
                 $('#others').val(result.result.others);
                 $('#Total').val(result.result.total);
 
@@ -1214,6 +1259,7 @@ function SaveEditCheckup() {
     data.DateCreated = $('#edit_dateCreated').val();
     data.Occupation = $('#edit_occupation').val();
     data.State = $('#edit_stateId').val();
+    data.NurseName = $('#edit_nurs').val();
 
     data.BodyTemperature = $("#bodyTemp").val();
     data.PulseRate = $("#pulse").val();
@@ -1231,6 +1277,7 @@ function SaveEditCheckup() {
     data.Allergy = $('#allergy').val();
     data.MilitaryServiceId = $('#militaryServiceId').val();
     data.SexuallyActiveId = $('#sexuallyActiveId').val();
+    data.Surgery = $('#docname').val();
 
     data.UnprotectedSexId =  $("#unprotectedSexId").val();
     data.IfYesWhen = $("#ifYesWhen").val();
@@ -1251,6 +1298,42 @@ function SaveEditCheckup() {
     data.Others =  $('#others').val();
     data.Total = $('#Total').val();
     data.Laboratory = $('#lab').val();
+    if (data.FirstName != null) {
+        $('#edit_firstName').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put patient FirstName')
+        return false;
+    }
+    if (data.Email != null) {
+        $('#edit_email').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put patient Email')
+        return false;
+    }
+    //if (data.PhoneNumber != null) {
+    //    $('#edit_phoneNumber').css('border', 'solid 1px #ccc');
+    //} else {
+    //    errorAlert('Put patient phone number')
+    //    return false;
+    //}
+    if (data.LastName != null) {
+        $('#edit_lastName').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Last Name')
+        return false;
+    }
+    if (data.DateCreated != null) {
+        $('#edit_dateCreated').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Date Created')
+        return false;
+    }
+    if (data.Address != null) {
+        $('#edit_address').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Address')
+        return false;
+    }
 
 
     let Checkup = JSON.stringify(data);
@@ -1285,7 +1368,7 @@ function ConfirmCheckDelete(id) {
 }
 
 
-function DeletePayment() {
+function DeleteCheckup() {
     debugger;
     var CheckupId = $('#deleteId').val();
 

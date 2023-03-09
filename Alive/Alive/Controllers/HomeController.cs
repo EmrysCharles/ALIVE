@@ -17,6 +17,10 @@ namespace Alive.Controllers
         {
             return View();
         }
+        public IActionResult IndexLogOut()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

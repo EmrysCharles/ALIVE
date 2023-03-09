@@ -28,16 +28,13 @@
                 </a>
             </div>
         </div>
-        <div class="row align-items-top">
-            <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right; display:flex; justify-content:end;">
-                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-        </div>
+        
     </section>
     <!-- Default Card -->
     <section>
         <input type="hidden" id="checkupId" />
+         @if(Model.DocInfos != null && Model.DocInfos.Count() > 0)
+        {
         <table class="table table-stripped mt-3" id="example" style="width:100%;">
             <thead class="" style="background-color:whitesmoke; color:darkblue">
                 <tr>
@@ -94,7 +91,15 @@
                 }
             </tbody>
         </table>
+        }
+        else
+        {
+            <div class="text-center">
 
+                <h1> No record found </h1>
+
+            </div>
+        }
         <!-- End Primary Color Bordered Table -->
         @*crete modal*@
         <div class="modal fade" id="basicModal">
@@ -238,9 +243,13 @@
                                         </div>
                                     </div>
                                 </div><!-- End General Form Elements -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary btnCancel" data-dismiss="modal">close</button>
-                                    <button onclick="DeleteDoc()" type="button" class="btn btn-danger ">Delete</button>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-6" style="border-radius:50%">
+                                        <button type="button" class="btn btn-secondary btnCancel w-100" data-dismiss="modal">close</button>
+                                    </div>
+                                    <div class="col-6" style="border-radius:50%">
+                                        <button onclick="DeleteAppointment()" type="button" class="btn btn-danger w-100 ">Delete</button>
+                                    </div>
                                 </div>
                             </div>
 

@@ -117,6 +117,13 @@ namespace Alive.Controllers
             var state = _context.State.Where(x => x.CountryId == id).ToList();
             return Json(state);
         }
+
+         public async Task <IActionResult>LogOut() 
+        {
+            await _signInManager.SignOutAsync();
+             return RedirectToAction("Index","Home");
+           
+        }
     }
 
 

@@ -55,13 +55,14 @@
 
                                         @*<div class="invalid-feedback">Please enter a valid Email Phone Number!</div>*@
                                     </div>
-                                    <div class="" col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6"">
+                                    @*<div class="" col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6"">
                                         <div class="form-group">
                                             <label><b>Gender</b></label>
                                             <select  asp-for="GenderId" class="form-control" asp-items="@(new SelectList(@ViewBag.Dropdownkeys  ,"Id", "Name" ))" style="border-radius:20px;">
                                             </select>
                                         </div>
                                     </div>
+                                </div>*@
                                 </div>
                                 <div class="col-6">
                                     <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6">
@@ -103,7 +104,7 @@
                                         <button class="btn btn-primary w-100"  onclick="registerUser()">Create Account</button>
                                     </div>
                                     <div class="col-12">
-                                        <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
+                                        <p class="small mb-0">Already have an account? <a asp-controller="account" asp-action="login">Log in</a></p>
                                     </div>
                                                        
                                 </div>

@@ -34,77 +34,88 @@
     <!-- Default Card -->
     <section class="mt-3">
         <div class="table-responsive">
-                <input type="hidden" id="checkupId" />
-                    <table class="table table-stripped mt-3" id="example" style="width:100%;">
-                        <thead class="" style="background-color:whitesmoke; color:darkblue">
-                            <tr>
-                                <th scope="col">
-                                   Id<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                </th>
+            <input type="hidden" id="checkupId" />
+            @if( Model.Checkups != null && Model.Checkups.Count() > 0)
+        {
+            <table class="table table-stripped mt-3" id="example" style="width:100%;">
+                <thead class="" style="background-color:teal; color:darkblue">
+                    <tr>
+                        <th scope="col">
+                            Id<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
 
-                                <th scope="col">
-                                    First Name<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                </th>
-                                <th scope="col">
-                                    Last Name<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                </th>
-                                <th scope="col">
-                                    Phone Number<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                </th>
-                                <th scope="col">
-                                   Gender<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                </th>
-                                
-                                <th scope="col">
-                                    Email<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                </th>
-                                <th scope="col">
-                                    Patient Type<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                </th>
-                                <th scope="col">
-                                   Next Visit<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                </th>
-                                <th scope="col">
-                                   Date Created<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                </th>
-                                <th scope="col">
-                                  Action<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                </th>
-                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var obj in @Model.Checkups)
+                        <th scope="col">
+                            First Name<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Last Name<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Phone Number<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Gender<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+
+                        <th scope="col">
+                            Email<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Patient Type<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Next Visit<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Date Created<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                        <th scope="col">
+                            Action<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in @Model.Checkups)
                             {
-                            <tr>
-                                 <td></td>
-                                <td>@obj.FirstName</td>
-                                <td>@obj.LastName</td>
-                                <td>@obj.Phone</td>
-                                <td>@obj.Gender.Name</td>
-                                 <td>@obj.Email</td>
-                                <td>@obj.PatientType.Name</td>
-                                <td>@obj.NextVisist</td>
-                                <td>@obj.DateCreated</td>
-                                <td>
-                                    <div class="dropdown">
-                                    <i class="bi bi-three-dots-vertical" data-bs-toggle="dropdown">
-      
-                                        </i>
-                                        <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" onclick="checkupEdit('@obj.Id')" data-bs-toggle="modal" data-bs-target="#largeModal">Manage Patient</a></li>
-                                        <li><a class="dropdown-item" id="showModal" onclick="checkupDelete('@obj.Id')" data-bs-toggle="modal" data-bs-target="#deleteModal">Remove Patient</a></li>
-            
-                                        <li><a class="dropdown-item"  onclick="add('@obj.Id')" data-bs-toggle="modal" data-bs-target="#printModal">Remove Patient</a></li>
-                                       
-                                        </ul>
-                                    </div>
-                                </td>
-                             </tr>
+                    <tr>
+                        <td></td>
+                        <td>@obj.FirstName</td>
+                        <td>@obj.LastName</td>
+                        <td>@obj.Phone</td>
+                        <td>@obj.Gender.Name</td>
+                        <td>@obj.Email</td>
+                        <td>@obj.PatientType.Name</td>
+                        <td>@obj.NextVisist</td>
+                        <td>@obj.DateCreated</td>
+                        <td>
+                            <div class="dropdown">
+                                <i class="bi bi-three-dots-vertical" data-bs-toggle="dropdown">
+
+                                </i>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" onclick="checkupEdit('@obj.Id')" data-bs-toggle="modal" data-bs-target="#largeModal">Manage Patient</a></li>
+                                    <li><a class="dropdown-item" id="showModal" onclick="checkupDelete('@obj.Id')" data-bs-toggle="modal" data-bs-target="#deleteModal">Remove Patient</a></li>
+
+                                    <li><a class="dropdown-item" onclick="add('@obj.Id')" data-bs-toggle="modal" data-bs-target="#printModal">Medical record</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
                             }
-                         </tbody>
-                     </table>
-                    <!-- End Primary Color Bordered Table -->
-         </div>
+                </tbody>
+            </table>
+             }
+        else
+        {
+            <div class="text-center">
+
+                <h1> No record found </h1>
+
+            </div>
+        }
+            <!-- End Primary Color Bordered Table -->
+        </div>
          <!--basic modal for Edit-->
         <div class="modal fade" id="basicModal" tabindex="-1">
             <div class="modal-dialog modal-lg">
@@ -140,7 +151,7 @@
                                                     <div class=" col-12 ">
                                                             <label for="DocName" class=" col-form-label"><b>Gender</b></label>
                                                              <select id="genderId" asp-items="@(new SelectList(ViewBag?.AllGenderDropdownData  ,"Id", "Name" ))" class="form-control"> </select>
-                                                     </div>*
+                                                     </div>
                                                     <div class="col-12">
                                                         <label for="DocName" class="col-form-label"><b>Marital Status</b></label>
                                                          <select id="maritalStatusId"  asp-items="@(new SelectList(ViewBag?.MaritalStatus  ,"Id", "Name" ))" class="form-control"> </select>
@@ -204,7 +215,10 @@
                                                            <input type="text" id="occupation" class="form-control">
                                                       </div> 
                                                     </div>
-                                               
+                                                <div class="col-12 ">
+                                                          <label for="occupation" class="col-form-label"><b>Nurse Name</b></label>
+                                                           <input type="text" id="nurs" class="form-control">
+                                                      </div> 
                                                 <div class="row m-3">
                                                     <label class="col-sm-5 col-form-label"></label>
                                                     <div class="col-sm-7">
@@ -319,7 +333,10 @@
                                                 <input type="text" id="edit_occupation" class="form-control">
                                             </div>
                                         </div>
-
+                                        <div class="col-12 ">
+                                            <label for="occupation" class="col-form-label"><b>Doctor Name</b></label>
+                                            <input type="text" id="docname" class="form-control">
+                                        </div>
                                         
                                    </div>
                                  </div>
@@ -376,6 +393,10 @@
                                                         <input type="text" id="bodyweight" class="form-control">
                                                     </div>
                                                     <div class="col-12 ">
+                                                        <label for="BodyWeight" class="col-form-label"><b>Nurse Name</b></label>
+                                                        <input type="text" id="edit_nurs" class="form-control">
+                                                    </div>
+                                                    <div class="col-12 ">
                                                         <label for="PatientComplaint" class="col-form-label"><b>Patient Complaint</b></label>
                                                        <textarea class="form-control" placeholder="Leave a comment here" id="Complain" style="height: 100px;"></textarea>
                                                      </div>
@@ -400,69 +421,86 @@
                                                                     <div class="row">
                                                                       <div class="col-6">
                                                                         <div class=" col-12 mt-2 ">
-                                                                            <input type="text" id="durationOfIllness" placeholder="How long have you been feeling ill?" class="form-control">
+                                                                            <label >Illness Duration</label>
+                                                                            <input type="text" id="durationOfIllness" placeholder="N/A" class="form-control">
 
                                                                         </div>
 
                                                                         <div class=" col-12 mt-2 ">
-                                                                            <input type="text" id="selfMedication" placeholder="What drug have you taken so far?" class="form-control">
+                                                                            <label >Self Medication?</label>
+                                                                            <input type="text" id="selfMedication" placeholder="N/A" class="form-control">
 
                                                                         </div>
                                                                          <div class=" col-12 mt-2 ">
-                                                                            <input type="text" id="doseOfSelfMedication" placeholder="How many dose did you take?" class="form-control">
+                                                                             <label >Dose of Self Medication</label>
+                                                                            <input type="text" id="doseOfSelfMedication" placeholder="N/A" class="form-control">
 
                                                                         </div>
                                                                          <div class=" col-12 mt-2 ">
-                                                                            <input type="text" id="drugIntakeDuration" placeholder="For how long? have you taken this medicine" class="form-control">
+                                                                             <label >Drug Intake duration</label>
+                                                                            <input type="text" id="drugIntakeDuration" placeholder="N/A" class="form-control">
 
                                                                         </div>
                                                                         <div class=" col-12 mt-2 ">
-                                                                            <input type="text" id="smokingHabitId" placeholder="Do you smoke?" class="form-control">
+                                                                            <label >Smoking Habit</label>
+                                                                            <input type="text" id="smokingHabitId" placeholder="N/A" class="form-control">
 
                                                                         </div>
                                                                         <div class=" col-12 mt-2 ">
-                                                                            <input type="text" id="anyAddiction" placeholder="Is there any other drug/substance you are addicted to?" class="form-control">
+                                                                            <label >Any Addiction</label>
+                                                                            <input type="text" id="anyAddiction" placeholder="N/A" class="form-control">
 
+                                                                        </div>
+                                                                        <div class=" col-12 mt-2 ">
+                                                                            <label >Family History</label>
+                                                                            <textarea id="history" placeholder="N/A" class="form-control w-100"></textarea>
+
+                                                                        </div>
+                                                                        <div class="col-12 mt-2 ">
+                                                                            <label >MSM</label>
+                                                                            <select id="msmId" asp-for="Checkup.MSMId" asp-items="@(new SelectList(ViewBag?.MSM  ,"Id", "Name" ))" class="form-control"> </select>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <div class=" col-12 mt-2 ">
-                                                                            <input type="text" id="allergy" placeholder="Are you allergic to any substance?" class="form-control">
+                                                                            <label >Allergy</label>
+                                                                            <input type="text" id="allergy" placeholder="N/A" class="form-control">
 
                                                                         </div>
 
                                                                         <div class=" col-12 mt-2 ">
-                                                                            <input type="text" id="occupation" placeholder="Occupation?" class="form-control">
+                                                                            <label >Occupation</label>
+                                                                            <input type="text" id="occupation" placeholder="N/A?" class="form-control">
 
                                                                         </div>
 
                                                                         <div class="col-12 mt-2">
+                                                                            <label >Military Service?</label>
                                                                              <select id="militaryServiceId" asp-for="Checkup.MilitaryServiceId" asp-items="@(new SelectList(ViewBag?.MilitaryService  ,"Id", "Name" ))" class="form-control"> </select>
                                                                         </div>
 
                                                                         <div class=" col-12 mt-2 ">
+                                                                        <label>Sexually Active?</label>
                                                                             <select id="sexuallyActiveId" asp-for="Checkup.SexuallyActiveId" asp-items="@(new SelectList(ViewBag?.SexuallyActive  ,"Id", "Name" ))" class="form-control"> </select>
 
                                                                         </div>
 
                                                                         <div class=" col-12 mt-2">
+                                                                            <label >Unprotected Sex?</label>
                                                                             <select id="unprotectedSexId" asp-for="Checkup.UnprotectedSex" asp-items="@(new SelectList(ViewBag?.UnprotectedSex  ,"Id", "Name" ))" class="form-control"> </select>
 
                                                                         </div>
                                                                          <div class="col-12 mt-2">
-                                                                                 <label>MSM</label>
+                                                                                 <label>When?</label>
                                                                             <input  id="ifYesWhen" placeholder="When was that?" class="form-control">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-12 mt-2 ">
-                                                                            <label >MSM</label>
-                                                                         <select id="msmId" asp-for="Checkup.MSMId" asp-items="@(new SelectList(ViewBag?.MSM  ,"Id", "Name" ))" class="form-control"> </select>
-                                                                    </div>
-                                                                 </div>
-                                                            </div>
-                                                        </div><!-- End General Form Elements -->
-                                                    </div>
-                                               </div>
+                                                                     </div>
+                                                             </div>
+                                                         </div>
+                                                     </div><!-- End General Form Elements -->
+                                                </div>
+                                               
                                                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                                         <div class ="">
                                                             <h2>Lab Investigations</h2>
@@ -471,22 +509,14 @@
                                                                 <thead class="bg-danger">
                                                                     <tr>
                                                                            <th scope="col">Test</th>
-                                                                         <th scope="col">result</th>
-                                                                        <th scope="col">Amount</th>
-                                                                    </tr>
+                                                                           </tr>
                                                                 </thead>
                                                                <tbody>
                                                                     <tr>
                                                                          <td>
-                                                                            <textarea id="investigation" class="form-control" ></textarea>
+                                                                            <textarea id="investigation" class="form-control w-100" ></textarea>
                                                                         </td>
-                                                                        <td>
-                                                                            <textarea id="result" class="form-control"></textarea>
-                                                                        </td>
-                                                                        <td>
-                                                                            <textarea  id="amount" class="form-control"></textarea>
-                                                                        </td>
-                                                                        <td>
+                                                                       
                                                                         
 
                                                                     </tr>
@@ -509,7 +539,7 @@
                                                                     <tr>
                                                                         <td scope="row"></td>
                                                                         <td>
-                                                                            <textarea id="medicine" class="form-control"></textarea>
+                                                                            <textarea id="medicine" class="form-control w-100"></textarea>
                                                                         </td>
                                                                         
                                                                         
@@ -626,11 +656,15 @@
                                         </div>
                                     </div>
                                 </div><!-- End General Form Elements -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary btnCancel" data-dismiss="modal">close</button>
-                                <button onclick="ConfirmCheckDelete()" type="button" class="btn btn-danger ">Delete</button>
+                                div class="row d-flex justify-content-center">
+                                <div class="col-6" style="border-radius:50%">
+                                    <button type="button" class="btn btn-secondary btnCancel w-100" data-dismiss="modal">close</button>
+                                </div>
+                                <div class="col-6" style="border-radius:50%">
+                                    <button onclick="DeleteCheckup()" type="button" class="btn btn-danger w-100 ">Delete</button>
                                 </div>
                             </div>
+                         </div>
 
                         </div>
                     </div>
@@ -652,9 +686,13 @@
 
                                     <div class="row align-items-top">
                                         <div class="col-sm-4 col-md-4 col-xl-4">
-                
+                                            <div class="" >
+                                                 <img class="img-responsive" src="~/medicio/assets/img/alive.jpg" width="30" />
+                                             </div>
                                         </div>
                                         <div class="col-sm-4 col-md-4 col-xl-4">
+                                            <h5 class="card-title" id="exampleModalLabel" style="color:maroon; font-size:larger; font-style:oblique; display:flex; align-items:center; justify-content:center;"><b>MEDICAL RECORD</b></h5>
+                               
                                         </div>
                                         <div class="col-sm-4 col-md-4 col-xl-4">
                                             <a  class="btn btn-success"  style="float:right">
@@ -668,131 +706,213 @@
                                     <!-- End General Form Elements -->
                                      <div class="row m-3">
                                          
-                                         <div class="col-sm-3 col-md-4 col-xl-4">
-                                             <div class="" >
-                                                 <img src="~/medicio/assets/img/alive.jpg" />
-                                             </div>
+                                         <div class="col-sm-6 col-md-4 col-xl-4">
+                                            
                                              <p><b>ALIVE</b></p>
                                              <p>PO BOX 12345</p>
                                              <p><b>MOBILE :</b> 09015559037</p>
-                                             <p><b>EMAIL :</b> 09015559037</p>
-                                              <p><b>WEBSITE :</b> Uchennamadi01@gmail.com</p>
+                                             <p><b>EMAIL :</b> ALIVEINC@gmail.com</p>
+                                              <p><b>WEBSITE :</b> ALIVEINC.com</p>
                                     
                                         </div>
                                         <div class="col-sm-6 col-md-4 col-xl-4">
-                                            <h5 class="card-title" id="exampleModalLabel" style="color:maroon; font-size:larger; font-style:oblique; display:flex; align-items:center; justify-content:center;"><b>MEDICAL RECORD</b></h5>
-                               
+                                            @foreach (var obj in Model.Checkups)
+                                             {
+
+                                            <p><b>First Name: </b>@obj.FirstName</p>
+                                            <p><b>Last Name: </b>@obj.LastName</p>
+                                            <p><b>Patient Type: </b>@obj.PatientType.Name</p>
+                                            <p><b>Patient Gender: </b>@obj.Gender.Name</p>
+                                            <p><b>Patient Phone:</b>@obj.Phone</p>
+                                            <p><b>Patient Address:</b>@obj.Address</p>
+                                            <p><b>Patient Checkup Date:</b>@obj.DateCreated</p>
+
+                                             }
+
+                                         </div>
+                                    </div>
+                                     <div class="row mt-3">
+                                       <div class="col-6">
+                                        <p class="fs-2 text-danger"><i class="ri-stethoscope-line "></i> <b>Checkup  </b> <span class="mx-1" id="day"></span> </p>
+                                         <div class="table-responsive">
+                                            <input type="hidden" id="checkupId" />
+                                                <table class="table table-bordered mt-3"  style="width:100%;">
+                                                    <thead class="bg-danger" style=" color:darkblue">
+                                                        <tr>
+                                                            <th scope="col">
+                                                               Id
+                                                            </th>
+
+                                                            <th scope="col">
+                                                               
+                                                            </th>
+                                                           
+                                                         </tr>
+                                                    </thead>
+                                                    @foreach(var obj in Model.Checkups){
+
+                                                   
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Doctor's Name</td>
+                                                            <td>@obj.Surgery</td>
+                                                        </tr>
+                                                         <tr>
+                                                            <td>Symptoms</td>
+                                                            <td>@obj.Complaint</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Diagnoses</td>
+                                                            <td> @obj.Diagnoses</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Advice</td>
+                                                            <td> @obj.Advice</td>
+                                                        </tr>
+                                                         <tr>
+                                                            <td>Next Visit</td>
+                                                            <td> @obj.NextVisist</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    }
+                                                </table>
+                                                 <!-- End Primary Color Bordered Table -->
+                                         </div>
+                                
                                         </div>
-                                        <div class="col-sm-3 col-md-4 col-xl-4">
-                                             <p><b>Patient: </b><span class="mx-1" id="name"></span></p>
-                                             <p><b>Patient Type: </b><span class="mx-1" id="type"></span></p>
-                                             <p><b>Patient Genotype: </b><span class="mx-1" id="gene"></span></p>
-                                             <p><b>Patient BloodGroup: </b><span class="mx-1" id="group"></span></p>
+
+                                    
+                                    <div class="col-6">
+                                        <p class="text-danger fs-2"> <b>Vital Signs</b> </p>
+                                       
+                                        <div class="table-responsive">
+                                            <input type="hidden" id="checkupId" />
+                                            @foreach(var obj in Model.Checkups){
+
                                            
-                                             <p><b>Patient Phone:</b><span class="mx-1" id="number"></span></p>
-                                             <p><b>Patient Address:</b><span class="mx-1" id="home"></span></p>
-                                            
+                                            <table class="table table-bordered mt-3" style="width:100%;">
+                                                <thead class="bg-danger" style=" color:darkblue">
+                                                    <tr>
+                                                        <th scope="col">
+                                                            Nurse's Name
+                                                        </th>
+
+                                                        <th scope="col">
+                                                            @obj.Bed
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td> Body Temperature</td>
+                                                        <td>@obj.BodyTemperature</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Blood Pressure</td>
+                                                        <td> @obj.BloodPressure</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Body Weight</td>
+                                                        <td>@obj.BodyWeight</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Body Height</td>
+                                                        <td> <span id="bh"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Pulse ratetd>
+                                                        <td> @obj.PulseRate</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            }
+                                            <!-- End Primary Color Bordered Table -->
+                                      </div>
+                                      </div>
+                                   </div>
+                                        
+                                   <div class="mt-2">
+                                        <div class="table-responsive">
+                                            <h2 class="text-danger fs-2">Family History</h2>
+                                            <input type="hidden" id="checkupId" />
+                                            @foreach (var obj in Model.Checkups)
+                                            {
+
+
+                                                <table class="table table-bordered mt-3" style="width:100%;">
+                                                    <thead class="bg-danger" style=" color:darkblue">
+                                                        <tr>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            
+                                                            <td><textarea class="w-100">@obj.Result</textarea></td>
+                                                        </tr>
+                                                       
+                                                    </tbody>
+                                                </table>
+                                            }
+                                            <!-- End Primary Color Bordered Table -->
                                         </div>
-                                     </div>
-                                     <div class="mt-3">
-                                       <div class="">
-                                        <p><i class="ri-stethoscope-line"></i> <b>Checkup Date: </b> <span class="mx-1" id="day"></span> </p>
-
-                                       </div>
-
-                                     </div>
-                                      <div class="mt-3">
-                                       <div class="table-responsive">
+                                    </div>
+                                    <div class="row mt-2">
+                                      <div class="col-6">
+                                        <div class="table-responsive">
+                                            <h2 class="text-danger fs-2">Laboratory Investigation</h2>
                                             <input type="hidden" id="checkupId" />
-                                                <table class="table table-stripped mt-3"  style="width:100%;">
-                                                    <thead class="" style="background-color:whitesmoke; color:darkblue">
-                                                        <tr>
-                                                            <th scope="col">
-                                                               Id<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                                            </th>
+                                            @foreach (var obj in Model.Checkups)
+                                            {
 
-                                                            <th scope="col">
-                                                                <span id="id"></span>
-                                                            </th>
-                                                           
-                                                         </tr>
+
+                                                <table class="table table-bordered mt-3" style="width:100%;">
+                                                    <thead class="bg-danger" style=" color:darkblue">
+                                                        <tr>
+                                                            
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>Doctor's Name<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i></td>
-                                                            <td> <span id="doc"></span></td>
+                                                            
+                                                            <td><textarea class="w-100">@obj.Investigation</textarea></td>
                                                         </tr>
-                                                         <tr>
-                                                            <td>Symptoms<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i></td>
-                                                            <td> <span id="id"></span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Diagnoses<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i></td>
-                                                            <td> <span id="id"></span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Advice<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i></td>
-                                                            <td> <span id="id"></span></td>
-                                                        </tr>
-                                                         <tr>
-                                                            <td>Next Visit<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i></td>
-                                                            <td> <span id="id"></span></td>
-                                                        </tr>
+                                                       
                                                     </tbody>
                                                 </table>
-                                                 <!-- End Primary Color Bordered Table -->
-                                         </div>
-                                
+                                            }
+                                            <!-- End Primary Color Bordered Table -->
+                                        </div>
                                     </div>
-                                    <div class="mt-3">
-                                       <div class="">
-                                        <p> <b>Vital Signs</b> </p>
-
-                                       </div>
-                                    </div>
-                                    <div class="mt-3">
-                                       <div class="table-responsive">
+                                    <div class="col-6">
+                                        <div class="table-responsive">
+                                            <h2 class="text-danger fs-2">Treatment</h2>
                                             <input type="hidden" id="checkupId" />
-                                                <table class="table table-stripped mt-3"  style="width:100%;">
-                                                    <thead class="" style="background-color:whitesmoke; color:darkblue">
-                                                        <tr>
-                                                            <th scope="col">
-                                                              Nurse's Name<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
-                                                            </th>
+                                            @foreach (var obj in Model.Checkups)
+                                            {
 
-                                                            <th scope="col">
-                                                                <span id="nur"></span>
-                                                            </th>
-                                                           
-                                                         </tr>
+
+                                                <table class="table table-bordered mt-3" style="width:100%;">
+                                                    <thead class="bg-danger" style=" color:darkblue">
+                                                        <tr>
+                                                            
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td> Body Temperature<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i></td>
-                                                            <td> <span id="bt"></span></td>
+                                                            
+                                                            <td><textarea class="w-100">@obj.Medicine</textarea></td>
                                                         </tr>
-                                                         <tr>
-                                                            <td>Blood Pressure<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i></td>
-                                                            <td> <span id="bp"></span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Body Weight<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i></td>
-                                                            <td> <span id="bw"></span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Body Height<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i></td>
-                                                            <td> <span id="bh"></span></td>
-                                                        </tr>
-                                                         <tr>
-                                                            <td>Pulse Wei<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i></td>
-                                                            <td> <span id="id"></span></td>
-                                                        </tr>
+                                                       
                                                     </tbody>
                                                 </table>
-                                                 <!-- End Primary Color Bordered Table -->
-                                         </div>
-                                
-                                    </div>
+                                            }
+                                            <!-- End Primary Color Bordered Table -->
+                                        </div>
+                                      </div>
+                             </div>
+                           </div>
 
                         </div>
                     </div>
@@ -800,7 +920,7 @@
                 </div>
             </div>
         </div>
-      </div>
+     
       
 
      </section>

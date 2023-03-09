@@ -129,7 +129,11 @@ namespace Alive.Controllers
                 {
                     return Json(new { isError = true, msg = "State can not be empty " });
                 }
-                
+                if (CheckupDetails.NurseName == string.Empty)
+                {
+                    return Json(new { isError = true, msg = "Nurse Name can not be empty " });
+                }
+
 
                 var existingCheckup = _context.Checkups.Where(s => s.FirstName == CheckupDetails.FirstName).FirstOrDefault();
                 if (existingCheckup != null)
@@ -154,12 +158,13 @@ namespace Alive.Controllers
                     Country = CheckupDetails.Country,
                      Occupation = CheckupDetails.Occupation,
                     State = CheckupDetails.State,
+                    NurseName = CheckupDetails.NurseName,
                     Deleted = false,
                 };
             
                 _context.Checkups.Add(newCheckup);
                 _context.SaveChanges();
-                _emailHelper.SendCheckupApprovalEmail(newCheckup.LastName);
+                //_emailHelper.SendCheckupApprovalEmail(newCheckup.LastName);
 
                 ModelState.Clear();
                 return Json(new { isError = false, msg = "Patient Checkup Created successful" });
@@ -249,9 +254,9 @@ namespace Alive.Controllers
                     {
                         return Json(new { isError = false, msg = "Checkup Deleted successfully" });
                     }
-                    return Json(new { isError = false, msg = "Unable to Delete Checkup" });
+                    return Json(new { isError = true, msg = "Unable to Delete Checkup" });
                 }
-                return Json(new { isError = false, msg = "Error Occurred" });
+                return Json(new { isError = true, msg = "Error Occurred" });
             }
             catch (Exception)
             {
@@ -410,17 +415,17 @@ namespace Alive.Controllers
                     return Json(new { isError = true, msg = "Put your phone number" });
                 };
 
-                //if (AppointmentDetails.DateCreated == DateTime.MinValue)
-                //{
-                //    return Json(new { isError = true, msg = "This can not be empty" });
-                //};
+                if (AppointmentDetails.DateCreated == DateTime.MinValue)
+                {
+                   return Json(new { isError = true, msg = "DateCreated can not be empty" });
+                };
                 if (AppointmentDetails.AppointmentDate == DateTime.MinValue)
                 {
-                    return Json(new { isError = true, msg = "Checking in successful" });
+                    return Json(new { isError = true, msg = "Appointmentdate can not be empty" });
                 };
                 if (AppointmentDetails.Description == string.Empty)
                 {
-                    return Json(new { isError = true, msg = "This can not be empty " });
+                    return Json(new { isError = true, msg = "Description can not be empty " });
                 }
 
                 //var existingAppointment = _context.patientAppointments.Where(s => s.Name == AppointmentDetails.Name).FirstOrDefault();
@@ -441,8 +446,8 @@ namespace Alive.Controllers
                 };
                 _context.patientAppointments.Add(newPatientAppointment);
                 _context.SaveChanges();
-                _emailHelper.SendAppointmentConfirmationEmail(newPatientAppointment.AppointmentDate, newPatientAppointment.Name);
-                ModelState.Clear();
+                //_emailHelper.SendAppointmentConfirmationEmail(newPatientAppointment.AppointmentDate, newPatientAppointment.Name);
+                //ModelState.Clear();
                 return Json(new { isError = false, msg = "Appointment Created successful" });
             }
             catch (Exception ex)
@@ -488,7 +493,7 @@ namespace Alive.Controllers
                         //_emailHelper.SendAppointmentConfirmationEmail(AppointmentFormViewModel.AppointmentDate, AppointmentFormViewModel.Name);
 
                         {
-                            return Json(new { isError = false, msg = "Appointment Updated successfully", url = "/Admin/Labtest" });
+                            return Json(new { isError = false, msg = "Appointment Updated successfully", url = "/Admin/Appointment" });
                         }
                     }
                     return Json(new { isError = true, msg = "Unable to update Appointment" });
@@ -512,11 +517,11 @@ namespace Alive.Controllers
                     var AppointmentToBeDeleted = _userHelper.DeleteAppointment(appointmentId);
                     if (AppointmentToBeDeleted)
                     {
-                        return Json(new { isError = false, msg = "Lab Deleted successfully" });
+                        return Json(new { isError = false, msg = "Appointmentment Deleted successfully" });
                     }
-                    return Json(new { isError = false, msg = "Unable to Delete Appointment" });
+                    return Json(new { isError = true, msg = "Unable to Delete Appointment" });
                 }
-                return Json(new { isError = false, msg = "Error Occurred" });
+                return Json(new { isError = true, msg = "Error Occurred" });
             }
             catch (Exception)
             {
