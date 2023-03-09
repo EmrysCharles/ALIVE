@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\USER\\source\\repos\\AliveGit\\Alive\\Alive\\Alive.csproj": {}
+    "C:\\Users\\Bivisoft\\source\\repos\\ALIVE\\Alive\\Alive\\Alive.csproj": {}
   },
   "projects": {
-    "C:\\Users\\USER\\source\\repos\\AliveGit\\Alive\\Alive\\Alive.csproj": {
+    "C:\\Users\\Bivisoft\\source\\repos\\ALIVE\\Alive\\Alive\\Alive.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\source\\repos\\AliveGit\\Alive\\Alive\\Alive.csproj",
+        "projectUniqueName": "C:\\Users\\Bivisoft\\source\\repos\\ALIVE\\Alive\\Alive\\Alive.csproj",
         "projectName": "Alive",
-        "projectPath": "C:\\Users\\USER\\source\\repos\\AliveGit\\Alive\\Alive\\Alive.csproj",
-        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\source\\repos\\AliveGit\\Alive\\Alive\\obj\\",
+        "projectPath": "C:\\Users\\Bivisoft\\source\\repos\\ALIVE\\Alive\\Alive\\Alive.csproj",
+        "packagesPath": "C:\\Users\\Bivisoft\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bivisoft\\source\\repos\\ALIVE\\Alive\\Alive\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Bivisoft\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -107,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
