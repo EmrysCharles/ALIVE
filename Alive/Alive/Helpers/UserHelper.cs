@@ -41,7 +41,7 @@ namespace Alive.Helpers
 
         public async Task<ApplicationUser>? GetUser(string email)
         {
-            var user = _dbContext.ApplicationUsers.Where(x=>x.Id!=null && x.Email==email).FirstOrDefault();
+            var user = _dbContext.ApplicationUsers.Where(x=>x.Id != null && x.Email == email).FirstOrDefault();
             if (user != null) 
             {
                 return user;

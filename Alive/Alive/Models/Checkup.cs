@@ -13,7 +13,7 @@ namespace Alive.Models
 
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        [ForeignKey("PatientType")]
+        [ForeignKey("PatientTypeId")]
        
         public int? PatientTypeId { get; set; }
         public virtual CommonDropdown? PatientType { get; set; }
@@ -29,26 +29,26 @@ namespace Alive.Models
         public string? DurationOfIllness { get; set; }
         public string? DoseOfSelfmedication { get; set; }
         public string? DrugIntakeDuration { get; set; }
-        [ForeignKey("MilitaryService")]
+        [ForeignKey("MilitaryServiceId")]
 
         public int? MilitaryServiceId { get; set; }
         public virtual CommonDropdown? MilitaryService { get; set; }
-        [ForeignKey("SmokingHabit")]
+        [ForeignKey("SmokingHabitId")]
         public int? SmokingHabitId { get; set; }
         public virtual CommonDropdown? SmokingHabit { get; set; }
          public string? Allergy { get; set; }
-        [ForeignKey("AnyAddiction")]
+        [ForeignKey("AnyAddictionId")]
         public int? AnyAddictionId { get; set; }
          public virtual CommonDropdown? AnyAddiction { get; set; }
         [ForeignKey("SexuallyActive")]
         public int? SexuallyActiveId { get; set; }
         public virtual CommonDropdown? SexuallyActive { get; set; }
-        [ForeignKey("UnprotectedSex")]
+        [ForeignKey("UnprotectedSexId")]
         public int? UnprotectedSexId { get; set; }
         public virtual CommonDropdown? UnprotectedSex { get; set; }
 
         public string? IfYesWhen { get; set; }
-        [ForeignKey("MSM")]
+        [ForeignKey("MSMId")]
         public int? MSMId { get; set; }
         public virtual CommonDropdown? MSM { get; set; }
 
@@ -70,7 +70,7 @@ namespace Alive.Models
 
         public string? LevelOfConsciousness { get; set; }
         public string? Skin { get; set; }
-        [ForeignKey("Genotype")]
+        [ForeignKey("GenotypeId")]
         public int? GenotypeId { get; set; }
         public virtual CommonDropdown? Genotype { get; set; }
 
@@ -82,6 +82,7 @@ namespace Alive.Models
         public DateTime? DateCreated { get; set; }
         public string? Email { get; set; }
         public DateTime? DOB { get; set; }
+        [ForeignKey("MaritalStatusId")]
         public int? MaritalStatusId { get; set; }
         public virtual CommonDropdown? MaritalStatus { get; set; }
         public string? Country { get; set; }
@@ -94,7 +95,7 @@ namespace Alive.Models
         public int? GenderId { get; set; }
         public virtual CommonDropdown? Gender { get; set; }
         public double? Amount { get; set; }
-        public bool? Deleted { get; set; }
+        public bool Deleted { get; set; }
         public double? Consultation { get; set; }
         public double? Laboratory { get; set; }
         public double? Pharmacy { get; set; }
