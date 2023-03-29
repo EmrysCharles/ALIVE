@@ -342,6 +342,16 @@ function DeleteLab()
 }
 /*crud for patientappointment*/
 /*Create For Patientappoint */
+function dateToInput(dateString) {
+
+    var now = new Date(dateString);
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+    return today;
+}
 function AppointmentCreate() {
     debugger;
     var data = {};
@@ -363,7 +373,7 @@ function AppointmentCreate() {
 
                 if (!result.isError) {
                     $("#loader").fadeOut(3000);
-                    var url = '/Home/Index'
+                    var url = '/Home/IndexLogOut'
                     successAlertWithRedirect(result.msg, url)
                 }
                 else {
@@ -398,9 +408,9 @@ function EditAppForm(id) {
                 $("#patientName").val(result.result.name);
                 $("#patientEmail").val(result.result.email);
                 $("#patientphone").val(result.result.phoneNumber);
-                $("#patientdate").val(result.result.AppointmentDate);
+                $("#patientdate").val(dateToInput(result.result.AppointmentDate));
                 $("#description").val(result.result.description);
-                $("#datecreated").val(result.result.dateCreated);
+                $("#datecreated").val(dateToInput(result.result.dateCreated));
 
             }
         },
@@ -421,8 +431,43 @@ function SaveEditAppointment() {
     data.AppointmentDate = $('#patientdate').val();
     data.Description = $('#description').val();
     data.DateCreated = $('#datecreated').val();
-
-    if (data.Name != "" && data.Email != "" && data.PhoneNumber != "" && data.AppointmentDate != "" && data.DateCreated != "" && data.Description != "") {
+    if (data.Name != null) {
+        $('#patientName').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put patient Name')
+        return false;
+    }
+    if (data.Email != null) {
+        $('#patientEmail').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put patient Email')
+        return false;
+    }
+    if (data.PhoneNumber != null) {
+        $('#patientphone').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put patient phone number')
+        return false;
+    }
+    if (data.AppointmentDate != null) {
+        $('#patientdate').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Appointment date')
+        return false;
+    }
+    if (data.DateCreated != null) {
+        $('#datecreated').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Date Created')
+        return false;
+    }
+    if (data.Description != null) {
+        $('#description').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Description Created')
+        return false;
+    }
+    
         let Appointment = JSON.stringify(data);
         $.ajax({
             type: 'POST',
@@ -446,10 +491,7 @@ function SaveEditAppointment() {
             }
         });
     }
-    else {
-        errorAlert("Incorrect Details");
-    }
-}
+   
 
 function ConfirmAppDelete(id) {
     $("#deleteId").val(id);
@@ -1077,18 +1119,19 @@ function checkupCreate()
     data.Phone = $('#phoneNumber').val();
     data.Nok = $('#nok').val();
     data.NextVisist = $('#nextVisit').val();
-    data.Country = $('#countryId').val();
     data.DateCreated = $('#dateCreated').val();
     data.Occupation = $('#occupation').val();
-    data.State = $('#stateId').val();
-        let CheckupFormViewModel = JSON.stringify(data);
+    data.NurseName = $('#nurs').val();
+    data.GenotypeId = $('#genotypeId').val();
+
+        let CheckupViewModel = JSON.stringify(data);
         $.ajax({
             type: 'POST',
             dataType: 'Json',
             url: '/Admin/CheckupCreate',
             data:
             {
-                deserializedCheckupFormViewModel: CheckupFormViewModel,
+                deserializedCheckupViewModel: CheckupViewModel,
             },
             success: function (result) {
 
@@ -1110,7 +1153,7 @@ function checkupCreate()
 }
 
 
-function checkupEdit(id) {
+function checkupEdit(Id) {
     debugger;
     $.ajax({
         type: 'GET',
@@ -1118,42 +1161,39 @@ function checkupEdit(id) {
         dataType: 'json',
         data:
         {
-            id: id
+            Id: Id
         },
         success: function (result) {
             debugger
             if (!result.isError) {
                 debugger
-                $("#deleteId").val(result.result.id);
                 $("#editId").val(result.result.id);
                 $('#edit_firstName').val(result.result.firstName);
                 $('#edit_email').val(result.result.email);
                 $('#edit_genderId').val(result.result.genderId);
                 $('#edit_maritalStatusId').val(result.result.maritalStatusId);
-                $('#edit_dob').val(result.result.dOB);
+                $('#edit_dob').val(dateToInput(result.result.dob));
                 $('#edit_patientTypeId').val(result.result.patientTypeId);
                 $('#edit_address').val(result.result.address);
                 $('#edit_lastName').val(result.result.lastName);
                 $('#edit_phoneNumber').val(result.result.phone);
                 $('#edit_genotypeId').val(result.result.genotypeId);
                 $('#edit_nok').val(result.result.nok);
-                $('#edit_nextVisit').val(result.result.nextVisist);
-                $('#edit_countryId').val(result.result.country);
-                $('#edit_dateCreated').val(result.result.dateCreated);
+                $('#edit_nextVisit').val(dateToInput(result.result.nextVisist));
+                 $('#edit_dateCreated').val(dateToInput(result.result.dateCreated));
                 $('#edit_occupation').val(result.result.occupation);
-                $('#edit_stateId').val(result.result.state);
+                 $('#edit_nurs').val(result.result.nurseName);
 
                 $("#bodyTemp").val(result.result.bodyTemperature);
                 $("#pulse").val(result.result.pulseRate);
                 $('#bodyPress').val(result.result.bloodPressure);
                 $('#bodyheight').val(result.result.height);
                 $('#bodyweight').val(result.result.bodyWeight);
-                $('#Complain').val(result.result.Complaint);
-                $('#Complaints').val(result.result.Comment);
+                $('#chiefComplaints').val(result.result.Complaint);
+                $('#complaints').val(result.result.Comment);
                 $('#durationOfIllness').val(result.result.durationOfIllness);
                 $('#selfMedication').val(result.result.selfmedication);
                 $('#doseOfSelfMedication').val(result.result.doseOfSelfmedication);
-                $('#phoneNumber').val(result.result.phone);
                 $('#drugIntakeDuration').val(result.result.drugIntakeDuration);
                 $('#smokingHabit').val(result.result.smokingHabitId);
                 $('#anyAddiction').val(result.result.anyAddictionId);
@@ -1171,14 +1211,12 @@ function checkupEdit(id) {
                 $('#Treament').val(result.result.treatment);
                 $('#treatAmount').val(result.result.treatAmount);
                 $('#howToTake').val(result.result.howToTake);
-                $('#beforeMeal').val(result.result.beforeMeal);
-                $('#diagnosis').val(result.result.diagnoses);
+                $('#history').val(result.result.beforeMeal);
+                $('#diagnoses').val(result.result.diagnoses);
                 $('#advice').val(result.result.advice);
                 $('#consult').val(result.result.consult);
                 $('#medicine').val(result.result.medicine);
-                $('#surgery').val(result.result.surgery);
-                $('#bed').val(result.result.bed);
-                $('#others').val(result.result.others);
+                $('#docname').val(result.result.painRate);
                 $('#Total').val(result.result.total);
 
 
@@ -1196,12 +1234,11 @@ function SaveEditCheckup() {
     debugger;
     var data = {};
     
-    data.Id = $("#deleteId").val();
     data.Id = $("#editId").val();
     data.FirstName = $('#edit_firstName').val();
     data.Email = $('#edit_email').val();
     data.GenderId = $('#edit_genderId').val();
-    data.maritalStatusId = $('#edit_maritalStatusId').val();
+    data.MaritalStatusId = $('#edit_maritalStatusId').val();
     data.DOB = $('#edit_dob').val();
     data.PatientTypeId =  $('#edit_patientTypeId').val();
     data.Address = $('#edit_address').val();
@@ -1210,30 +1247,28 @@ function SaveEditCheckup() {
     data.GenotypeId = $('#edit_genotypeId').val();
     data.Nok = $('#edit_nok').val();
     data.NextVisist = $('#edit_nextVisit').val();
-    data.Country = $('#edit_countryId').val();
     data.DateCreated = $('#edit_dateCreated').val();
     data.Occupation = $('#edit_occupation').val();
-    data.State = $('#edit_stateId').val();
+    data.NurseName = $('#edit_nurs').val();
 
     data.BodyTemperature = $("#bodyTemp").val();
     data.PulseRate = $("#pulse").val();
     data.BloodPressure = $('#bodyPress').val();
     data.Height = $('#bodyheight').val();
     data.BodyWeight =  $('#bodyweight').val();
-    data.Comment = $('#Complain').val();
-    data.Complaint = $('#Complaints').val();
+    data.Comment = $('#complain').val();
+    data.Complaint = $('#chiefComplaints').val();
     data.DurationOfIllness = $('#durationOfIllness').val();
     data.Selfmedication = $('#selfMedication').val();
     data.DoseOfSelfmedication = $('#doseOfSelfMedication').val();
     data.DrugIntakeDuration = $('#drugIntakeDuration').val();
-    data.SmokingHabitId = $('#smokingHabit').val();
-    data.AnyAddictionId = $('#anyAddiction').val();
     data.Allergy = $('#allergy').val();
     data.MilitaryServiceId = $('#militaryServiceId').val();
     data.SexuallyActiveId = $('#sexuallyActiveId').val();
+    data.PainRate = $('#docname').val();
 
-    data.UnprotectedSexId =  $("#unprotectedSexId").val();
-    data.IfYesWhen = $("#ifYesWhen").val();
+    //data.UnprotectedSexId =  $("#unprotectedSexId").val();
+    //data.IfYesWhen = $("#ifYesWhen").val();
     data.MSMId = $('#msmId').val();
     data.Amount = $('#amount').val();
     data.Investigation = $('#investigation').val();
@@ -1241,16 +1276,50 @@ function SaveEditCheckup() {
     data.Treatment = $('#Treament').val();
     data.TreatAmount = $('#treatAmount').val();
     data.HowToTake = $('#howToTake').val();
-    data.BeforeMeal = $('#beforeMeal').val();
-    data.Diagnoses = $('#diagnosis').val();
+    data.BeforeMeal = $('#history').val();
+    data.Diagnoses = $('#diagnoses').val();
     data.Advice = $('#advice').val();
     data.Consultation = $('#consult').val();
     data.Medicine =  $('#medicine').val();
-    data.Surgery = $('#surgery').val();
-    data.Bed = $('#bed').val();
-    data.Others =  $('#others').val();
+    /*data.Others = $('#history').val();*/
     data.Total = $('#Total').val();
     data.Laboratory = $('#lab').val();
+    if (data.FirstName != null) {
+        $('#edit_firstName').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Add Total Amount Paid')
+        return false;
+    }
+    if (data.Email != null) {
+        $('#edit_email').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put patient Email')
+        return false;
+    }
+    if (data.PhoneNumber != "") {
+     $('#edit_phoneNumber').css('border', 'solid 1px #ccc');
+    } else {
+    errorAlert('Put patient phone number')
+     return false;
+    }
+    if (data.LastName != null) {
+        $('#edit_lastName').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Last Name')
+        return false;
+    }
+    if (data.DateCreated != null) {
+        $('#edit_dateCreated').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Date Created')
+        return false;
+    }
+    if (data.Address != null) {
+        $('#edit_address').css('border', 'solid 1px #ccc');
+    } else {
+        errorAlert('Put Address')
+        return false;
+    }
 
 
     let Checkup = JSON.stringify(data);
@@ -1279,13 +1348,13 @@ function SaveEditCheckup() {
    
 }
 
-function ConfirmCheckDelete(id) {
+function confirmCheckDelete(id) {
     $("#deleteId").val(id);
 
 }
 
 
-function DeletePayment() {
+function DeleteCheckup() {
     debugger;
     var CheckupId = $('#deleteId').val();
 
@@ -1349,6 +1418,86 @@ $(function () {
 
     });
 });
+function GetMedReport(Id) {
+    debugger;
+    $.ajax({
+        type: 'GET',
+        url: '/Admin/GetMedReport/'+ Id ,// we are calling json method,
+        dataType: 'json',
+        data:
+        {
+            Id: Id,
+        },
+        success: function (result) {
+            debugger;
+            if (!result.isError) {
+                var p = result.result;
+                $("#print_printId").val(p.id);
+                $('#print_firstName').text(p.firstName);
+                $('#print_email').text(p.email);
+                var genderId = "";
+                if (p.genderId = 1) {
+                    genderId = "female";
+                } else {
+                    genderId = "male";
+                }
+                $('#print_genderId').text(genderId);
+                $('#print_maritalStatusId').text(p.maritalStatusId);
+                $('#print_dob').text(dateToInput(p.dob));
+                var patientTypeId = "";
+                if (p.patientTypeId = 18) {
+                    patientTypeId = "Antenatal";
+                }
+                if (p.patientTypeId = 19) {
+                    patientTypeId = "Inpatient";
+                } else {
+                    patientTypeId = "Outpatient";
+                }
+                $('#print_patientTypeId').text(patientTypeId);
+                $('#print_address').text(p.address);
+                $('#print_lastName').text(p.lastName);
+                $('#print_phoneNumber').text(p.phone);
+                var genotypeId = "";
+                if (p.genotypeId = 18 ) {
+                    genotypeId = "AA";
+                }
+                if (p.genotypeId = 19) {
+                    genotypeId = "AS";
+                } else {
+                    genotypeId = "SS";
+                } 
+                $('#print_genotypeId').text(genotypeId);
+                $('#print_nok').text(p.nok);
+                $('#print_visit').text(dateToInput(p.nextVisist));
+                $('#print_dateCreated').text(dateToInput(p.dateCreated));
+                $('#print_nurse').text(p.nurseName);
+
+                $("#print_temp").text(p.bodyTemperature);
+                $("#print_rate").text(p.pulseRate);
+                $('#print_pressure').text(p.bloodPressure);
+                $('#print_height').text(p.height);
+                $('#print_weight').text(p.bodyWeight);
+                $('#print_symptoms').text(p.complaint);
+                $('#print_complaints').text(p.comment);
+                $('#print_treatment').text(p.medicine);
+                $('#print_investigation').text(p.investigation);
+                $('#print_history').text(p.beforeMeal);
+                $('#print_doctor').text(p.painRate);
+                $('#print_diagnoses').text(p.diagnoses);
+                $('#print_advice').text(p.advice);
+               
+                $('#printModal').modal('show');
+            }
+            else {
+                errorAlert(result.msg);
+            }
+        },
+        error: function (ex) {
+            "Something went wrong, contact support - " + errorAlert(ex);
+        }
+    });
+}
+
 
 
 

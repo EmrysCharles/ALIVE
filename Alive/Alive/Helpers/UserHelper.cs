@@ -41,7 +41,7 @@ namespace Alive.Helpers
 
         public async Task<ApplicationUser>? GetUser(string email)
         {
-            var user = _dbContext.ApplicationUsers.Where(x=>x.Id!=null && x.Email==email).FirstOrDefault();
+            var user = _dbContext.ApplicationUsers.Where(x=>x.Id != null && x.Email == email).FirstOrDefault();
             if (user != null) 
             {
                 return user;
@@ -59,13 +59,13 @@ namespace Alive.Helpers
             {
                 foreach (var userRole in userRoles)
                 {
-                    if (userRole.Contains("Admin"))
+                    if (userRole.Contains("USER"))
                     {
                         return "/Admin/Index";
                     }
                     else
                     {
-                        return "/User/Index";
+                        return "/Admin/Index";
                     }
                 }
             }

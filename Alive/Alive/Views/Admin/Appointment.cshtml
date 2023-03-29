@@ -27,15 +27,14 @@
             </div>
         </div>
         <div class="row align-items-top">
-            <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right; display:flex; justify-content:end;">
-                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
+            
         </div>
     </section>
     <!-- Default Card -->
     <section>
         <input type="hidden" id="checkupId" />
+        @if(Model.patientAppointments != null && Model.patientAppointments.Count() > 0)
+        {
         <table class="table table-stripped mt-3" id="example" style="width:100%;">
             <thead class="" style="background-color:whitesmoke; color:darkblue">
                 <tr>
@@ -47,13 +46,13 @@
                         Patient Name<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
                     </th>
                     <th scope="col">
-                       Email<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        Email<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
                     </th>
                     <th scope="col">
                         Phone Number<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
                     </th>
                     <th scope="col">
-                       Complaints<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
+                        Complaints<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
                     </th>
                     <th scope="col">
                         Appointment date<i class="ri-arrow-up-down-line" style="margin-left: 30px; color:red"></i>
@@ -69,29 +68,38 @@
             <tbody>
                 @foreach (var obj in Model.patientAppointments)
                 {
-                    <tr>
-                        <td></td>
-                        <td>@obj.Name</td>
-                        <td>@obj.Email</td>
-                        <td>@obj.PhoneNumber</td>
-                        <td>@obj.Description</td>
+                <tr>
+                    <td></td>
+                    <td>@obj.Name</td>
+                    <td>@obj.Email</td>
+                    <td>@obj.PhoneNumber</td>
+                    <td>@obj.Description</td>
 
-                        <td>@obj.AppointmentDate</td>
-                        <td>@obj.DateCreated</td>
-                        <td>
-                            <a class="btn btn-primary" onclick="EditAppForm(@obj.Id)"  data-bs-toggle="modal" data-bs-target="#largeModal">
-                                Edit
-                            </a>
-                            <a id="showModal" onclick="ConfirmAppDelete(@obj.Id)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
+                    <td>@obj.AppointmentDate</td>
+                    <td>@obj.DateCreated</td>
+                    <td>
+                        <a class="btn btn-primary" onclick="EditAppForm(@obj.Id)" data-bs-toggle="modal" data-bs-target="#largeModal">
+                            Edit
+                        </a>
+                        <a id="showModal" onclick="ConfirmAppDelete(@obj.Id)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
+        }
+        else
+        {
+            <div class="text-center">
 
-        <!-- End Primary Color Bordered Table -->
+                <h1> No record found </h1>
+
+            </div>
+        }
+
+ <!-- End Primary Color Bordered Table -->
         @*crete modal*@
         <div class="modal fade" id="largeModal">
             <div class="modal-dialog modal-lg">
@@ -154,7 +162,7 @@
         </div>
         @*Edit Modal*@
 
-        
+
 
         <div class="modal fade" id="deleteModal" tabindex="-1">
             <div class="modal-dialog modal-lg">
@@ -176,9 +184,13 @@
                                         </div>
                                     </div>
                                 </div><!-- End General Form Elements -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary btnCancel" data-dismiss="modal">close</button>
-                                    <button onclick="DeleteAppointment()" type="button" class="btn btn-danger ">Delete</button>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-6" style="border-radius:50%">
+                                        <button type="button" class="btn btn-secondary btnCancel w-100" data-dismiss="modal">close</button>
+                                     </div>
+                                    <div class="col-6" style="border-radius:50%">
+                                        <button onclick="DeleteAppointment()" type="button" class="btn btn-danger w-100 " >Delete</button>
+                                    </div>
                                 </div>
                             </div>
 

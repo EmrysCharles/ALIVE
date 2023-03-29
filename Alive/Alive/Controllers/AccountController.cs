@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace Alive.Controllers
 {
-    
+
     public class AccountController : Controller
     {
         private readonly AppDbContext _context;
@@ -20,7 +20,7 @@ namespace Alive.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IDropdownhelper _dropdownhelper;
 
-        public AccountController(AppDbContext context, IUserHelper userHelper, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IDropdownhelper dropdownhelper )
+        public AccountController(AppDbContext context, IUserHelper userHelper, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IDropdownhelper dropdownhelper)
         {
             _context = context;
             _userHelper = userHelper;
@@ -67,25 +67,31 @@ namespace Alive.Controllers
         [HttpPost]
         public JsonResult registerUser(string userDetails)
         {
-            ViewBag.Dropdownkeys =  _dropdownhelper.GetGenderDropdownByKey(AliveProjectEnums.GenderDropdownKey);
+            ViewBag.Dropdownkeys = _dropdownhelper.GetGenderDropdownByKey(AliveProjectEnums.GenderDropdownKey);
 
             //ViewBag.Country = _context.Country.Where(x => x.Id != 0).ToList();
 
             var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(userDetails);
-            if (applicationUserViewModel!= null)
+            if (applicationUserViewModel != null)
             {
                 var user = _userHelper.RegisterUser(applicationUserViewModel).Result;
                 if (user != null)
                 {
-                   var userRole = _userManager.AddToRoleAsync(user, "Users").Result;
+                    var userRole = _userManager.AddToRoleAsync(user, "USER").Result;
                     if (userRole.Succeeded)
                     {
                         return Json(new { isError = false, msg = "User Registered Successfully" });
                     }
-                    
+
+                }
+                else
+                {
+                   
+                        return Json(new { isError = true, msg = "User Already Exist" });
+                   
                 }
             }
-            return Json(new { isError = true, msg = "Error Occurred" }); 
+            return Json(new { isError = true, msg = "Error Occurred" });
         }
         [HttpGet]
         public IActionResult Login()
@@ -93,22 +99,31 @@ namespace Alive.Controllers
             return View();
         }
         [HttpPost]
-        
+
         public async Task<JsonResult> Login(string userDetails)
         {
             var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(userDetails);
             if (applicationUserViewModel != null)
             {
-                var user =await _userHelper.GetUser(applicationUserViewModel.Email).ConfigureAwait(false);
-                var signIn =await _signInManager.PasswordSignInAsync(user, applicationUserViewModel.Password, true, false).ConfigureAwait(false);
-                if (signIn.Succeeded)
+                var user = await _userHelper.GetUser(applicationUserViewModel.Email).ConfigureAwait(false);
+                if(user != null)
                 {
-                    var url = _userHelper.GetValidatedUrl(user);
+                    var signIn = await _signInManager.PasswordSignInAsync(user, applicationUserViewModel.Password, true, false).ConfigureAwait(false);
+                    if (signIn.Succeeded)
+                    {
+                        var url = _userHelper.GetValidatedUrl(user);
                         return Json(new { isError = false, url = url });
-                    
+
+                    }
+                    else
+                    {
+                        return Json(new { isError = true, msg = "User Not Found" });
+                    }
                 }
+
             }
-            return Json(new { isError = true, msg = "Error Occurred" });
+            return Json(new { isError = true, msg = "User Not Found" });
+
         }
 
         [HttpGet]
@@ -116,6 +131,13 @@ namespace Alive.Controllers
         {
             var state = _context.State.Where(x => x.CountryId == id).ToList();
             return Json(state);
+        }
+
+         public async Task <IActionResult>LogOut() 
+        {
+            await _signInManager.SignOutAsync();
+             return RedirectToAction("Index","Home");
+           
         }
     }
 

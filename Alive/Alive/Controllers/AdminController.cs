@@ -62,12 +62,12 @@ namespace Alive.Controllers
             return View(vm);
         }
         [HttpPost]
-        public JsonResult CheckupCreate(string deserializedCheckupFormViewModel)
+        public JsonResult CheckupCreate(string deserializedCheckupViewModel)
         {
             try
             {
 
-                var CheckupDetails = JsonConvert.DeserializeObject<CheckupFormViewModel>(deserializedCheckupFormViewModel);
+                var CheckupDetails = JsonConvert.DeserializeObject<CheckupFormViewModel>(deserializedCheckupViewModel);
                 if (CheckupDetails?.FirstName == string.Empty)
                 {
                     return Json(new { isError = true, msg = "First Name can not be empty,enter your fist name" });
@@ -129,7 +129,11 @@ namespace Alive.Controllers
                 {
                     return Json(new { isError = true, msg = "State can not be empty " });
                 }
-                
+                if (CheckupDetails.NurseName == string.Empty)
+                {
+                    return Json(new { isError = true, msg = "Nurse Name can not be empty " });
+                }
+
 
                 var existingCheckup = _context.Checkups.Where(s => s.FirstName == CheckupDetails.FirstName).FirstOrDefault();
                 if (existingCheckup != null)
@@ -154,12 +158,15 @@ namespace Alive.Controllers
                     Country = CheckupDetails.Country,
                      Occupation = CheckupDetails.Occupation,
                     State = CheckupDetails.State,
+                    NurseName = CheckupDetails.NurseName,
+                    MaritalStatusId = CheckupDetails.MaritalStatusId,
+
                     Deleted = false,
                 };
             
                 _context.Checkups.Add(newCheckup);
                 _context.SaveChanges();
-                _emailHelper.SendCheckupApprovalEmail(newCheckup.LastName);
+                //_emailHelper.SendCheckupApprovalEmail(newCheckup.LastName);
 
                 ModelState.Clear();
                 return Json(new { isError = false, msg = "Patient Checkup Created successful" });
@@ -170,16 +177,17 @@ namespace Alive.Controllers
             }
 
         }
+        [HttpGet]
         public JsonResult GetEditCheckup(Guid Id)
         {
             try
             {
                 if (Id != Guid.Empty)
                 {
-                    var Checkup = _db.Checkups.Where(x => x.Deleted == false).FirstOrDefault();
-                    if (Checkup != null)
+                    var checkup = _db.Checkups.Where(b => b.Id == Id).FirstOrDefault();
+                    if (checkup != null)
                     {
-                        return Json(new { isError = false, result = Checkup });
+                        return Json(new { isError = false, result = checkup });
                     }
                 }
                 return Json(new { isError = true, msg = "No Result Found" });
@@ -190,26 +198,6 @@ namespace Alive.Controllers
                 throw;
             }
         }
-        //public JsonResult PrintCheckup(Guid Id)
-        //{
-        //    try
-        //    {
-        //        if (Id != Guid.Empty)
-        //        {
-        //            var Checkup = _db.Checkups.Where(x => x.Deleted == false).FirstOrDefault();
-        //            if (Checkup != null)
-        //            {
-        //                return Json(new { isError = false, result = Checkup });
-        //            }
-        //        }
-        //        return Json(new { isError = true, msg = "No Result Found" });
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
         [HttpPost]
         public JsonResult SaveEditCheckup(string deserializedCheckupViewModel)
         {
@@ -217,13 +205,14 @@ namespace Alive.Controllers
             {
                 if (deserializedCheckupViewModel != null)
                 {
-                    var CheckupViewModel = JsonConvert.DeserializeObject<CheckupFormViewModel>(deserializedCheckupViewModel);
-                    if (CheckupViewModel != null)
+                    var CheckupFormViewModel = JsonConvert.DeserializeObject<CheckupFormViewModel>(deserializedCheckupViewModel);
+                    if (CheckupFormViewModel != null)
                     {
-                        var editCheckup = _userHelper.EditCheckup(CheckupViewModel);
+                        var editCheckup = _userHelper.EditCheckup(CheckupFormViewModel);
+
                         if (editCheckup)
                         {
-                            return Json(new { isError = false, msg = "Patient Medical Recorde Updated successfully", url = "/Admin/Checkup" });
+                            return Json(new { isError = false, msg = "Checkup Updated successfully", url = "/Admin/Checkup" });
                         }
                     }
                     return Json(new { isError = true, msg = "Unable to update Checkup" });
@@ -249,9 +238,9 @@ namespace Alive.Controllers
                     {
                         return Json(new { isError = false, msg = "Checkup Deleted successfully" });
                     }
-                    return Json(new { isError = false, msg = "Unable to Delete Checkup" });
+                    return Json(new { isError = true, msg = "Unable to Delete Checkup" });
                 }
-                return Json(new { isError = false, msg = "Error Occurred" });
+                return Json(new { isError = true, msg = "Error Occurred" });
             }
             catch (Exception)
             {
@@ -260,128 +249,6 @@ namespace Alive.Controllers
             }
         }
 
-        //Post - Edit
-        //Edit Labtest
-        //[HttpGet]
-        //public JsonResult GetEditCheckup(int? id)
-        //{
-        //    try
-        //    {
-        //        if (id > 0)
-        //        {
-        //            var labTest = _db.LabTests.Where(b => b.Id == id).FirstOrDefault();
-        //            if (labTest != null)
-        //            {
-        //                return Json(new { isError = false, result = labTest });
-        //            }
-        //        }
-        //        return Json(new { isError = true, msg = "No Result Found" });
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
-        //[HttpPost]
-        //public JsonResult SaveEditCheckup(string deserializedLabTestViewModel)
-        //{
-        //    try
-        //    {
-        //        if (deserializedLabTestViewModel != null)
-        //        {
-        //            var LabTestFormViewModel = JsonConvert.DeserializeObject<LabTestFormViewModel>(deserializedLabTestViewModel);
-        //            if (LabTestFormViewModel != null)
-        //            {
-        //                var editLabTest = _userHelper.EditLabTest(LabTestFormViewModel);
-        //                if (editLabTest)
-        //                {
-        //                    return Json(new { isError = false, msg = "LabTest Updated successfully", url = "/Admin/Labtest" });
-        //                }
-        //            }
-        //            return Json(new { isError = true, msg = "Unable to update LabTest" });
-        //        }
-        //        return Json(new { isError = true, msg = "Error Occurred" });
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
-        [HttpGet]
-
-        public IActionResult VitalSign()
-        {
-            var signs = _db.VitalSigns.Where(x => x.Id != 0).ToList();
-            return View(signs);
-        }
-
-        //get - Create
-        public IActionResult VitalCreate()
-        {
-
-            return View();
-        }
-        //Post - Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult VitalCreate(VitalSign obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.VitalSigns.Add(obj);
-                _db.SaveChanges();
-                return RedirectToAction("vitalsign");
-            }
-            return View(obj);
-        }
-        //get - Edit
-        [HttpGet]
-        public IActionResult VitalEdit(int Id)
-        {
-            if (Id == 0)
-            {
-                return NotFound();
-            }
-            var obj = _db.VitalSigns.Find(Id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-
-            return View(obj);
-        }
-        //Post -Edit
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult VitalEdit(VitalSign obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.VitalSigns.Update(obj);
-                _db.SaveChanges();
-                return RedirectToAction("vitalsign");
-            }
-            return View(obj);
-        }
-        //get - Delete
-        public IActionResult Delete(int? Id)
-        {
-            if (Id == null || Id == 0)
-            {
-                return NotFound();
-            }
-            var obj = _db.VitalSigns.Find(Id);
-            if (obj == null)
-            {
-                return NotFound(obj);
-            }
-
-            return View();
-        }
         public IActionResult Appointment()
         {
             var signs = _db.patientAppointments.Where(x => x.Deleted == false).ToList();
@@ -410,17 +277,17 @@ namespace Alive.Controllers
                     return Json(new { isError = true, msg = "Put your phone number" });
                 };
 
-                //if (AppointmentDetails.DateCreated == DateTime.MinValue)
-                //{
-                //    return Json(new { isError = true, msg = "This can not be empty" });
-                //};
+                if (AppointmentDetails.DateCreated == DateTime.MinValue)
+                {
+                   return Json(new { isError = true, msg = "DateCreated can not be empty" });
+                };
                 if (AppointmentDetails.AppointmentDate == DateTime.MinValue)
                 {
-                    return Json(new { isError = true, msg = "Checking in successful" });
+                    return Json(new { isError = true, msg = "Appointmentdate can not be empty" });
                 };
                 if (AppointmentDetails.Description == string.Empty)
                 {
-                    return Json(new { isError = true, msg = "This can not be empty " });
+                    return Json(new { isError = true, msg = "Description can not be empty " });
                 }
 
                 //var existingAppointment = _context.patientAppointments.Where(s => s.Name == AppointmentDetails.Name).FirstOrDefault();
@@ -441,8 +308,8 @@ namespace Alive.Controllers
                 };
                 _context.patientAppointments.Add(newPatientAppointment);
                 _context.SaveChanges();
-                _emailHelper.SendAppointmentConfirmationEmail(newPatientAppointment.AppointmentDate, newPatientAppointment.Name);
-                ModelState.Clear();
+                //_emailHelper.SendAppointmentConfirmationEmail(newPatientAppointment.AppointmentDate, newPatientAppointment.Name);
+                //ModelState.Clear();
                 return Json(new { isError = false, msg = "Appointment Created successful" });
             }
             catch (Exception ex)
@@ -450,7 +317,6 @@ namespace Alive.Controllers
                 throw ex;
             }
         }
-
 
         //Edit pATIENTAPPOINTMENT
         [HttpGet]
@@ -488,7 +354,7 @@ namespace Alive.Controllers
                         //_emailHelper.SendAppointmentConfirmationEmail(AppointmentFormViewModel.AppointmentDate, AppointmentFormViewModel.Name);
 
                         {
-                            return Json(new { isError = false, msg = "Appointment Updated successfully", url = "/Admin/Labtest" });
+                            return Json(new { isError = false, msg = "Appointment Updated successfully", url = "/Admin/Appointment" });
                         }
                     }
                     return Json(new { isError = true, msg = "Unable to update Appointment" });
@@ -512,11 +378,11 @@ namespace Alive.Controllers
                     var AppointmentToBeDeleted = _userHelper.DeleteAppointment(appointmentId);
                     if (AppointmentToBeDeleted)
                     {
-                        return Json(new { isError = false, msg = "Lab Deleted successfully" });
+                        return Json(new { isError = false, msg = "Appointmentment Deleted successfully" });
                     }
-                    return Json(new { isError = false, msg = "Unable to Delete Appointment" });
+                    return Json(new { isError = true, msg = "Unable to Delete Appointment" });
                 }
-                return Json(new { isError = false, msg = "Error Occurred" });
+                return Json(new { isError = true, msg = "Error Occurred" });
             }
             catch (Exception)
             {
@@ -524,9 +390,6 @@ namespace Alive.Controllers
                 throw;
             }
         }
-
-       
-
         //get - Create
        
         //Post - Create
@@ -595,7 +458,7 @@ namespace Alive.Controllers
         }
         //Edit Labtest
         [HttpGet]
-        public JsonResult GetEditLabTest(int? id)
+        public JsonResult GetEditLabTest(int id)
         {
             try
             {
@@ -642,7 +505,7 @@ namespace Alive.Controllers
             }
         }
         //post-delete
-        	[HttpPost]
+        [HttpPost]
 		public JsonResult DeleteLabTest(int id)
 		{
 			try
@@ -654,9 +517,9 @@ namespace Alive.Controllers
 						{
 							return Json(new { isError = false, msg = "Lab Deleted successfully" });
 						}
-					return Json(new { isError = false, msg = "Unable to Delete Lab" });
+					return Json(new { isError = true, msg = "Unable to Delete Lab" });
 				}
-				return Json(new { isError = false, msg = "Error Occurred" });
+				return Json(new { isError = true, msg = "Error Occurred" });
 			}
 			catch (Exception)
 			{
@@ -666,8 +529,6 @@ namespace Alive.Controllers
 		}
 
         //Post - Edit
-
-       
         public IActionResult Info(Guid id)
         {
             var signs = _db.NurseInfos.Where(x => x.Deleted == false).ToList();
@@ -733,7 +594,7 @@ namespace Alive.Controllers
         }
         //Edit Labtest
         [HttpGet]
-        public JsonResult GetEditNurse(Guid? id)
+        public JsonResult GetEditNurse(Guid id)
         {
             try
             {
@@ -792,9 +653,9 @@ namespace Alive.Controllers
                     {
                         return Json(new { isError = false, msg = "Nurse Deleted successfully" });
                     }
-                    return Json(new { isError = false, msg = "Unable to Delete Nurse" });
+                    return Json(new { isError = true, msg = "Unable to Delete Nurse" });
                 }
-                return Json(new { isError = false, msg = "Error Occurred" });
+                return Json(new { isError = true, msg = "Error Occurred" });
             }
             catch (Exception)
             {
@@ -802,10 +663,6 @@ namespace Alive.Controllers
                 throw;
             }
         }
-
-
-        
-
         public IActionResult DocInfo(Guid id)
         {
             var signs = _db.DocInfos.Where(x => x.Deleted == false).ToList();
@@ -875,7 +732,7 @@ namespace Alive.Controllers
         }
         //Edit Labtest
         [HttpGet]
-        public JsonResult GetEditDoctor(Guid? id)
+        public JsonResult GetEditDoctor(Guid id)
         {
             try
             {
@@ -905,7 +762,7 @@ namespace Alive.Controllers
                         var editDoctor = _userHelper.EditDoctor(DoctorFormViewModel);
                         if (editDoctor)
                         {
-                            return Json(new { isError = false, msg = "Doctor Info Updated successfully", url = "/Admin/Labtest" });
+                            return Json(new { isError = false, msg = "Doctor Info Updated successfully", url = "/Admin/DocInfo" });
                         }
                     }
                     return Json(new { isError = true, msg = "Unable to update Doctor Info" });
@@ -931,10 +788,10 @@ namespace Alive.Controllers
                     {
                         return Json(new { isError = false, msg = "Doctor Deleted successfully" });
                     }
-                    return Json(new { isError = false, msg = "Unable to Delete Doctror" });
+                    return Json(new { isError = true, msg = "Unable to Delete Doctror" });
                 }
                 
-                return Json(new { isError = false, msg = "Error Occurred" });
+                return Json(new { isError = true, msg = "Error Occurred" });
             }
             catch (Exception)
             {
@@ -997,7 +854,7 @@ namespace Alive.Controllers
         }
         //Edit Labtest
         [HttpGet]
-        public JsonResult GetEditMedicine(int? id)
+        public JsonResult GetEditMedicine(int id)
         {
             try
             {
@@ -1056,9 +913,9 @@ namespace Alive.Controllers
                     {
                         return Json(new { isError = false, msg = "Treatment Deleted successfully" });
                     }
-                    return Json(new { isError = false, msg = "Unable to Delete Treatment" });
+                    return Json(new { isError = true, msg = "Unable to Delete Treatment" });
                 }
-                return Json(new { isError = false, msg = "Error Occurred" });
+                return Json(new { isError = true, msg = "Error Occurred" });
             }
             catch (Exception)
             {
@@ -1066,8 +923,6 @@ namespace Alive.Controllers
                 throw;
             }
         }
-
-
 
         public IActionResult Payment()
         {
@@ -1145,7 +1000,7 @@ namespace Alive.Controllers
         }
         //Edit Payment
         [HttpGet]
-        public JsonResult GetEditPayment(Guid? id)
+        public JsonResult GetEditPayment(Guid id)
         {
             try
             {
@@ -1205,9 +1060,9 @@ namespace Alive.Controllers
                     {
                         return Json(new { isError = false, msg = "Payment Deleted successfully" });
                     }
-                    return Json(new { isError = false, msg = "Unable to Delete Lab" });
+                    return Json(new { isError = true, msg = "Unable to Delete Lab" });
                 }
-                return Json(new { isError = false, msg = "Error Occurred" });
+                return Json(new { isError = true, msg = "Error Occurred" });
             }
             catch (Exception)
             {
@@ -1215,35 +1070,6 @@ namespace Alive.Controllers
                 throw;
             }
         }
-
-
-        //uploadfile
-        //public string UploadedFile(PaymentFormViewModel filesSender)
-        //{
-
-        //    string uniqueFileName = string.Empty;
-
-        //    if (filesSender.ProofOfPaymentUrl != null)
-        //    {
-        //        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Payment");
-        //        string pathString = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Payment");
-        //        if (!Directory.Exists(pathString))
-        //        {
-        //            Directory.CreateDirectory(pathString);
-        //        }
-        //        uniqueFileName = Guid.NewGuid().ToString() + "_" + filesSender.ProofOfPaymentUrl.FileName;
-        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-        //        using (var fileStream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            filesSender.ProofOfPaymentUrl.CopyTo(fileStream);
-        //        }
-        //    }
-        //    var generatedPictureFilePath = "/orderpaymentProof/" + uniqueFileName;
-        //    return generatedPictureFilePath;
-        //}
-
-
-
 
         public IActionResult UserManagement()
         {
@@ -1279,15 +1105,53 @@ namespace Alive.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public JsonResult GetMedReport(Guid Id)
+        {
+            try
+            {
+                if (Id != Guid.Empty)
+                {
+                    var checkup = _db.Checkups.Where(b => b.Id == Id).FirstOrDefault();
+                    if (checkup != null)
+                    {
+                        return Json(new { isError = false, result = checkup });
+                    }
+                }
+                return Json(new { isError = true, msg = "No Result Found" });
+            }
+            catch (Exception)
+            {
 
-    }
+                throw;
+            }
+        }
+		public IActionResult History()
+		{
+			return View();
+		}
 
-   
+		//public JsonResult GetMedReport(Guid Id)
+		//{
+		//	try
+		//	{
+		//		if (Id != Guid.Empty)
+		//		{
+		//			var checkup = _db.Checkups.Where(b => b.Id == Id).FirstOrDefault();
+		//			if (checkup != null)
+		//			{
+		//				return Json(new { isError = false, result = checkup });
+		//			}
+		//		}
+		//		return Json(new { isError = true, msg = "No Result Found" });
+		//	}
+		//	catch (Exception)
+		//	{
 
+		//		throw;
+		//	}
 
-
-
-
+	}
 }
 
     

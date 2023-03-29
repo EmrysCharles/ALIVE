@@ -1,0 +1,249 @@
+﻿@model Alive.Models.CheckupViewModel
+@{
+    ViewData["Title"] = "History";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid">
+<div class="modal fade" id="printModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="showModal">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Default Tabs -->
+                        <div class="row align-items-top">
+                            <div class="col-sm-4 col-md-4 col-xl-4">
+                                <div class="">
+                                    <img class="img-responsive" src="~/medicio/assets/img/alive.jpg" width="30" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-xl-4">
+                                <h5 class="card-title" id="exampleModalLabel" style="color:maroon; font-size:larger; font-style:oblique; display:flex; align-items:center; justify-content:center;"><b>MEDICAL RECORD</b></h5>
+
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-xl-4">
+                                <a class="btn btn-success" style="float:right">
+                                    <i class="bi bi-download" style="color:white;"></i>
+                                </a>
+                                <a class="btn btn-primary" style="float:right">
+                                    <i class="bi bi-arrow-90deg-left" style="color:white;">Back</i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- End General Form Elements -->
+                        <div class="row m-3">
+
+                            <div class="col-sm-6 col-md-8 col-xl-4">
+
+                                <p><b>ALIVE</b></p>
+                                <p>PO BOX 12345</p>
+                                <p><b>MOBILE :</b> 09015559037</p>
+                                <p><b>EMAIL :</b> ALIVEINC@gmail.com</p>
+                                <p><b>WEBSITE :</b> ALIVEINC.com</p>
+
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-xl-4">
+                                @foreach (var obj in Model.Checkups)
+                                {
+                                    <p><b>First Name: </b>@obj.FirstName</p>
+                                    <p><b>Last Name: </b>@obj.LastName</p>
+                                    <p><b>Patient Type: </b>@obj.PatientType.Name</p>
+                                    <p><b>Patient Gender: </b>@obj.Gender.Name</p>
+                                    <p><b>Patient Phone:</b>@obj.Phone</p>
+                                    <p><b>Patient Address:</b>@obj.Address</p>
+                                    <p><b>Patient Checkup Date:</b>@obj.DateCreated</p>
+                                }
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <p class="fs-2 text-danger"><i class="ri-stethoscope-line "></i> <b>Checkup  </b> <span class="mx-1" id="day"></span> </p>
+                                <div class="table-responsive">
+                                    <input type="hidden" id="checkupId" />
+                                    <table class="table table-bordered mt-3" style="width:100%;">
+                                        <thead class="bg-danger" style=" color:darkblue">
+                                            <tr>
+                                                <th scope="col">
+                                                    Id
+                                                </th>
+
+                                                <th scope="col">
+
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        @foreach (var obj in Model.Checkups)
+                                        {
+
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>Doctor's Name</td>
+                                                    <td>@obj.Surgery</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Symptoms</td>
+                                                    <td>@obj.Complaint</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Diagnoses</td>
+                                                    <td> @obj.Diagnoses</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Advice</td>
+                                                    <td> @obj.Advice</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Next Visit</td>
+                                                    <td> @obj.NextVisist</td>
+                                                </tr>
+                                            </tbody>
+                                        }
+                                    </table>
+                                    <!-- End Primary Color Bordered Table -->
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-6">
+                                <p class="text-danger fs-2"> <b>Vital Signs</b> </p>
+
+                                <div class="table-responsive">
+                                    <input type="hidden" id="checkupId" />
+                                    @foreach (var obj in Model.Checkups)
+                                    {
+
+
+                                        <table class="table table-bordered mt-3" style="width:100%;">
+                                            <thead class="bg-danger" style=" color:darkblue">
+                                                <tr>
+                                                    <th scope="col">
+                                                        Nurse's Name
+                                                    </th>
+
+                                                    <th scope="col">
+                                                        @obj.Bed
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> Body Temperature</td>
+                                                    <td>@obj.BodyTemperature</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Blood Pressure</td>
+                                                    <td> @obj.BloodPressure</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Body Weight</td>
+                                                    <td>@obj.BodyWeight</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Body Height</td>
+                                                    <td> <span id="bh"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Pulse ratetd>
+                                                    <td> @obj.PulseRate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    }
+                                    <!-- End Primary Color Bordered Table -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <div class="table-responsive">
+                                <h2 class="text-danger fs-2">Family History</h2>
+                                <input type="hidden" id="checkupId" />
+                                @foreach (var obj in Model.Checkups)
+                                {
+
+
+                                    <table class="table table-bordered mt-3" style="width:100%;">
+                                        <thead class="bg-danger" style=" color:darkblue">
+                                            <tr>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+
+                                                <td><textarea class="w-100">@obj.Result</textarea></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                }
+                                <!-- End Primary Color Bordered Table -->
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <div class="table-responsive">
+                                    <h2 class="text-danger fs-2">Laboratory Investigation</h2>
+                                    <input type="hidden" id="checkupId" />
+                                    @foreach (var obj in Model.Checkups)
+                                    {
+
+
+                                        <table class="table table-bordered mt-3" style="width:100%;">
+                                            <thead class="bg-danger" style=" color:darkblue">
+                                                <tr>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+
+                                                    <td><textarea class="w-100">@obj.Investigation</textarea></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    }
+                                    <!-- End Primary Color Bordered Table -->
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="table-responsive">
+                                    <h2 class="text-danger fs-2">Treatment</h2>
+                                    <input type="hidden" id="checkupId" />
+                                    @foreach (var obj in Model.Checkups)
+                                    {
+
+
+                                        <table class="table table-bordered mt-3" style="width:100%;">
+                                            <thead class="bg-danger" style=" color:darkblue">
+                                                <tr>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+
+                                                    <td><textarea class="w-100">@obj.Medicine</textarea></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    }
+                                    <!-- End Primary Color Bordered Table -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
